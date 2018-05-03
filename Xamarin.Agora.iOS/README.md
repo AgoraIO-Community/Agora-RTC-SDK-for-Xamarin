@@ -1,4 +1,4 @@
-## Get native libs
+## Get native libraries
 
 Download native Full and Voice SDK from [https://www.agora.io/en/download/](https://www.agora.io/en/download/)
 
