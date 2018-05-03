@@ -1,0 +1,37 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Agora.Full.Android", "Xamarin.Agora.Full.Android\Xamarin.Agora.Full.Android.csproj", "{03C60B7A-1C54-4969-A05A-7210036ABE98}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Agora.Voice.Android", "Xamarin.Agora.Voice.Android\Xamarin.Agora.Voice.Android.csproj", "{1C576D75-6EE6-4C20-A938-46BE79A835AF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nugets", "Nugets", "{CE4B388B-A37D-4829-97CD-FC66E5DCFB41}"
+	ProjectSection(SolutionItems) = preProject
+		..\Nugets\Xamarin.Agora.Full.Android\Xamarin.Agora.Full.Android.nuspec = ..\Nugets\Xamarin.Agora.Full.Android\Xamarin.Agora.Full.Android.nuspec
+		..\Nugets\Xamarin.Agora.Voice.Android\Xamarin.Agora.Voice.Android.nuspec = ..\Nugets\Xamarin.Agora.Voice.Android\Xamarin.Agora.Voice.Android.nuspec
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2F07762B-A080-4938-8EAC-0FB93272B83D}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{03C60B7A-1C54-4969-A05A-7210036ABE98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03C60B7A-1C54-4969-A05A-7210036ABE98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03C60B7A-1C54-4969-A05A-7210036ABE98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03C60B7A-1C54-4969-A05A-7210036ABE98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C576D75-6EE6-4C20-A938-46BE79A835AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C576D75-6EE6-4C20-A938-46BE79A835AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C576D75-6EE6-4C20-A938-46BE79A835AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C576D75-6EE6-4C20-A938-46BE79A835AF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		version = 1.8.0
+	EndGlobalSection
+EndGlobal
