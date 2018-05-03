@@ -2,19 +2,19 @@
 
 The Agora SDK allows you to effortlessly integrate call functionality into your app or website.
 
-## Nugets
+## Xamarin.iOS and Xamarin.Android Agora SDK packages
 
-Android FULL: [![NuGet Badge](https://buildstats.info/nuget/Xamarin.Agora.Full.Android)](https://www.nuget.org/packages/Xamarin.Agora.Full.Android/)
+Xamarin.Agora.Full.Android - includes all capabilities [![NuGet Badge](https://buildstats.info/nuget/Xamarin.Agora.Full.Android)](https://www.nuget.org/packages/Xamarin.Agora.Full.Android/)
 
-Android VOICE: [![NuGet Badge](https://buildstats.info/nuget/Xamarin.Agora.Voice.Android)](https://www.nuget.org/packages/Xamarin.Agora.Voice.Android/)
+Xamarin.Agora.Voice.Android - includes voice-only capabilities (no video) [![NuGet Badge](https://buildstats.info/nuget/Xamarin.Agora.Voice.Android)](https://www.nuget.org/packages/Xamarin.Agora.Voice.Android/)
 
-iOS FULL: [![NuGet Badge](https://buildstats.info/nuget/Xamarin.Agora.Full.iOS)](https://www.nuget.org/packages/Xamarin.Agora.Full.iOS/)
+Xamarin.Agora.Full.iOS - includes all capabilities [![NuGet Badge](https://buildstats.info/nuget/Xamarin.Agora.Full.iOS)](https://www.nuget.org/packages/Xamarin.Agora.Full.iOS/)
 
-iOS VOICE: [![NuGet Badge](https://buildstats.info/nuget/Xamarin.Agora.Voice.iOS)](https://www.nuget.org/packages/Xamarin.Agora.Voice.iOS/)
+Xamarin.Agora.Voice.iOS - includes voice-only capabilities (no video) [![NuGet Badge](https://buildstats.info/nuget/Xamarin.Agora.Voice.iOS)](https://www.nuget.org/packages/Xamarin.Agora.Voice.iOS/)
 
-## Native
+## Native packages
 
-Native packages you can [download here](http://www.agora.io/en/blog/download/).
+You can download native packages [here](http://www.agora.io/en/blog/download/).
 
 in this repo you will find binding projects for both versions - FULL and VOICE, difference is in support of video and size of lib
 
@@ -22,10 +22,13 @@ in this repo you will find binding projects for both versions - FULL and VOICE, 
 
 You can build and run OneToOne sample app available on [GitHub](https://github.com/DreamTeamMobile/Xamarin.Agora.Samples)
 
-## Build
+Step by step iOS Tutorial is available on [GitHub](https://github.com/DreamTeamMobile/Xamarin.Agora.Samples/tree/tutorial/Tutorial)
 
-* [to update and compile Android dll's](/Xamarin.Agora.Android)
-* [to update and compile iOS dll's](/Xamarin.Agora.iOS)
-* [pack Nugets](/Nugets)
+## How to build?
 
-> [WiKi](https://sites.google.com/a/dreamteam-mobile.com/wiki/projects/agora-sample)
+* [How to build Android dll's](/Xamarin.Agora.Android)
+* [How to build iOS dll's](/Xamarin.Agora.iOS)
+
+## License
+
+The MIT License (MIT).
