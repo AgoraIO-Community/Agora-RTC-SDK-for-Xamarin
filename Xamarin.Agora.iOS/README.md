@@ -6,15 +6,15 @@ unpack and copy files:
 
 `Agora_Native_SDK_for_iOS_FULL/libs/libcrypto.a` to `Xamarin.Agora.iOS/Xamarin.Agora.Full.iOS/libcrypto.a`
 
-`Agora_Native_SDK_for_iOS_FULL/libs/AgoraRtcEngineKit.framework/AgoraRtcEngineKit` to `Xamarin.Agora.iOS/Xamarin.Agora.Full.iOS/libAgoraRtcEngineKit.a`
+`Agora_Native_SDK_for_iOS_FULL/libs/AgoraRtcEngineKit.framework` to `Xamarin.Agora.iOS/Xamarin.Agora.Full.iOS/AgoraRtcEngineKit.framework`
 
-`Agora_Native_SDK_for_iOS_FULL/libs/AgoraRtcCryptoLoader.framework/AgoraRtcCryptoLoader` to `Xamarin.Agora.iOS/Xamarin.Agora.Full.iOS/libAgoraRtcCryptoLoader.a`
+`Agora_Native_SDK_for_iOS_FULL/libs/AgoraRtcCryptoLoader.framework` to `Xamarin.Agora.iOS/Xamarin.Agora.Full.iOS/AgoraRtcCryptoLoader.framework`
 
 `Agora_Native_SDK_for_iOS_VOICE/libs/libcrypto.a` to `Xamarin.Agora.iOS/Xamarin.Agora.Voice.iOS/libcrypto.a`
 
-`Agora_Native_SDK_for_iOS_VOICE/libs/AgoraAudioKit.framework/AgoraAudioKit` to `Xamarin.Agora.iOS/Xamarin.Agora.Voice.iOS/libAgoraAudioKit.a`
+`Agora_Native_SDK_for_iOS_VOICE/libs/AgoraAudioKit.framework` to `Xamarin.Agora.iOS/Xamarin.Agora.Voice.iOS/AgoraAudioKit.framework`
 
-`Agora_Native_SDK_for_iOS_VOICE/libs/AgoraRtcCryptoLoader.framework/AgoraRtcCryptoLoader` to `Xamarin.Agora.iOS/Xamarin.Agora.Voice.iOS/libAgoraRtcCryptoLoader.a`
+`Agora_Native_SDK_for_iOS_VOICE/libs/AgoraRtcCryptoLoader.framework` to `Xamarin.Agora.iOS/Xamarin.Agora.Voice.iOS/AgoraRtcCryptoLoader.framework`
 
 
 ## Update/Install Sharpie

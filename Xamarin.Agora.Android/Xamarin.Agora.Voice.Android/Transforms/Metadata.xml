@@ -113,5 +113,7 @@
     <remove-node path="/api/package[@name='io.agora.rtc.internal']/class[@name='RtcEngineMessage.PStreamPublished']/method[@name='pushStringArray' and count(parameter)=1 and parameter[1][@type='java.util.ArrayList']]" />
     <attr path="/api/package[@name='io.agora.rtc.internal']/class[@name='RtcEngineMessage.PStreamUnPublished']/method[@name='pushStringArray' and count(parameter)=1 and parameter[1][@type='java.util.ArrayList']]/parameter[1]" name="managedType">System.Collections.Generic.IList&lt;string&gt;</attr>
     <remove-node path="/api/package[@name='io.agora.rtc.internal']/class[@name='RtcEngineMessage.PStreamUnPublished']/method[@name='pushStringArray' and count(parameter)=1 and parameter[1][@type='java.util.ArrayList']]" />
+    <attr path="/api/package[@name='io.agora.rtc.internal']/class[@name='RtcEngineMessage.PRemoteVideoState']/method[@name='pushStringArray' and count(parameter)=1 and parameter[1][@type='java.util.ArrayList']]/parameter[1]" name="managedType">System.Collections.Generic.IList&lt;string&gt;</attr>
+    <remove-node path="/api/package[@name='io.agora.rtc.internal']/class[@name='RtcEngineMessage.PRemoteVideoState']/method[@name='pushStringArray' and count(parameter)=1 and parameter[1][@type='java.util.ArrayList']]" />
     <attr path="/api/package[@name='io.agora.rtc.internal']" name="managedName">DT.Xamarin.Agora.Internal</attr>
 </metadata>

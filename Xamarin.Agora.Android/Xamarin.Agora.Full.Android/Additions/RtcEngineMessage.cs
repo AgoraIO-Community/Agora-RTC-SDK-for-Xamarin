@@ -2072,5 +2072,49 @@ namespace DT.Xamarin.Agora.Internal
                 }
             }
         }
+
+        public partial class PRemoteVideoState : global::DT.Xamarin.Agora.Internal.Marshallable
+        {
+            static Delegate cb_pushStringArray_Ljava_util_ArrayList_;
+#pragma warning disable 0169
+            static Delegate GetPushStringArray_Ljava_util_ArrayList_Handler()
+            {
+                if (cb_pushStringArray_Ljava_util_ArrayList_ == null)
+                    cb_pushStringArray_Ljava_util_ArrayList_ = JNINativeWrapper.CreateDelegate((Action<IntPtr, IntPtr, IntPtr>)n_PushStringArray_Ljava_util_ArrayList_);
+                return cb_pushStringArray_Ljava_util_ArrayList_;
+            }
+
+            static void n_PushStringArray_Ljava_util_ArrayList_(IntPtr jnienv, IntPtr native__this, IntPtr native_p0)
+            {
+                global::DT.Xamarin.Agora.Internal.RtcEngineMessage.PRemoteVideoState __this = global::Java.Lang.Object.GetObject<global::DT.Xamarin.Agora.Internal.RtcEngineMessage.PRemoteVideoState>(jnienv, native__this, JniHandleOwnership.DoNotTransfer);
+                var p0 = global::Android.Runtime.JavaList<string>.FromJniHandle(native_p0, JniHandleOwnership.DoNotTransfer);
+                __this.PushStringArray(p0);
+            }
+#pragma warning restore 0169
+
+            static IntPtr id_pushStringArray_Ljava_util_ArrayList_;
+            // Metadata.xml XPath method reference: path="/api/package[@name='io.agora.rtc.internal']/class[@name='RtcEngineMessage.PRemoteVideoState']/method[@name='pushStringArray' and count(parameter)=1 and parameter[1][@type='java.util.ArrayList']]"
+            [Register("pushStringArray", "(Ljava/util/ArrayList;)V", "GetPushStringArray_Ljava_util_ArrayList_Handler")]
+            public override unsafe void PushStringArray(global::System.Collections.Generic.IList<string> p0)
+            {
+                if (id_pushStringArray_Ljava_util_ArrayList_ == IntPtr.Zero)
+                    id_pushStringArray_Ljava_util_ArrayList_ = JNIEnv.GetMethodID(class_ref, "pushStringArray", "(Ljava/util/ArrayList;)V");
+                IntPtr native_p0 = global::Android.Runtime.JavaList<string>.ToLocalJniHandle(p0);
+                try
+                {
+                    JValue* __args = stackalloc JValue[1];
+                    __args[0] = new JValue(native_p0);
+
+                    if (((object)this).GetType() == ThresholdType)
+                        JNIEnv.CallVoidMethod(((global::Java.Lang.Object)this).Handle, id_pushStringArray_Ljava_util_ArrayList_, __args);
+                    else
+                        JNIEnv.CallNonvirtualVoidMethod(((global::Java.Lang.Object)this).Handle, ThresholdClass, JNIEnv.GetMethodID(ThresholdClass, "pushStringArray", "(Ljava/util/ArrayList;)V"), __args);
+                }
+                finally
+                {
+                    JNIEnv.DeleteLocalRef(native_p0);
+                }
+            }
+        }
     }
 }
