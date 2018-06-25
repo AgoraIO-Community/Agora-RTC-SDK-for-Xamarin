@@ -12,16 +12,18 @@
     <summary>Xamarin Agora Full Android SDK lets you use Agora.in-powered video sessions in apps</summary>
     <tags>Agora Agora.io Full SDK Xamarin Android Xamarin.Android MonoDroid Binding DreamTeam DreamTeamMobile</tags>
     <releaseNotes>
-v2.1.3 (Released Apr 19th, 2018)
-In v2.1.3 Agora has updated the bitrate values of the setVideoProfile API in the live-broadcast mode. The bitrate values in v2.1.3 stay consistent with those in v2.0. For more information, see descriptions on setVideoProfile in Interactive Broadcast API .
+v2.2.2 (Released Jun 21st, 2018)
 
 Issues Fixed
-Fixed the issue of occasional recording failure on some phones when the user leaves the channel and turns on the in-built recording device.
+Fixed occasional online statistics crashes.
+Fixed occasional audio crashes on some Android devices.
+Fixed the issue that the broadcaster’s voice distorts occasionally on some Android devices.
+Fixed the issue of failing to report the uid and volume of the speaker in a channel.
+Fixed the issue of receiving the onLeaveChannel callback long after a user has left the channel on some Android devices.
+Fixed the issue of occasional video freeze after a view size change.
+Fixed the occasional ANR (application no response) problem on some Android devices after the user turns off the camera to end a video session.
 
-Improvements
-Improved the performance of screen sharing by shortening the time interval between which users switch from screen sharing to normal communication or live-broadcast.
-
-origin: https://docs.agora.io/en/2.1.3/product/Video/Product%20Overview/release_android_video
+origin: https://docs.agora.io/en/2.3.1/product/Video/Product%20Overview/release_android_video
 </releaseNotes>
   </metadata>
   <files>

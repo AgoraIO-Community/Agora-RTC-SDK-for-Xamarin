@@ -12,13 +12,14 @@
     <tags>Agora Agora.io Voice SDK Xamarin iOS Xamarin.iOS MonoTouch Binding DreamTeam DreamTeamMobile</tags>
     <summary>Xamarin Agora iOS SDK lets you use Agora.in-powered audio sessions in apps</summary>
     <releaseNotes>
-v2.1.3 (Released Apr 19th, 2018)
+v2.2.2 (Released Jun 21st, 2018)
+
 Issues Fixed
-Fixed the issue that the Block callbacks were occasionally not received if the delegate has not been set.
-Fixed the issue that NSAssertionHandler appears in the external links to SDK.
-Fixed the issue of occasional recording failure on some phones when the user leaves the channel and turns on the in-built recording device.
-Fixed the issue of occasional crash during a communication or live-broadcast session.
-origin: https://docs.agora.io/en/2.1.3/product/Voice/Product%20Overview/release_ios_audio
+Fixed occasional online statistics crashes.
+Fixed the issue that the media and the signaling services cannot be accessed at the same time on some iOS devices.
+Fixed the issue of failing to report the uid and volume of the speaker in a channel.
+
+origin: https://docs.agora.io/en/2.3.1/product/Voice/Product%20Overview/release_ios_audio
 </releaseNotes>
   </metadata>
   <files>

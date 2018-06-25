@@ -12,21 +12,15 @@
     <summary>Xamarin Agora iOS SDK lets you use Agora.in-powered video sessions in apps</summary>
     <tags>Agora Agora.io Full SDK Xamarin iOS Xamarin.iOS MonoTouch Binding DreamTeam DreamTeamMobile</tags>
     <releaseNotes>
-v2.1.3 (Released Apr 19th, 2018)
-In v2.1.3 Agora has updated the bitrate values of the setVideoProfile API in the live-broadcast mode. The bitrate values in v2.1.3 stay consistent with those in v2.0. For more information, see descriptions on setVideoProfile in Interactive Broadcast API .
+v2.2.2 (Released Jun 21st, 2018)
 
 Issues Fixed
-Fixed the issue that the Block callbacks were occasionally not received if the delegate has not been set.
-Fixed the issue that NSAssertionHandler appears in the external links to SDK.
-Fixed the issue of occasional recording failure on some phones when the user leaves the channel and turns on the in-built recording device.
-Fixed the issue that in live-broadcast mode the iOS client cannot see the video from the Web client on Win 10 even after the iOS has called enableWebSdkInteroperability.
-Fixed the issue of occasional resolution change after it uses UIImagePickerController to enable the system camera and switches back to the live broadcast.
-Fixed the issue of occasional crash during a communication or live-broadcast session.
+Fixed occasional online statistics crashes.
+Fixed the issue that the media and the signaling services cannot be accessed at the same time on some iOS devices.
+Fixed the issue of failing to report the uid and volume of the speaker in a channel.
+Fixed the issue of occasional video freeze after a view size change.
 
-Improvements
-Improved the performance of screen sharing by shortening the time interval between which users switch from screen sharing to normal communication or live-broadcast.
-
-origin: https://docs.agora.io/en/2.1.3/product/Video/Product%20Overview/release_ios_video
+origin: https://docs.agora.io/en/2.3.1/product/Video/Product%20Overview/release_ios_video
 </releaseNotes>
   </metadata>
   <files>

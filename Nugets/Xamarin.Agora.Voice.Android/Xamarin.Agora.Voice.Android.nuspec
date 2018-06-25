@@ -12,10 +12,16 @@
     <summary>Xamarin Agora Voice Android SDK lets you use Agora.in-powered audio sessions in apps</summary>
     <tags>Agora Agora.io Voice SDK Xamarin Android Xamarin.Android MonoDroid Binding DreamTeam DreamTeamMobile</tags>
     <releaseNotes>
-v2.1.3 (Released Apr 19th, 2018)
+v2.2.2 (Released Jun 21st, 2018)
+
 Issues Fixed
-Fixed the issue of occasional recording failure on some phones when the user leaves the channel and turns on the in-built recording device.
-origin: https://docs.agora.io/en/2.1.3/product/Voice/Product%20Overview/release_android_audio
+Fixed occasional online statistics crashes.
+Fixed occasional audio crashes on some Android devices.
+Fixed the issue that the broadcaster’s voice distorts occasionally on some Android devices.
+Fixed the issue of failing to report the uid and volume of the speaker in a channel.
+Fixed the issue of receiving the onLeaveChannel callback long after a user has left the channel on some Android devices.
+
+origin: https://docs.agora.io/en/2.3.1/product/Voice/Product%20Overview/release_android_audio
 </releaseNotes>
   </metadata>
   <files>
