@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Xamarin.Forms.3.4.0.1029999\build\Xamarin.Forms.props" Condition="Exists('..\packages\Xamarin.Forms.3.4.0.1029999\build\Xamarin.Forms.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{42691A1A-0C43-40F4-9F30-DD0D3F0C4672}</ProjectGuid>
+    <ProjectTypeGuids>{A3F8F2AB-B479-4A4A-A458-A89E7DC349F1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Xamarin.Agora.Full.Forms.MacOS</RootNamespace>
+    <AssemblyName>Xamarin.Agora.Full.Forms.MacOS</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkIdentifier>Xamarin.Mac</TargetFrameworkIdentifier>
+    <MonoMacResourcePrefix>Resources</MonoMacResourcePrefix>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Nugets\Xamarin.Agora.Full.Forms\lib\Xamarin.Mac20</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <EnableCodeSigning>false</EnableCodeSigning>
+    <CreatePackage>false</CreatePackage>
+    <EnablePackageSigning>false</EnablePackageSigning>
+    <IncludeMonoRuntime>false</IncludeMonoRuntime>
+    <UseSGen>false</UseSGen>
+    <HttpClientHandler>HttpClientHandler</HttpClientHandler>
+    <LinkMode>None</LinkMode>
+    <XamMacArch></XamMacArch>
+    <AOTMode>None</AOTMode>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Nugets\Xamarin.Agora.Full.Forms\lib\Xamarin.Mac20</OutputPath>
+    <DefineConstants></DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <EnableCodeSigning>false</EnableCodeSigning>
+    <CreatePackage>false</CreatePackage>
+    <EnablePackageSigning>false</EnablePackageSigning>
+    <IncludeMonoRuntime>false</IncludeMonoRuntime>
+    <UseSGen>false</UseSGen>
+    <HttpClientHandler>HttpClientHandler</HttpClientHandler>
+    <LinkMode>None</LinkMode>
+    <XamMacArch></XamMacArch>
+    <AOTMode>None</AOTMode>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.Mac" />
+    <Reference Include="Xamarin.Forms.Core">
+      <HintPath>..\packages\Xamarin.Forms.3.4.0.1029999\lib\Xamarin.Mac\Xamarin.Forms.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform">
+      <HintPath>..\packages\Xamarin.Forms.3.4.0.1029999\lib\Xamarin.Mac\Xamarin.Forms.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform.macOS">
+      <HintPath>..\packages\Xamarin.Forms.3.4.0.1029999\lib\Xamarin.Mac\Xamarin.Forms.Platform.macOS.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Xaml">
+      <HintPath>..\packages\Xamarin.Forms.3.4.0.1029999\lib\Xamarin.Mac\Xamarin.Forms.Xaml.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Agora.Full.Mac">
+      <HintPath>..\packages\Xamarin.Agora.Full.Mac.2.3.3\lib\Xamarin.Mac20\Xamarin.Agora.Full.Mac.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="AgoraRtcDelegate.cs" />
+    <Compile Include="AgoraServiceImplementation.cs" />
+    <Compile Include="AgoraServiceMac.cs" />
+    <Compile Include="AgoraVideoViewRenderer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Xamarin.Agora.Full.Forms\Xamarin.Agora.Full.Forms.csproj">
+      <Project>{9A381C55-5CB5-446E-93EB-C3C3EEE3E921}</Project>
+      <Name>Xamarin.Agora.Full.Forms</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.CSharp.targets" />
+  <Import Project="..\packages\Xamarin.Forms.3.4.0.1029999\build\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.3.4.0.1029999\build\Xamarin.Forms.targets')" />
+</Project>

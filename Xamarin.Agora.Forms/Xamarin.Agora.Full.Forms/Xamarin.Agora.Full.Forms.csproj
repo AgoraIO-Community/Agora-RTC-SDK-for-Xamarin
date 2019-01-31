@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Xamarin.Agora.Full.Forms</AssemblyName>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>..\..\Nugets\Xamarin.Agora.Full.Forms\lib</OutputPath>
+    <DefineConstants>TRACE;PORTABLE;DEBUG;NETSTANDARD;NETSTANDARD2_0</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>
+    </DebugType>
+    <OutputPath>..\..\Nugets\Xamarin.Agora.Full.Forms\lib</OutputPath>
+    <DefineConstants>TRACE;RELEASE;NETSTANDARD;NETSTANDARD2_0</DefineConstants>
+    <DocumentationFile>bin\Release\netstandard2.0\Xamarin.Agora.Full.Forms.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="CrossAgora.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="3.4.0.1029999" />
+  </ItemGroup>
+</Project>

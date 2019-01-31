@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="3.4.0.1029999" />  
+    <PackageReference Include="Plugin.Permissions" Version="3.0.0.12" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Xamarin.Agora.Full.Forms\Xamarin.Agora.Full.Forms.csproj" />
+  </ItemGroup>
+</Project>

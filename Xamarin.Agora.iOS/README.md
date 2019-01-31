@@ -1,6 +1,6 @@
 ## Get native libraries
 
-Download native Full and Voice SDK from [https://www.agora.io/en/download/](https://www.agora.io/en/download/)
+Download native Full and Voice SDK from [https://docs.agora.io/en/Agora%20Platform/downloads](https://docs.agora.io/en/Agora%20Platform/downloads)
 
 unpack and copy files:
 
