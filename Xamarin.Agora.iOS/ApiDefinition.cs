@@ -7,6 +7,98 @@ using UIKit;
 
 namespace DT.Xamarin.Agora
 {
+    [Static]
+    partial interface Constants
+    {
+        // extern const NSInteger AgoraVideoBitrateStandard;
+        [Field("AgoraVideoBitrateStandard", "__Internal")]
+        nint AgoraVideoBitrateStandard { get; }
+
+        // extern const NSInteger AgoraVideoBitrateCompatible;
+        [Field("AgoraVideoBitrateCompatible", "__Internal")]
+        nint AgoraVideoBitrateCompatible { get; }
+
+        //// extern const NSInteger AgoraVideoBitrateDefaultMin;
+        //[Field("AgoraVideoBitrateDefaultMin", "__Internal")]
+        //nint AgoraVideoBitrateDefaultMin { get; }
+
+        // extern const CGSize AgoraVideoDimension120x120;
+        [Field("AgoraVideoDimension120x120", "__Internal")]
+        CGSize AgoraVideoDimension120x120 { get; }
+
+        // extern const CGSize AgoraVideoDimension160x120;
+        [Field("AgoraVideoDimension160x120", "__Internal")]
+        CGSize AgoraVideoDimension160x120 { get; }
+
+        // extern const CGSize AgoraVideoDimension180x180;
+        [Field("AgoraVideoDimension180x180", "__Internal")]
+        CGSize AgoraVideoDimension180x180 { get; }
+
+        // extern const CGSize AgoraVideoDimension240x180;
+        [Field("AgoraVideoDimension240x180", "__Internal")]
+        CGSize AgoraVideoDimension240x180 { get; }
+
+        // extern const CGSize AgoraVideoDimension320x180;
+        [Field("AgoraVideoDimension320x180", "__Internal")]
+        CGSize AgoraVideoDimension320x180 { get; }
+
+        // extern const CGSize AgoraVideoDimension240x240;
+        [Field("AgoraVideoDimension240x240", "__Internal")]
+        CGSize AgoraVideoDimension240x240 { get; }
+
+        // extern const CGSize AgoraVideoDimension320x240;
+        [Field("AgoraVideoDimension320x240", "__Internal")]
+        CGSize AgoraVideoDimension320x240 { get; }
+
+        // extern const CGSize AgoraVideoDimension424x240;
+        [Field("AgoraVideoDimension424x240", "__Internal")]
+        CGSize AgoraVideoDimension424x240 { get; }
+
+        // extern const CGSize AgoraVideoDimension360x360;
+        [Field("AgoraVideoDimension360x360", "__Internal")]
+        CGSize AgoraVideoDimension360x360 { get; }
+
+        // extern const CGSize AgoraVideoDimension480x360;
+        [Field("AgoraVideoDimension480x360", "__Internal")]
+        CGSize AgoraVideoDimension480x360 { get; }
+
+        // extern const CGSize AgoraVideoDimension640x360;
+        [Field("AgoraVideoDimension640x360", "__Internal")]
+        CGSize AgoraVideoDimension640x360 { get; }
+
+        // extern const CGSize AgoraVideoDimension480x480;
+        [Field("AgoraVideoDimension480x480", "__Internal")]
+        CGSize AgoraVideoDimension480x480 { get; }
+
+        // extern const CGSize AgoraVideoDimension640x480;
+        [Field("AgoraVideoDimension640x480", "__Internal")]
+        CGSize AgoraVideoDimension640x480 { get; }
+
+        // extern const CGSize AgoraVideoDimension840x480;
+        [Field("AgoraVideoDimension840x480", "__Internal")]
+        CGSize AgoraVideoDimension840x480 { get; }
+
+        // extern const CGSize AgoraVideoDimension960x720;
+        [Field("AgoraVideoDimension960x720", "__Internal")]
+        CGSize AgoraVideoDimension960x720 { get; }
+
+        // extern const CGSize AgoraVideoDimension1280x720;
+        [Field("AgoraVideoDimension1280x720", "__Internal")]
+        CGSize AgoraVideoDimension1280x720 { get; }
+
+        // extern const CGSize AgoraVideoDimension1920x1080;
+        [Field("AgoraVideoDimension1920x1080", "__Internal")]
+        CGSize AgoraVideoDimension1920x1080 { get; }
+
+        // extern const CGSize AgoraVideoDimension2540x1440;
+        [Field("AgoraVideoDimension2540x1440", "__Internal")]
+        CGSize AgoraVideoDimension2540x1440 { get; }
+
+        // extern const CGSize AgoraVideoDimension3840x2160;
+        [Field("AgoraVideoDimension3840x2160", "__Internal")]
+        CGSize AgoraVideoDimension3840x2160 { get; }
+    }
+
     // @interface AgoraRtcVideoCanvas : NSObject
     [BaseType(typeof(NSObject))]
     interface AgoraRtcVideoCanvas
@@ -22,6 +114,65 @@ namespace DT.Xamarin.Agora
         // @property (assign, nonatomic) NSUInteger uid;
         [Export("uid")]
         nuint Uid { get; set; }
+    }
+
+    // @interface AgoraLastmileProbeConfig : NSObject
+    [BaseType(typeof(NSObject))]
+    interface AgoraLastmileProbeConfig
+    {
+        // @property (assign, nonatomic) BOOL probeUplink;
+        [Export("probeUplink")]
+        bool ProbeUplink { get; set; }
+
+        // @property (assign, nonatomic) BOOL probeDownlink;
+        [Export("probeDownlink")]
+        bool ProbeDownlink { get; set; }
+
+        // @property (assign, nonatomic) NSUInteger expectedUplinkBitrate;
+        [Export("expectedUplinkBitrate")]
+        nuint ExpectedUplinkBitrate { get; set; }
+
+        // @property (assign, nonatomic) NSUInteger expectedDownlinkBitrate;
+        [Export("expectedDownlinkBitrate")]
+        nuint ExpectedDownlinkBitrate { get; set; }
+    }
+
+    // @interface AgoraLastmileProbeOneWayResult : NSObject
+    [BaseType(typeof(NSObject))]
+    interface AgoraLastmileProbeOneWayResult
+    {
+        // @property (assign, nonatomic) NSUInteger packetLossRate;
+        [Export("packetLossRate")]
+        nuint PacketLossRate { get; set; }
+
+        // @property (assign, nonatomic) NSUInteger jitter;
+        [Export("jitter")]
+        nuint Jitter { get; set; }
+
+        // @property (assign, nonatomic) NSUInteger availableBandwidth;
+        [Export("availableBandwidth")]
+        nuint AvailableBandwidth { get; set; }
+    }
+
+    // @interface AgoraLastmileProbeResult : NSObject
+    [BaseType(typeof(NSObject))]
+    interface AgoraLastmileProbeResult
+    {
+        // @property (assign, nonatomic) AgoraLastmileProbeResultState state;
+        [Export("state", ArgumentSemantic.Assign)]
+        AgoraLastmileProbeResultState State { get; set; }
+
+        // @property (assign, nonatomic) NSUInteger rtt;
+        [Export("rtt")]
+        nuint Rtt { get; set; }
+
+        // @property (nonatomic, strong) AgoraLastmileProbeOneWayResult * _Nonnull uplinkReport;
+        [Export("uplinkReport", ArgumentSemantic.Strong)]
+        AgoraLastmileProbeOneWayResult UplinkReport { get; set; }
+
+        // @property (nonatomic, strong) AgoraLastmileProbeOneWayResult * _Nonnull downlinkReport;
+        [Export("downlinkReport", ArgumentSemantic.Strong)]
+        AgoraLastmileProbeOneWayResult DownlinkReport { get; set; }
     }
 
     // @interface AgoraVideoFrame : NSObject
@@ -77,6 +228,27 @@ namespace DT.Xamarin.Agora
         int Rotation { get; set; }
     }
 
+    // @interface AgoraBeautyOptions : NSObject
+    [BaseType(typeof(NSObject))]
+    interface AgoraBeautyOptions
+    {
+        // @property (assign, nonatomic) AgoraLighteningContrastLevel lighteningContrastLevel;
+        [Export("lighteningContrastLevel", ArgumentSemantic.Assign)]
+        AgoraLighteningContrastLevel LighteningContrastLevel { get; set; }
+
+        // @property (assign, nonatomic) float lighteningLevel;
+        [Export("lighteningLevel")]
+        float LighteningLevel { get; set; }
+
+        // @property (assign, nonatomic) float smoothnessLevel;
+        [Export("smoothnessLevel")]
+        float SmoothnessLevel { get; set; }
+
+        // @property (assign, nonatomic) float rednessLevel;
+        [Export("rednessLevel")]
+        float RednessLevel { get; set; }
+    }
+
     // @interface AgoraRtcLocalVideoStats : NSObject
     [BaseType(typeof(NSObject))]
     interface AgoraRtcLocalVideoStats
@@ -88,6 +260,18 @@ namespace DT.Xamarin.Agora
         // @property (assign, nonatomic) NSUInteger sentFrameRate;
         [Export("sentFrameRate")]
         nuint SentFrameRate { get; set; }
+
+        // @property (assign, nonatomic) NSUInteger sentTargetBitrate;
+        [Export("sentTargetBitrate")]
+        nuint SentTargetBitrate { get; set; }
+
+        // @property (assign, nonatomic) NSUInteger sentTargetFrameRate;
+        [Export("sentTargetFrameRate")]
+        nuint SentTargetFrameRate { get; set; }
+
+        // @property (assign, nonatomic) AgoraVideoQualityAdaptIndication qualityAdaptIndication;
+        [Export("qualityAdaptIndication", ArgumentSemantic.Assign)]
+        AgoraVideoQualityAdaptIndication QualityAdaptIndication { get; set; }
     }
 
     // @interface AgoraRtcRemoteVideoStats : NSObject
@@ -121,6 +305,31 @@ namespace DT.Xamarin.Agora
         // @property (assign, nonatomic) AgoraRtcVideoStreamType rxStreamType;
         [Export("rxStreamType", ArgumentSemantic.Assign)]
         VideoStreamType RxStreamType { get; set; }
+    }
+
+    // @interface AgoraRtcRemoteAudioStats : NSObject
+    [BaseType(typeof(NSObject))]
+    interface AgoraRtcRemoteAudioStats
+    {
+        // @property (assign, nonatomic) NSUInteger uid;
+        [Export("uid")]
+        nuint Uid { get; set; }
+
+        // @property (assign, nonatomic) NSUInteger quality;
+        [Export("quality")]
+        nuint Quality { get; set; }
+
+        // @property (assign, nonatomic) NSUInteger networkTransportDelay;
+        [Export("networkTransportDelay")]
+        nuint NetworkTransportDelay { get; set; }
+
+        // @property (assign, nonatomic) NSUInteger jitterBufferDelay;
+        [Export("jitterBufferDelay")]
+        nuint JitterBufferDelay { get; set; }
+
+        // @property (assign, nonatomic) NSUInteger audioLossRate;
+        [Export("audioLossRate")]
+        nuint AudioLossRate { get; set; }
     }
 
     // @interface AgoraRtcAudioVolumeInfo : NSObject
@@ -168,6 +377,10 @@ namespace DT.Xamarin.Agora
         [Export("rxVideoKBitrate")]
         nint RxVideoKBitrate { get; set; }
 
+        // @property (assign, nonatomic) NSInteger lastmileDelay;
+        [Export("lastmileDelay")]
+        nint LastmileDelay { get; set; }
+
         // @property (assign, nonatomic) NSInteger userCount;
         [Export("userCount")]
         nint UserCount { get; set; }
@@ -180,6 +393,23 @@ namespace DT.Xamarin.Agora
         [Export("cpuTotalUsage")]
         double CpuTotalUsage { get; set; }
     }
+
+    //// @interface AgoraScreenCaptureParameters : NSObject
+    //[BaseType(typeof(NSObject))]
+    //interface AgoraScreenCaptureParameters
+    //{
+    //    // @property (assign, nonatomic) CGSize dimensions;
+    //    [Export("dimensions", ArgumentSemantic.Assign)]
+    //    CGSize Dimensions { get; set; }
+
+    //    // @property (assign, nonatomic) NSInteger frameRate;
+    //    [Export("frameRate")]
+    //    nint FrameRate { get; set; }
+
+    //    // @property (assign, nonatomic) NSInteger bitrate;
+    //    [Export("bitrate")]
+    //    nint Bitrate { get; set; }
+    //}
 
     // @interface AgoraLiveTranscodingUser : NSObject
     [BaseType(typeof(NSObject))]
@@ -204,6 +434,19 @@ namespace DT.Xamarin.Agora
         // @property (assign, nonatomic) NSInteger audioChannel;
         [Export("audioChannel")]
         nint AudioChannel { get; set; }
+    }
+
+    // @interface AgoraImage : NSObject
+    [BaseType(typeof(NSObject))]
+    interface AgoraImage
+    {
+        // @property (nonatomic, strong) NSURL * _Nonnull url;
+        [Export("url", ArgumentSemantic.Strong)]
+        NSUrl Url { get; set; }
+
+        // @property (assign, nonatomic) CGRect rect;
+        [Export("rect", ArgumentSemantic.Assign)]
+        CGRect Rect { get; set; }
     }
 
     // @interface AgoraLiveTranscoding : NSObject
@@ -234,6 +477,10 @@ namespace DT.Xamarin.Agora
         [Export("videoCodecProfile", ArgumentSemantic.Assign)]
         VideoCodecProfileType VideoCodecProfile { get; set; }
 
+        // @property (nonatomic, strong) AgoraImage * _Nullable backgroundImage;
+        [NullAllowed, Export("backgroundImage", ArgumentSemantic.Strong)]
+        AgoraImage BackgroundImage { get; set; }
+
         // @property (nonatomic, strong) COLOR_CLASS * _Nullable backgroundColor;
         [NullAllowed, Export("backgroundColor", ArgumentSemantic.Strong)]
         UIColor BackgroundColor { get; set; }
@@ -245,6 +492,10 @@ namespace DT.Xamarin.Agora
         // @property (copy, nonatomic) NSString * _Nullable transcodingExtraInfo;
         [NullAllowed, Export("transcodingExtraInfo")]
         string TranscodingExtraInfo { get; set; }
+
+        // @property (nonatomic, strong) AgoraImage * _Nullable watermark;
+        [NullAllowed, Export("watermark", ArgumentSemantic.Strong)]
+        AgoraImage Watermark { get; set; }
 
         // @property (assign, nonatomic) AgoraAudioSampleRateType audioSampleRate;
         [Export("audioSampleRate", ArgumentSemantic.Assign)]
@@ -262,6 +513,14 @@ namespace DT.Xamarin.Agora
         [Static]
         [Export("defaultTranscoding")]
         AgoraLiveTranscoding DefaultTranscoding { get; }
+
+        // -(int)addUser:(AgoraLiveTranscodingUser * _Nonnull)user;
+        [Export("addUser:")]
+        int AddUser(AgoraLiveTranscodingUser user);
+
+        // -(int)removeUser:(NSUInteger)uid;
+        [Export("removeUser:")]
+        int RemoveUser(nuint uid);
     }
 
     // @interface AgoraLiveInjectStreamConfig : NSObject
@@ -301,6 +560,16 @@ namespace DT.Xamarin.Agora
         [Export("defaultConfig")]
         AgoraLiveInjectStreamConfig DefaultConfig { get; }
     }
+
+    // @interface AgoraCameraCapturerConfiguration : NSObject
+    [BaseType(typeof(NSObject))]
+    interface AgoraCameraCapturerConfiguration
+    {
+        // @property (assign, nonatomic) AgoraCameraCaptureOutputPreference preference;
+        [Export("preference", ArgumentSemantic.Assign)]
+        AgoraCameraCaptureOutputPreference Preference { get; set; }
+    }
+
 
     // @interface AgoraRtcVideoCompositingRegion : NSObject
     [BaseType(typeof(NSObject))]
@@ -388,6 +657,18 @@ namespace DT.Xamarin.Agora
         [Export("bitrate")]
         nint Bitrate { get; set; }
 
+        // @property (assign, nonatomic) NSInteger audiosamplerate;
+        [Export("audiosamplerate")]
+        nint Audiosamplerate { get; set; }
+
+        // @property (assign, nonatomic) NSInteger audiobitrate;
+        [Export("audiobitrate")]
+        nint Audiobitrate { get; set; }
+
+        // @property (assign, nonatomic) NSInteger audiochannels;
+        [Export("audiochannels")]
+        nint Audiochannels { get; set; }
+
         // @property (assign, nonatomic) NSInteger defaultLayout;
         [Export("defaultLayout")]
         nint DefaultLayout { get; set; }
@@ -432,219 +713,298 @@ namespace DT.Xamarin.Agora
     {
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit *)engine didOccurWarning:(AgoraRtcWarningCode)warningCode;
         [Export("rtcEngine:didOccurWarning:")]
+        [EventArgs("DidOccurWarning")]
         void DidOccurWarning(AgoraRtcEngineKit engine, WarningCode warningCode);
 
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit *)engine didOccurError:(AgoraRtcErrorCode)errorCode;
         [Export("rtcEngine:didOccurError:")]
+        [EventArgs("DidOccurError")]
         void DidOccurError(AgoraRtcEngineKit engine, ErrorCode errorCode);
+
+        // @optional -(void)rtcEngineMediaEngineDidLoaded:(AgoraRtcEngineKit *)engine;
+        [Export("rtcEngineMediaEngineDidLoaded:")]
+        [EventArgs("RtcEngineMediaEngineDidLoaded")]
+        void RtcEngineMediaEngineDidLoaded(AgoraRtcEngineKit engine);
 
         // @optional -(void)rtcEngineRequestToken:(AgoraRtcEngineKit * _Nonnull)engine;
         [Export("rtcEngineRequestToken:")]
+        [EventArgs("RequestToken")]
         void RequestToken(AgoraRtcEngineKit engine);
+
+        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didMicrophoneEnabled:(BOOL)enabled;
+        [Export("rtcEngine:didMicrophoneEnabled:")]
+        [EventArgs("DidMicrophoneEnabled")]
+        void DidMicrophoneEnabled(AgoraRtcEngineKit engine, bool enabled);
 
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit *)engine reportAudioVolumeIndicationOfSpeakers:(NSArray *)speakers totalVolume:(NSInteger)totalVolume;
         [Export("rtcEngine:reportAudioVolumeIndicationOfSpeakers:totalVolume:")]
+        [EventArgs("ReportAudioVolumeIndicationOfSpeakers")]
         void ReportAudioVolumeIndicationOfSpeakers(AgoraRtcEngineKit engine, NSObject[] speakers, nint totalVolume);
 
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit *)engine firstLocalVideoFrameWithSize:(CGSize)size elapsed:(NSInteger)elapsed;
         [Export("rtcEngine:firstLocalVideoFrameWithSize:elapsed:")]
+        [EventArgs("FirstLocalVideoFrameWithSize")]
         void FirstLocalVideoFrameWithSize(AgoraRtcEngineKit engine, CGSize size, nint elapsed);
 
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit *)engine firstRemoteVideoDecodedOfUid:(NSUInteger)uid size:(CGSize)size elapsed:(NSInteger)elapsed;
         [Export("rtcEngine:firstRemoteVideoDecodedOfUid:size:elapsed:")]
+        [EventArgs("FirstRemoteVideoDecodedOfUid")]
         void FirstRemoteVideoDecodedOfUid(AgoraRtcEngineKit engine, nuint uid, CGSize size, nint elapsed);
 
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit *)engine videoSizeChangedOfUid:(NSUInteger)uid size:(CGSize)size rotation:(NSInteger)rotation;
         [Export("rtcEngine:videoSizeChangedOfUid:size:rotation:")]
+        [EventArgs("VideoSizeChangedOfUid")]
         void VideoSizeChangedOfUid(AgoraRtcEngineKit engine, nuint uid, CGSize size, nint rotation);
+
+        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine remoteVideoStateChangedOfUid:(NSUInteger)uid state:(AgoraVideoRemoteState)state;
+        [Export("rtcEngine:remoteVideoStateChangedOfUid:state:")]
+        [EventArgs("RemoteVideoStateChangedOfUid")]
+        void RemoteVideoStateChangedOfUid(AgoraRtcEngineKit engine, nuint uid, VideoRemoteState state);
 
         // @optional -(void)rtcEngineRemoteAudioMixingDidStart:(AgoraRtcEngineKit * _Nonnull)engine;
         [Export("rtcEngineRemoteAudioMixingDidStart:")]
+        [EventArgs("RemoteAudioMixingDidStart")]
         void RemoteAudioMixingDidStart(AgoraRtcEngineKit engine);
 
         // @optional -(void)rtcEngineRemoteAudioMixingDidFinish:(AgoraRtcEngineKit * _Nonnull)engine;
         [Export("rtcEngineRemoteAudioMixingDidFinish:")]
+        [EventArgs("RemoteAudioMixingDidFinish")]
         void RemoteAudioMixingDidFinish(AgoraRtcEngineKit engine);
 
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit *)engine firstRemoteVideoFrameOfUid:(NSUInteger)uid size:(CGSize)size elapsed:(NSInteger)elapsed;
         [Export("rtcEngine:firstRemoteVideoFrameOfUid:size:elapsed:")]
+        [EventArgs("FirstRemoteVideoFrameOfUid")]
         void FirstRemoteVideoFrameOfUid(AgoraRtcEngineKit engine, nuint uid, CGSize size, nint elapsed);
 
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit *)engine didJoinedOfUid:(NSUInteger)uid elapsed:(NSInteger)elapsed;
         [Export("rtcEngine:didJoinedOfUid:elapsed:")]
+        [EventArgs("DidJoinedOfUid")]
         void DidJoinedOfUid(AgoraRtcEngineKit engine, nuint uid, nint elapsed);
+
+        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine connectionChangedToState:(AgoraConnectionStateType)state reason:(AgoraConnectionChangedReason)reason;
+        [Export("rtcEngine:connectionChangedToState:reason:")]
+        [EventArgs("DidConnectionChangedToState")]
+        void ConnectionChangedToState(AgoraRtcEngineKit engine, AgoraConnectionStateType state, AgoraConnectionChangedReason reason);
 
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit *)engine didOfflineOfUid:(NSUInteger)uid reason:(AgoraRtcUserOfflineReason)reason;
         [Export("rtcEngine:didOfflineOfUid:reason:")]
+        [EventArgs("DidOfflineOfUid")]
         void DidOfflineOfUid(AgoraRtcEngineKit engine, nuint uid, UserOfflineReason reason);
 
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit *)engine didAudioMuted:(BOOL)muted byUid:(NSUInteger)uid;
         [Export("rtcEngine:didAudioMuted:byUid:")]
+        [EventArgs("DidAudioMuted")]
         void DidAudioMuted(AgoraRtcEngineKit engine, bool muted, nuint uid);
 
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit *)engine didVideoMuted:(BOOL)muted byUid:(NSUInteger)uid;
         [Export("rtcEngine:didVideoMuted:byUid:")]
+        [EventArgs("DidVideoMuted")]
         void DidVideoMuted(AgoraRtcEngineKit engine, bool muted, nuint uid);
 
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit *)engine didAudioRouteChanged:(AudioOutputRouting)routing;
         [Export("rtcEngine:didAudioRouteChanged:")]
+        [EventArgs("DidAudioRouteChanged")]
         void DidAudioRouteChanged(AgoraRtcEngineKit engine, AudioOutputRouting routing);
 
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit *)engine didVideoEnabled:(BOOL)enabled byUid:(NSUInteger)uid;
         [Export("rtcEngine:didVideoEnabled:byUid:")]
+        [EventArgs("DidVideoEnabled")]
         void DidVideoEnabled(AgoraRtcEngineKit engine, bool enabled, nuint uid);
 
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit *)engine localVideoStats:(AgoraRtcLocalVideoStats *)stats;
         [Export("rtcEngine:localVideoStats:")]
+        [EventArgs("LocalVideoStats")]
         void LocalVideoStats(AgoraRtcEngineKit engine, AgoraRtcLocalVideoStats stats);
 
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didLocalVideoEnabled:(BOOL)enabled byUid:(NSUInteger)uid;
         [Export("rtcEngine:didLocalVideoEnabled:byUid:")]
+        [EventArgs("DidLocalVideoEnabled")]
         void DidLocalVideoEnabled(AgoraRtcEngineKit engine, bool enabled, nuint uid);
 
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit *)engine remoteVideoStats:(AgoraRtcRemoteVideoStats *)stats;
         [Export("rtcEngine:remoteVideoStats:")]
+        [EventArgs("RemoteVideoStats")]
         void RemoteVideoStats(AgoraRtcEngineKit engine, AgoraRtcRemoteVideoStats stats);
 
-        // @optional -(void)rtcEngineMediaEngineDidLoaded:(AgoraRtcEngineKit *)engine;
-        [Export("rtcEngineMediaEngineDidLoaded:")]
-        void RtcEngineMediaEngineDidLoaded(AgoraRtcEngineKit engine);
+        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine remoteAudioStats:(AgoraRtcRemoteAudioStats * _Nonnull)stats;
+        [Export("rtcEngine:remoteAudioStats:")]
+        [EventArgs("RemoteAudioStats")]
+        void RemoteAudioStats(AgoraRtcEngineKit engine, AgoraRtcRemoteAudioStats stats);
 
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine streamPublishedWithUrl:(NSString * _Nonnull)url errorCode:(AgoraErrorCode)errorCode;
         [Export("rtcEngine:streamPublishedWithUrl:errorCode:")]
+        [EventArgs("StreamPublishedWithUrl")]
         void StreamPublishedWithUrl(AgoraRtcEngineKit engine, string url, ErrorCode errorCode);
-
-        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine publishingRequestReceivedFromUid:(NSUInteger)uid;
-        [Export("rtcEngine:publishingRequestReceivedFromUid:")]
-        void PublishingRequestReceivedFromUid(AgoraRtcEngineKit engine, nuint uid);
-
-        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine publishingRequestAnsweredByOwner:(NSUInteger)uid accepted:(BOOL)accepted error:(AgoraErrorCode)error;
-        [Export("rtcEngine:publishingRequestAnsweredByOwner:accepted:error:")]
-        void PublishingRequestAnsweredByOwner(AgoraRtcEngineKit engine, nuint uid, bool accepted, ErrorCode error);
-
-        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine unpublishingRequestReceivedFromOwner:(NSUInteger)uid;
-        [Export("rtcEngine:unpublishingRequestReceivedFromOwner:")]
-        void UnpublishingRequestReceivedFromOwner(AgoraRtcEngineKit engine, nuint uid);
 
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine streamInjectedStatusOfUrl:(NSString * _Nonnull)url uid:(NSUInteger)uid status:(AgoraInjectStreamStatus)status;
         [Export("rtcEngine:streamInjectedStatusOfUrl:uid:status:")]
+        [EventArgs("StreamInjectedStatusOfUrl")]
         void StreamInjectedStatusOfUrl(AgoraRtcEngineKit engine, string url, nuint uid, InjectStreamStatus status);
 
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine streamUnpublishedWithUrl:(NSString * _Nonnull)url;
         [Export("rtcEngine:streamUnpublishedWithUrl:")]
+        [EventArgs("StreamUnpublishedWithUrl")]
         void StreamUnpublishedWithUrl(AgoraRtcEngineKit engine, string url);
 
         // @optional -(void)rtcEngineTranscodingUpdated:(AgoraRtcEngineKit * _Nonnull)engine;
         [Export("rtcEngineTranscodingUpdated:")]
+        [EventArgs("TranscodingUpdated")]
         void TranscodingUpdated(AgoraRtcEngineKit engine);
 
         // @optional -(void)rtcEngineMediaEngineDidStartCall:(AgoraRtcEngineKit *)engine;
         [Export("rtcEngineMediaEngineDidStartCall:")]
+        [EventArgs("MediaEngineDidStartCall")]
         void MediaEngineDidStartCall(AgoraRtcEngineKit engine);
-
-        // @optional -(void)rtcEngineMediaEngineDidAudioMixingFinish:(AgoraRtcEngineKit *)engine;
-        [Export("rtcEngineMediaEngineDidAudioMixingFinish:")]
-        void MediaEngineDidAudioMixingFinish(AgoraRtcEngineKit engine);
-
-        // @optional -(void)rtcEngineMediaEngineDidAudioEffectFinish:(AgoraRtcEngineKit *)engine soundId:(NSInteger)soundId;
-        [Export("rtcEngineMediaEngineDidAudioEffectFinish:soundId:")]
-        void MediaEngineDidAudioEffectFinish(AgoraRtcEngineKit engine, nint soundId);
 
         // @optional -(void)rtcEngineCameraDidReady:(AgoraRtcEngineKit *)engine;
         [Export("rtcEngineCameraDidReady:")]
+        [EventArgs("CameraDidReady")]
         void CameraDidReady(AgoraRtcEngineKit engine);
+
+        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine cameraExposureDidChangedToRect:(CGRect)rect;
+        [Export("rtcEngine:cameraExposureDidChangedToRect:")]
+        [EventArgs("CameraExposureDidChangedToRect")]
+        void CameraExposureDidChangedToRect(AgoraRtcEngineKit engine, CGRect rect);
 
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine cameraFocusDidChangedToRect:(CGRect)rect;
         [Export("rtcEngine:cameraFocusDidChangedToRect:")]
+        [EventArgs("CameraFocusDidChangedToRect")]
         void CameraFocusDidChangedToRect(AgoraRtcEngineKit engine, CGRect rect);
 
         // @optional -(void)rtcEngineVideoDidStop:(AgoraRtcEngineKit *)engine;
         [Export("rtcEngineVideoDidStop:")]
+        [EventArgs("VideoDidStop")]
         void VideoDidStop(AgoraRtcEngineKit engine);
 
         // @optional -(void)rtcEngineDidAudioEffectFinish:(AgoraRtcEngineKit * _Nonnull)engine soundId:(NSInteger)soundId;
         [Export("rtcEngineDidAudioEffectFinish:soundId:")]
+        [EventArgs("DidAudioEffectFinish")]
         void DidAudioEffectFinish(AgoraRtcEngineKit engine, nint soundId);
+
+        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine localAudioMixingStateDidChanged:(AgoraAudioMixingStateCode)state errorCode:(AgoraAudioMixingErrorCode)errorCode;
+        [Export("rtcEngine:localAudioMixingStateDidChanged:errorCode:")]
+        [EventArgs("LocalAudioMixingStateDidChanged")]
+        void LocalAudioMixingStateDidChanged(AgoraRtcEngineKit engine, AgoraAudioMixingStateCode state, AgoraAudioMixingErrorCode errorCode);
 
         // @optional -(void)rtcEngineLocalAudioMixingDidFinish:(AgoraRtcEngineKit * _Nonnull)engine;
         [Export("rtcEngineLocalAudioMixingDidFinish:")]
+        [EventArgs("LocalAudioMixingDidFinish")]
         void LocalAudioMixingDidFinish(AgoraRtcEngineKit engine);
 
         // @optional -(void)rtcEngineConnectionDidInterrupted:(AgoraRtcEngineKit *)engine;
         [Export("rtcEngineConnectionDidInterrupted:")]
+        [EventArgs("ConnectionDidInterrupted")]
         void ConnectionDidInterrupted(AgoraRtcEngineKit engine);
 
         // @optional -(void)rtcEngineConnectionDidLost:(AgoraRtcEngineKit *)engine;
         [Export("rtcEngineConnectionDidLost:")]
+        [EventArgs("ConnectionDidLost")]
         void ConnectionDidLost(AgoraRtcEngineKit engine);
 
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit *)engine didJoinChannel:(NSString *)channel withUid:(NSUInteger)uid elapsed:(NSInteger)elapsed;
         [Export("rtcEngine:didJoinChannel:withUid:elapsed:")]
+        [EventArgs("DidJoinChannel")]
         void DidJoinChannel(AgoraRtcEngineKit engine, string channel, nuint uid, nint elapsed);
 
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit *)engine didRejoinChannel:(NSString *)channel withUid:(NSUInteger)uid elapsed:(NSInteger)elapsed;
         [Export("rtcEngine:didRejoinChannel:withUid:elapsed:")]
+        [EventArgs("DidRejoinChannel")]
         void DidRejoinChannel(AgoraRtcEngineKit engine, string channel, nuint uid, nint elapsed);
 
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit *)engine reportRtcStats:(AgoraChannelStats *)stats;
         [Export("rtcEngine:reportRtcStats:")]
+        [EventArgs("ReportRtcStats")]
         void ReportRtcStats(AgoraRtcEngineKit engine, AgoraChannelStats stats);
 
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit *)engine didLeaveChannelWithStats:(AgoraChannelStats *)stats;
         [Export("rtcEngine:didLeaveChannelWithStats:")]
+        [EventArgs("DidLeaveChannelWithStats")]
         void DidLeaveChannelWithStats(AgoraRtcEngineKit engine, AgoraChannelStats stats);
 
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit *)engine audioQualityOfUid:(NSUInteger)uid quality:(AgoraRtcQuality)quality delay:(NSUInteger)delay lost:(NSUInteger)lost;
         [Export("rtcEngine:audioQualityOfUid:quality:delay:lost:")]
+        [EventArgs("AudioQualityOfUid")]
         void AudioQualityOfUid(AgoraRtcEngineKit engine, nuint uid, Quality quality, nuint delay, nuint lost);
+
+        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine lastmileProbeTestResult:(AgoraLastmileProbeResult * _Nonnull)result;
+        [Export("rtcEngine:lastmileProbeTestResult:")]
+        [EventArgs("LastmileProbeTestResult")]
+        void LastmileProbeTestResult(AgoraRtcEngineKit engine, AgoraLastmileProbeResult result);
 
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit *)engine networkQuality:(NSUInteger)uid txQuality:(AgoraRtcQuality)txQuality rxQuality:(AgoraRtcQuality)rxQuality;
         [Export("rtcEngine:networkQuality:txQuality:rxQuality:")]
+        [EventArgs("NetworkQuality")]
         void NetworkQuality(AgoraRtcEngineKit engine, nuint uid, Quality txQuality, Quality rxQuality);
 
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit *)engine lastmileQuality:(AgoraRtcQuality)quality;
         [Export("rtcEngine:lastmileQuality:")]
+        [EventArgs("LastmileQuality")]
         void LastmileQuality(AgoraRtcEngineKit engine, Quality quality);
 
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didApiCallExecute:(NSInteger)error api:(NSString * _Nonnull)api result:(NSString * _Nonnull)result;
         [Export("rtcEngine:didApiCallExecute:api:result:")]
+        [EventArgs("DidApiCallExecute")]
         void DidApiCallExecute(AgoraRtcEngineKit engine, nint error, string api, string result);
-
-        // @optional -(void)rtcEngine:(AgoraRtcEngineKit *)engine didRefreshRecordingServiceStatus:(NSInteger)status;
-        [Export("rtcEngine:didRefreshRecordingServiceStatus:")]
-        void DidRefreshRecordingServiceStatus(AgoraRtcEngineKit engine, nint status);
 
         // @optional -(void)rtcEngineConnectionDidBanned:(AgoraRtcEngineKit * _Nonnull)engine;
         [Export("rtcEngineConnectionDidBanned:")]
+        [EventArgs("ConnectionDidBanned")]
         void ConnectionDidBanned(AgoraRtcEngineKit engine);
 
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit *)engine receiveStreamMessageFromUid:(NSUInteger)uid streamId:(NSInteger)streamId data:(NSData *)data;
         [Export("rtcEngine:receiveStreamMessageFromUid:streamId:data:")]
+        [EventArgs("ReceiveStreamMessageFromUid")]
         void ReceiveStreamMessageFromUid(AgoraRtcEngineKit engine, nuint uid, nint streamId, NSData data);
 
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit *)engine didOccurStreamMessageErrorFromUid:(NSUInteger)uid streamId:(NSInteger)streamId error:(NSInteger)error missed:(NSInteger)missed cached:(NSInteger)cached;
         [Export("rtcEngine:didOccurStreamMessageErrorFromUid:streamId:error:missed:cached:")]
+        [EventArgs("DidOccurStreamMessageErrorFromUid")]
         void DidOccurStreamMessageErrorFromUid(AgoraRtcEngineKit engine, nuint uid, nint streamId, nint error, nint missed, nint cached);
-
-        // @optional -(void)rtcEngineRequestChannelKey:(AgoraRtcEngineKit *)engine;
-        [Export("rtcEngineRequestChannelKey:")]
-        void RequestChannelKey(AgoraRtcEngineKit engine);
 
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit *)engine firstLocalAudioFrame:(NSInteger)elapsed;
         [Export("rtcEngine:firstLocalAudioFrame:")]
+        [EventArgs("FirstLocalAudioFrame")]
         void FirstLocalAudioFrame(AgoraRtcEngineKit engine, nint elapsed);
 
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit *)engine firstRemoteAudioFrameOfUid:(NSUInteger)uid elapsed:(NSInteger)elapsed;
         [Export("rtcEngine:firstRemoteAudioFrameOfUid:elapsed:")]
+        [EventArgs("FirstRemoteAudioFrameOfUid")]
         void FirstRemoteAudioFrameOfUid(AgoraRtcEngineKit engine, nuint uid, nint elapsed);
 
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit *)engine activeSpeaker:(NSUInteger)speakerUid;
         [Export("rtcEngine:activeSpeaker:")]
+        [EventArgs("ActiveSpeaker")]
         void ActiveSpeaker(AgoraRtcEngineKit engine, nuint speakerUid);
 
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit *)engine didClientRoleChanged:(AgoraRtcClientRole)oldRole newRole:(AgoraRtcClientRole)newRole;
         [Export("rtcEngine:didClientRoleChanged:newRole:")]
+        [EventArgs("DidClientRoleChanged")]
         void DidClientRoleChanged(AgoraRtcEngineKit engine, ClientRole oldRole, ClientRole newRole);
+
+        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine tokenPrivilegeWillExpire:(NSString * _Nonnull)token;
+        [Export("rtcEngine:tokenPrivilegeWillExpire:")]
+        [EventArgs("TokenPrivilegeWillExpire")]
+        void TokenPrivilegeWillExpire(AgoraRtcEngineKit engine, string token);
+
+        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didLocalPublishFallbackToAudioOnly:(BOOL)isFallbackOrRecover;
+        [Export("rtcEngine:didLocalPublishFallbackToAudioOnly:")]
+        [EventArgs("DidLocalPublishFallbackToAudioOnly")]
+        void DidLocalPublishFallbackToAudioOnly(AgoraRtcEngineKit engine, bool isFallbackOrRecover);
+
+        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine audioTransportStatsOfUid:(NSUInteger)uid delay:(NSUInteger)delay lost:(NSUInteger)lost rxKBitRate:(NSUInteger)rxKBitRate;
+        [Export("rtcEngine:audioTransportStatsOfUid:delay:lost:rxKBitRate:")]
+        [EventArgs("AudioTransportStatsOfUid")]
+        void AudioTransportStatsOfUid(AgoraRtcEngineKit engine, nuint uid, nuint delay, nuint lost, nuint rxKBitRate);
+
+        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didRemoteSubscribeFallbackToAudioOnly:(BOOL)isFallbackOrRecover byUid:(NSUInteger)uid;
+        [Export("rtcEngine:didRemoteSubscribeFallbackToAudioOnly:byUid:")]
+        [EventArgs("DidRemoteSubscribeFallbackToAudioOnly")]
+        void DidRemoteSubscribeFallbackToAudioOnly(AgoraRtcEngineKit engine, bool isFallbackOrRecover, nuint uid);
+
+        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine videoTransportStatsOfUid:(NSUInteger)uid delay:(NSUInteger)delay lost:(NSUInteger)lost rxKBitRate:(NSUInteger)rxKBitRate;
+        [Export("rtcEngine:videoTransportStatsOfUid:delay:lost:rxKBitRate:")]
+        [EventArgs("VideoTransportStatsOfUid")]
+        void VideoTransportStatsOfUid(AgoraRtcEngineKit engine, nuint uid, nuint delay, nuint lost, nuint rxKBitRate);
     }
 
     [Protocol]
@@ -653,9 +1013,18 @@ namespace DT.Xamarin.Agora
     }
 
     // @interface AgoraRtcEngineKit : NSObject
-    [BaseType(typeof(NSObject))]
+    [BaseType(typeof(NSObject),
+        Delegates = new string[] { "WeakDelegate" },
+        Events = new Type[] { typeof(AgoraRtcEngineDelegate) })]
     interface AgoraRtcEngineKit
     {
+        [Wrap("WeakDelegate")]
+        [NullAllowed]
+        AgoraRtcEngineDelegate Delegate { get; set; }
+
+        [NullAllowed, Export("delegate", ArgumentSemantic.Weak)]
+        NSObject WeakDelegate { get; set; }
+
         // +(NSString *)getSdkVersion;
         [Static]
         [Export("getSdkVersion")]
@@ -678,6 +1047,7 @@ namespace DT.Xamarin.Agora
         // +(instancetype)sharedEngineWithAppId:(NSString *)AppId error:(void (^)(AgoraRtcErrorCode))errorBlock __attribute__((deprecated("")));
         [Static]
         [Export("sharedEngineWithAppId:error:")]
+        [Obsolete("use sharedEngineWithAppId:delegate: instead.")]
         AgoraRtcEngineKit SharedEngineWithAppId(string AppId, [NullAllowed] Action<ErrorCode> errorBlock);
 
         // +(void)destroy;
@@ -733,6 +1103,10 @@ namespace DT.Xamarin.Agora
         [Export("cameraReadyBlock:")]
         void CameraReadyBlock([NullAllowed] Action cameraReadyBlock);
 
+        // -(void)remoteAudioStatBlock:(void (^ _Nullable)(NSUInteger, NSInteger, NSInteger, NSInteger, NSInteger))remoteAudioStatBlock __attribute__((deprecated("use delegate instead.")));
+        [Export("remoteAudioStatBlock:")]
+        void RemoteAudioStatBlock([NullAllowed] Action<nuint, nint, nint, nint, nint> remoteAudioStatBlock);
+
         // -(void)connectionLostBlock:(void (^)())connectionLostBlock __attribute__((deprecated("")));
         [Export("connectionLostBlock:")]
         void ConnectionLostBlock([NullAllowed] Action connectionLostBlock);
@@ -780,6 +1154,14 @@ namespace DT.Xamarin.Agora
         // -(int)disableLastmileTest;
         [Export("disableLastmileTest")]
         int DisableLastmileTest();
+
+        // -(int)startLastmileProbeTest:(AgoraLastmileProbeConfig * _Nullable)config;
+        [Export("startLastmileProbeTest:")]
+        int StartLastmileProbeTest([NullAllowed] AgoraLastmileProbeConfig config);
+
+        // -(int)stopLastmileProbeTest;
+        [Export("stopLastmileProbeTest")]
+        int StopLastmileProbeTest();
 
         // -(int)enableVideo;
         [Export("enableVideo")]
@@ -841,10 +1223,6 @@ namespace DT.Xamarin.Agora
         [Export("setDefaultAudioRouteToSpeakerphone:")]
         int SetDefaultAudioRouteToSpeakerphone(bool defaultToSpeaker);
 
-        // -(int)setSpeakerphoneVolume:(NSUInteger)volume __attribute__((deprecated("")));
-        [Export("setSpeakerphoneVolume:")]
-        int SetSpeakerphoneVolume(nuint volume);
-
         // -(int)enableAudioVolumeIndication:(NSInteger)interval smooth:(NSInteger)smooth;
         [Export("enableAudioVolumeIndication:smooth:")]
         int EnableAudioVolumeIndication(nint interval, nint smooth);
@@ -857,16 +1235,22 @@ namespace DT.Xamarin.Agora
         [Export("stopAudioRecording")]
         int StopAudioRecording();
 
+        // -(int)enableLocalAudio:(BOOL)enabled;
+        [Export("enableLocalAudio:")]
+        int EnableLocalAudio(bool enabled);
+
         // -(int)startAudioMixing:(NSString *)filePath loopback:(BOOL)loopback replace:(BOOL)replace cycle:(NSInteger)cycle;
         [Export("startAudioMixing:loopback:replace:cycle:")]
         int StartAudioMixing(string filePath, bool loopback, bool replace, nint cycle);
 
         // -(int)pauseAudio;
         [Export("pauseAudio")]
+        [Obsolete("use DisableAudio instead.")]
         int PauseAudio();
 
         // -(int)resumeAudio;
         [Export("resumeAudio")]
+        [Obsolete("use EnableAudio instead.")]
         int ResumeAudio();
 
         // -(int)stopAudioMixing;
@@ -885,6 +1269,14 @@ namespace DT.Xamarin.Agora
         [Export("adjustAudioMixingVolume:")]
         int AdjustAudioMixingVolume(nint volume);
 
+        // -(int)adjustAudioMixingPlayoutVolume:(NSInteger)volume;
+        [Export("adjustAudioMixingPlayoutVolume:")]
+        int AdjustAudioMixingPlayoutVolume(nint volume);
+
+        // -(int)adjustAudioMixingPublishVolume:(NSInteger)volume;
+        [Export("adjustAudioMixingPublishVolume:")]
+        int AdjustAudioMixingPublishVolume(nint volume);
+
         // -(int)getAudioMixingDuration;
         [Export("getAudioMixingDuration")]
         int AudioMixingDuration { get; }
@@ -900,6 +1292,10 @@ namespace DT.Xamarin.Agora
         // -(int)startEchoTest:(void (^)(NSString *, NSUInteger, NSInteger))successBlock;
         [Export("startEchoTest:")]
         int StartEchoTest(Action<NSString, nuint, nint> successBlock);
+
+        // -(int)startEchoTestWithInterval:(NSInteger)interval successBlock:(void (^ _Nullable)(NSString * _Nonnull, NSUInteger, NSInteger))successBlock;
+        [Export("startEchoTestWithInterval:successBlock:")]
+        int StartEchoTestWithInterval(nint interval, [NullAllowed] Action<NSString, nuint, nint> successBlock);
 
         // -(int)stopEchoTest;
         [Export("stopEchoTest")]
@@ -952,17 +1348,25 @@ namespace DT.Xamarin.Agora
         [Export("setupRemoteVideo:")]
         int SetupRemoteVideo([NullAllowed] AgoraRtcVideoCanvas remote);
 
+        // -(int)addVideoWatermark:(AgoraImage * _Nonnull)watermark;
+        [Export("addVideoWatermark:")]
+        int AddVideoWatermark(AgoraImage watermark);
+
+        // -(void)clearVideoWatermarks;
+        [Export("clearVideoWatermarks")]
+        void ClearVideoWatermarks();
+
         // -(int)setLocalRenderMode:(AgoraRtcRenderMode)mode;
         [Export("setLocalRenderMode:")]
         int SetLocalRenderMode(VideoRenderMode mode);
 
+        // -(int)setRemoteUserPriority:(NSUInteger)uid type:(AgoraUserPriority)userPriority;
+        [Export("setRemoteUserPriority:type:")]
+        int SetRemoteUserPriority(nuint uid, AgoraUserPriority userPriority);
+
         // -(int)setRemoteRenderMode:(NSUInteger)uid mode:(AgoraRtcRenderMode)mode;
         [Export("setRemoteRenderMode:mode:")]
         int SetRemoteRenderMode(nuint uid, VideoRenderMode mode);
-
-        // -(int)switchView:(NSUInteger)uid1 andAnother:(NSUInteger)uid2 __attribute__((deprecated("")));
-        [Export("switchView:andAnother:")]
-        int SwitchView(nuint uid1, nuint uid2);
 
         // -(int)switchCamera;
         [Export("switchCamera")]
@@ -970,27 +1374,22 @@ namespace DT.Xamarin.Agora
 
         // -(int)setVideoProfile:(AgoraRtcVideoProfile)profile swapWidthAndHeight:(BOOL)swapWidthAndHeight;
         [Export("setVideoProfile:swapWidthAndHeight:")]
+        [Obsolete("use setVideoEncoderConfiguration: instead.")]
         int SetVideoProfile(VideoProfile profile, bool swapWidthAndHeight);
 
         // -(int)setVideoResolution:(CGSize)size andFrameRate:(NSInteger)frameRate bitrate:(NSInteger)bitrate;
         [Export("setVideoResolution:andFrameRate:bitrate:")]
+        [Obsolete("use setVideoEncoderConfiguration: instead.")]
         int SetVideoResolution(CGSize size, nint frameRate, nint bitrate);
-
-        // -(int)enableLocalVideoCapture:(_Bool)enabled;
-        [Export("enableLocalVideoCapture:")]
-        int EnableLocalVideoCapture(bool enabled);
-
-        // -(int)enableLocalVideoSend:(_Bool)enabled;
-        [Export("enableLocalVideoSend:")]
-        int EnableLocalVideoSend(bool enabled);
-
-        // -(int)enableLocalVideoRender:(_Bool)enabled;
-        [Export("enableLocalVideoRender:")]
-        int EnableLocalVideoRender(bool enabled);
 
         // -(int)setAudioProfile:(AgoraRtcAudioProfile)profile scenario:(AgoraRtcAudioScenario)scenario;
         [Export("setAudioProfile:scenario:")]
         int SetAudioProfile(AudioProfile profile, AudioScenario scenario);
+
+        // -(int)enableRemoteSuperResolution:(NSUInteger)uid enabled:(BOOL)enabled;
+        [Export("enableRemoteSuperResolution:enabled:")]
+        int EnableRemoteSuperResolution(nuint uid, bool enabled);
+
 
         // -(int)muteLocalVideoStream:(BOOL)mute;
         [Export("muteLocalVideoStream:")]
@@ -1008,6 +1407,10 @@ namespace DT.Xamarin.Agora
         [Export("muteRemoteVideoStream:mute:")]
         int MuteRemoteVideoStream(nuint uid, bool mute);
 
+        // -(int)setBeautyEffectOptions:(BOOL)enable options:(AgoraBeautyOptions * _Nullable)options;
+        [Export("setBeautyEffectOptions:options:")]
+        int SetBeautyEffectOptions(bool enable, [NullAllowed] AgoraBeautyOptions options);
+
         // -(int)setLogFile:(NSString *)filePath;
         [Export("setLogFile:")]
         int SetLogFile(string filePath);
@@ -1016,9 +1419,9 @@ namespace DT.Xamarin.Agora
         [Export("setLogFilter:")]
         int SetLogFilter(nuint filter);
 
-        // -(int)renewChannelKey:(NSString *)channelKey;
-        [Export("renewChannelKey:")]
-        int RenewChannelKey(string channelKey);
+        // -(int)setLogFileSize:(NSUInteger)fileSizeInKBytes;
+        [Export("setLogFileSize:")]
+        int SetLogFileSize(nuint fileSizeInKBytes);
 
         // -(int)setChannelProfile:(AgoraRtcChannelProfile)profile;
         [Export("setChannelProfile:")]
@@ -1039,18 +1442,6 @@ namespace DT.Xamarin.Agora
         // -(int)setLiveTranscoding:(AgoraLiveTranscoding * _Nullable)transcoding;
         [Export("setLiveTranscoding:")]
         int SetLiveTranscoding([NullAllowed] AgoraLiveTranscoding transcoding);
-
-        // -(int)sendPublishingRequestToOwner:(NSUInteger)uid;
-        [Export("sendPublishingRequestToOwner:")]
-        int SendPublishingRequestToOwner(nuint uid);
-
-        // -(int)answerPublishingRequestOfUid:(NSUInteger)uid accepted:(_Bool)accepted;
-        [Export("answerPublishingRequestOfUid:accepted:")]
-        int AnswerPublishingRequestOfUid(nuint uid, bool accepted);
-
-        // -(int)sendUnpublishingRequestToUid:(NSUInteger)uid;
-        [Export("sendUnpublishingRequestToUid:")]
-        int SendUnpublishingRequestToUid(nuint uid);
 
         // -(int)addInjectStreamUrl:(NSString * _Nonnull)url config:(AgoraLiveInjectStreamConfig * _Nonnull)config;
         [Export("addInjectStreamUrl:config:")]
@@ -1084,18 +1475,6 @@ namespace DT.Xamarin.Agora
         [Export("setRemoteDefaultVideoStreamType:")]
         int SetRemoteDefaultVideoStreamType(VideoStreamType streamType);
 
-        // -(int)startRecordingService:(NSString *)recordingKey;
-        [Export("startRecordingService:")]
-        int StartRecordingService(string recordingKey);
-
-        // -(int)stopRecordingService:(NSString *)recordingKey;
-        [Export("stopRecordingService:")]
-        int StopRecordingService(string recordingKey);
-
-        // -(int)refreshRecordingServiceStatus;
-        [Export("refreshRecordingServiceStatus")]
-        int RefreshRecordingServiceStatus();
-
         // -(CGFloat)setCameraZoomFactor:(CGFloat)zoomFactor;
         [Export("setCameraZoomFactor:")]
         nfloat SetCameraZoomFactor(nfloat zoomFactor);
@@ -1110,11 +1489,11 @@ namespace DT.Xamarin.Agora
 
         // -(int)setRecordingAudioFrameParametersWithSampleRate:(NSInteger)sampleRate channel:(NSInteger)channel mode:(AgoraRtcRawAudioFrameOpMode)mode samplesPerCall:(NSInteger)samplesPerCall;
         [Export("setRecordingAudioFrameParametersWithSampleRate:channel:mode:samplesPerCall:")]
-        int SetRecordingAudioFrameParametersWithSampleRate(nint sampleRate, nint channel, RawAudioFrameOpMode mode, nint samplesPerCall);
+        int SetRecordingAudioFrameParametersWithSampleRate(nint sampleRate, nint channel, AudioRawFrameOperationMode mode, nint samplesPerCall);
 
         // -(int)setPlaybackAudioFrameParametersWithSampleRate:(NSInteger)sampleRate channel:(NSInteger)channel mode:(AgoraRtcRawAudioFrameOpMode)mode samplesPerCall:(NSInteger)samplesPerCall;
         [Export("setPlaybackAudioFrameParametersWithSampleRate:channel:mode:samplesPerCall:")]
-        int SetPlaybackAudioFrameParametersWithSampleRate(nint sampleRate, nint channel, RawAudioFrameOpMode mode, nint samplesPerCall);
+        int SetPlaybackAudioFrameParametersWithSampleRate(nint sampleRate, nint channel, AudioRawFrameOperationMode mode, nint samplesPerCall);
 
         // -(int)setMixedAudioFrameParametersWithSampleRate:(NSInteger)sampleRate samplesPerCall:(NSInteger)samplesPerCall;
         [Export("setMixedAudioFrameParametersWithSampleRate:samplesPerCall:")]
@@ -1130,11 +1509,16 @@ namespace DT.Xamarin.Agora
 
         // -(int)setHighQualityAudioParametersWithFullband:(BOOL)fullband stereo:(BOOL)stereo fullBitrate:(BOOL)fullBitrate;
         [Export("setHighQualityAudioParametersWithFullband:stereo:fullBitrate:")]
+        [Obsolete("use setAudioProfile:scenario: instead.")]
         int SetHighQualityAudioParametersWithFullband(bool fullband, bool stereo, bool fullBitrate);
 
         // -(int)enableInEarMonitoring:(BOOL)enabled;
         [Export("enableInEarMonitoring:")]
         int EnableInEarMonitoring(bool enabled);
+
+        // -(AgoraConnectionStateType)getConnectionState;
+        [Export("getConnectionState")]
+        AgoraConnectionStateType ConnectionState { get; }
 
         // -(int)setInEarMonitoringVolume:(NSInteger)volume;
         [Export("setInEarMonitoringVolume:")]
@@ -1150,19 +1534,26 @@ namespace DT.Xamarin.Agora
 
         // -(int)configPublisher:(AgoraPublisherConfiguration *)config;
         [Export("configPublisher:")]
+        [Obsolete(" This method is deprecated. Agora recommends using the following methods instead: * [addPublishStreamUrl](addPublishStreamUrl:transcodingEnabled:) or * [removePublishStreamUrl](removePublishStreamUrl:) or  * [setLiveTranscoding](setLiveTranscoding:)")]
         int ConfigPublisher(AgoraPublisherConfiguration config);
 
         // -(int)setVideoCompositingLayout:(AgoraRtcVideoCompositingLayout *)layout;
         [Export("setVideoCompositingLayout:")]
+        [Obsolete("This method is deprecated and Agora recommends using the [setLiveTranscoding](setLiveTranscoding:) method.")]
         int SetVideoCompositingLayout(AgoraRtcVideoCompositingLayout layout);
 
         // -(int)clearVideoCompositingLayout;
         [Export("clearVideoCompositingLayout")]
+        [Obsolete]
         int ClearVideoCompositingLayout { get; }
 
         // -(BOOL)isCameraZoomSupported;
         [Export("isCameraZoomSupported")]
         bool IsCameraZoomSupported { get; }
+
+        // -(BOOL)isCameraExposurePositionSupported;
+        [Export("isCameraExposurePositionSupported")]
+        bool IsCameraExposurePositionSupported { get; }
 
         // -(BOOL)isCameraFocusPositionInPreviewSupported;
         [Export("isCameraFocusPositionInPreviewSupported")]
@@ -1171,6 +1562,10 @@ namespace DT.Xamarin.Agora
         // -(BOOL)setCameraFocusPositionInPreview:(CGPoint)position;
         [Export("setCameraFocusPositionInPreview:")]
         bool SetCameraFocusPositionInPreview(CGPoint position);
+
+        // -(BOOL)setCameraExposurePosition:(CGPoint)positionInView;
+        [Export("setCameraExposurePosition:")]
+        bool SetCameraExposurePosition(CGPoint positionInView);
 
         // -(BOOL)isCameraTorchSupported;
         [Export("isCameraTorchSupported")]
@@ -1200,9 +1595,14 @@ namespace DT.Xamarin.Agora
         [Export("setVolumeOfEffect:withVolume:")]
         int SetVolumeOfEffect(int soundId, double volume);
 
-        // -(int)playEffect:(int)soundId filePath:(NSString *)filePath loop:(BOOL)loop pitch:(double)pitch pan:(double)pan gain:(double)gain;
-        [Export("playEffect:filePath:loop:pitch:pan:gain:")]
-        int PlayEffect(int soundId, string filePath, bool loop, double pitch, double pan, double gain);
+        // -(int)playEffect:(int)soundId filePath:(NSString * _Nullable)filePath loopCount:(int)loopCount pitch:(double)pitch pan:(double)pan gain:(double)gain publish:(BOOL)publish;
+        [Export("playEffect:filePath:loopCount:pitch:pan:gain:publish:")]
+        int PlayEffect(int soundId, [NullAllowed] string filePath, int loopCount, double pitch, double pan, double gain, bool publish);
+
+        // -(int)playEffect:(int)soundId filePath:(NSString * _Nullable)filePath loopCount:(int)loopCount pitch:(double)pitch pan:(double)pan gain:(double)gain __attribute__((deprecated("use playEffect:filePath:loopCount:pitch:pan:gain:publish: instead.")));
+        [Export("playEffect:filePath:loopCount:pitch:pan:gain:")]
+        [Obsolete("use playEffect:filePath:loopCount:pitch:pan:gain:publish: instead.")]
+        int PlayEffect(int soundId, [NullAllowed] string filePath, int loopCount, double pitch, double pan, double gain);
 
         // -(int)stopEffect:(int)soundId;
         [Export("stopEffect:")]
@@ -1214,7 +1614,7 @@ namespace DT.Xamarin.Agora
 
         // -(int)preloadEffect:(int)soundId filePath:(NSString *)filePath;
         [Export("preloadEffect:filePath:")]
-        int PreloadEffect(int soundId, string filePath);
+        int PreloadEffect(int soundId, [NullAllowed] string filePath);
 
         // -(int)unloadEffect:(int)soundId;
         [Export("unloadEffect:")]
@@ -1264,6 +1664,22 @@ namespace DT.Xamarin.Agora
         [Export("setLocalVoiceReverbOfType:withValue:")]
         int SetLocalVoiceReverbOfType(AudioReverbType reverbType, nint value);
 
+        // -(int)setLocalVoiceChanger:(AgoraAudioVoiceChanger)voiceChanger;
+        [Export("setLocalVoiceChanger:")]
+        int SetLocalVoiceChanger(AgoraAudioVoiceChanger voiceChanger);
+
+        // -(int)setRemoteVoicePosition:(NSUInteger)uid pan:(double)pan gain:(double)gain;
+        [Export("setRemoteVoicePosition:pan:gain:")]
+        int SetRemoteVoicePosition(nuint uid, double pan, double gain);
+
+        // -(int)enableSoundPositionIndication:(BOOL)enabled;
+        [Export("enableSoundPositionIndication:")]
+        int EnableSoundPositionIndication(bool enabled);
+
+        // -(int)setLocalVoiceReverbPreset:(AgoraAudioReverbPreset)reverbPreset;
+        [Export("setLocalVoiceReverbPreset:")]
+        int SetLocalVoiceReverbPreset(AgoraAudioReverbPreset reverbPreset);
+
         // -(BOOL)pushExternalAudioFrameRawData:(void * _Nonnull)data samples:(NSUInteger)samples timestamp:(NSTimeInterval)timestamp;
         [Export("pushExternalAudioFrameRawData:samples:timestamp:")]
         unsafe bool PushExternalAudioFrameRawData(IntPtr data, nuint samples, double timestamp);
@@ -1271,6 +1687,77 @@ namespace DT.Xamarin.Agora
         // -(BOOL)pushExternalAudioFrameSampleBuffer:(CMSampleBufferRef _Nonnull)sampleBuffer;
         [Export("pushExternalAudioFrameSampleBuffer:")]
         unsafe bool PushExternalAudioFrameSampleBuffer(IntPtr sampleBuffer);
+
+        // -(int)setLocalPublishFallbackOption:(AgoraStreamFallbackOptions)option;
+        [Export("setLocalPublishFallbackOption:")]
+        int SetLocalPublishFallbackOption(StreamFallbackOptions option);
+
+        // -(int)setRemoteSubscribeFallbackOption:(AgoraStreamFallbackOptions)option;
+        [Export("setRemoteSubscribeFallbackOption:")]
+        int SetRemoteSubscribeFallbackOption(StreamFallbackOptions option);
+        // -(void)setAudioSessionOperationRestriction:(AudioSessionOperationRestriction)restriction;
+        [Export("setAudioSessionOperationRestriction:")]
+        void SetAudioSessionOperationRestriction(AudioSessionOperationRestriction restriction);
+
+        // -(int)setCameraCapturerConfiguration:(AgoraCameraCapturerConfiguration * _Nullable)configuration;
+        [Export("setCameraCapturerConfiguration:")]
+        int SetCameraCapturerConfiguration([NullAllowed] AgoraCameraCapturerConfiguration configuration);
+
+        // -(int)setVideoEncoderConfiguration:(AgoraVideoEncoderConfiguration * _Nonnull)config;
+        [Export("setVideoEncoderConfiguration:")]
+        int SetVideoEncoderConfiguration(AgoraVideoEncoderConfiguration config);
+
+        // -(int)muteRecordingSignal:(BOOL)muted;
+        [Export("muteRecordingSignal:")]
+        int MuteRecordingSignal(bool muted);
+
+        // -(NSString * _Nullable)getDeviceId:(AgoraMediaDeviceType)type __attribute__((deprecated("use getDeviceInfo: instead.")));
+        [Export("getDeviceId:")]
+        [return: NullAllowed]
+        [Obsolete("use GetDeviceInfo: instead.")]
+        string GetDeviceId(MediaDeviceType type);
+    }
+
+    // @interface AgoraVideoEncoderConfiguration : NSObject
+    [BaseType(typeof(NSObject))]
+    interface AgoraVideoEncoderConfiguration
+    {
+        // @property (assign, nonatomic) CGSize dimensions;
+        [Export("dimensions", ArgumentSemantic.Assign)]
+        CGSize Dimensions { get; set; }
+
+        // @property (assign, nonatomic) AgoraVideoFrameRate frameRate;
+        [Export("frameRate", ArgumentSemantic.Assign)]
+        VideoFrameRate FrameRate { get; set; }
+
+
+        // @property (assign, nonatomic) NSInteger minFrameRate;
+        [Export("minFrameRate")]
+        nint MinFrameRate { get; set; }
+
+        // @property (assign, nonatomic) NSInteger bitrate;
+        [Export("bitrate")]
+        nint Bitrate { get; set; }
+
+        // @property (assign, nonatomic) NSInteger minBitrate;
+        [Export("minBitrate")]
+        nint MinBitrate { get; set; }
+
+        // @property (assign, nonatomic) AgoraVideoOutputOrientationMode orientationMode;
+        [Export("orientationMode", ArgumentSemantic.Assign)]
+        VideoOutputOrientationMode OrientationMode { get; set; }
+
+        // @property (assign, nonatomic) AgoraDegradationPreference degradationPreference;
+        [Export("degradationPreference", ArgumentSemantic.Assign)]
+        AgoraDegradationPreference DegradationPreference { get; set; }
+
+        // -(instancetype _Nonnull)initWithSize:(CGSize)size frameRate:(AgoraVideoFrameRate)frameRate bitrate:(NSInteger)bitrate orientationMode:(AgoraVideoOutputOrientationMode)orientationMode;
+        [Export("initWithSize:frameRate:bitrate:orientationMode:")]
+        IntPtr Constructor(CGSize size, VideoFrameRate frameRate, nint bitrate, VideoOutputOrientationMode orientationMode);
+
+        // -(instancetype _Nonnull)initWithWidth:(NSInteger)width height:(NSInteger)height frameRate:(AgoraVideoFrameRate)frameRate bitrate:(NSInteger)bitrate orientationMode:(AgoraVideoOutputOrientationMode)orientationMode;
+        [Export("initWithWidth:height:frameRate:bitrate:orientationMode:")]
+        IntPtr Constructor(nint width, nint height, VideoFrameRate frameRate, nint bitrate, VideoOutputOrientationMode orientationMode);
     }
 
     // @protocol AgoraVideoFrameConsumer <NSObject>

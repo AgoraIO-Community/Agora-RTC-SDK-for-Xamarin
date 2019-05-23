@@ -68,6 +68,13 @@ namespace DT.Xamarin.Agora
         BitrateLimit = 115,
         TooManyDataStreams = 116,
         DecryptionFailed = 120,
+        WatermarkParam = 124,
+        WatermarkPath = 125,
+        WatermarkPng = 126,
+        WatermarkInfo = 127,
+        WatermarkAGRB = 128,
+        WatermarkRead = 129,
+        EncryptedStreamNotAllowedPublish = 130,
         PublishFailed = 150,
         LoadMediaEngine = 1001,
         StartCall = 1002,
@@ -96,7 +103,7 @@ namespace DT.Xamarin.Agora
         VcmEncoderInitError = 1601,
         VcmEncoderEncodeError = 1602,
         VcmEncoderSetError = 1603
-	}
+    }
 
 	[Native]
 	public enum ChannelProfile : long
@@ -122,7 +129,25 @@ namespace DT.Xamarin.Agora
 		AudioAndVideo = 3
 	}
 
-	[Native]
+    [Native]
+    public enum AgoraAudioMixingStateCode : long
+    {
+        Playing = 710,
+        Paused = 711,
+        Stopped = 713,
+        Failed = 714
+    }
+
+    [Native]
+    public enum AgoraAudioMixingErrorCode : long
+    {
+        CanNotOpen = 701,
+        TooFrequentCall = 702,
+        InterruptedEOF = 703,
+        Ok = 0
+    }
+
+    [Native]
 	public enum EncryptionMode : long
 	{
 		None = 0,
@@ -208,7 +233,16 @@ namespace DT.Xamarin.Agora
         Default = Landscape360P
 	}
 
-	[Native]
+    [Native]
+    public enum AgoraCameraCaptureOutputPreference : long
+    {
+        Auto = 0,
+        Performance = 1,
+        Preview = 2,
+        Unkown = 3
+    }
+
+    [Native]
 	public enum AudioProfile : long
 	{
 		Default = 0,
@@ -275,7 +309,22 @@ namespace DT.Xamarin.Agora
 		Medium = 2
 	}
 
-	[Native]
+    [Native]
+    public enum AgoraVideoQualityAdaptIndication : long
+    {
+        None = 0,
+        UpBandwidth = 1,
+        DownBandwidth = 2
+    }
+
+    [Native]
+    public enum AgoraUserPriority : long
+    {
+        High = 50,
+        Normal = 100
+    }
+
+    [Native]
 	public enum VideoRenderMode : long
 	{
 		Hidden = 1,
@@ -312,6 +361,51 @@ namespace DT.Xamarin.Agora
     }
 
     [Native]
+    public enum AgoraConnectionChangedReason : ulong
+    {
+        Connecting = 0,
+        JoinSuccess = 1,
+        Interrupted = 2,
+        BannedByServer = 3,
+        JoinFailed = 4,
+        LeaveChannel = 5
+    }
+
+    [Native]
+    public enum AgoraLighteningContrastLevel : ulong
+    {
+        Low = 0,
+        Normal = 1,
+        High = 2
+    }
+
+    [Native]
+    public enum AgoraLastmileProbeResultState : ulong
+    {
+        Complete = 1,
+        IncompleteNoBwe = 2,
+        Unavailable = 3
+    }
+
+    [Native]
+    public enum AgoraDegradationPreference : long
+    {
+        MaintainQuality = 0,
+        MaintainFramerate = 1,
+        Balanced = 2
+    }
+
+    [Native]
+    public enum AgoraConnectionStateType : long
+    {
+        Disconnected = 1,
+        Connecting = 2,
+        Connected = 3,
+        Reconnecting = 4,
+        Failed = 5
+    }
+
+    [Native]
     public enum MediaDeviceType : long
     {
         AudioUnknown = -1,
@@ -332,6 +426,18 @@ namespace DT.Xamarin.Agora
     }
 
     [Native]
+    public enum AgoraAudioVoiceChanger : long
+    {
+        Off = 0,
+        OldMan = 1,
+        BabyBoy = 2,
+        BabyGirl = 3,
+        ZhuBaJie = 4,
+        Ethereal = 5,
+        Hulk = 6
+    }
+
+    [Native]
     public enum AudioEqualizationBandFrequency : long
     {
         AudioEqualizationBand31 = 0,
@@ -344,6 +450,19 @@ namespace DT.Xamarin.Agora
         AudioEqualizationBand4K = 7,
         AudioEqualizationBand8K = 8,
         AudioEqualizationBand16K = 9
+    }
+
+    [Native]
+    public enum AgoraAudioReverbPreset : long
+    {
+        Off = 0,
+        Popular = 1,
+        RnB = 2,
+        Rock = 3,
+        HipHop = 4,
+        VocalConcert = 5,
+        Ktv = 6,
+        Studio = 7
     }
 
     [Native]
@@ -392,28 +511,20 @@ namespace DT.Xamarin.Agora
 		Disabled = 2
 	}
 
-	[Native]
-	public enum QualityReportFormat : uint
-	{
-		Json = 0,
-		Html = 1
-	}
-
-	[Native]
-	public enum RawAudioFrameOpMode : long
-	{
-		ReadOnly = 0,
-		WriteOnly = 1,
-		ReadWrite = 2
-	}
+    [Native]
+    public enum AgoraVideoContentHint : ulong
+    {
+        None = 0,
+        Motion = 1,
+        Details = 2
+    }
 
     [Native]
-    public enum VideoFormat : ulong
+    public enum VideoRemoteState : ulong
     {
-	    texture = 12,
-	    I420 = 1,
-	    Rgba = 4,
-	    Imc2 = 5
+        Stopped = 0,
+        Running = 1,
+        Frozen = 2
     }
 
     [Native]
@@ -453,5 +564,43 @@ namespace DT.Xamarin.Agora
     {
         Front = 0,
         Back = 1
+    }
+
+    [Native]
+    public enum AudioSessionOperationRestriction : ulong
+    {
+        None = 0,
+        SetCategory = 1,
+        ConfigureSession = 1 << 1,
+        DeactivateSession = 1 << 2,
+        All = 1 << 7
+    }
+
+    [Native]
+    public enum StreamFallbackOptions : long
+    {
+        Disabled = 0,
+        VideoStreamLow = 1,
+        AudioOnly = 2
+    }
+
+    [Native]
+    public enum VideoFrameRate : long
+    {
+        AgoraVideoFrameRateFps1 = 1,
+        AgoraVideoFrameRateFps7 = 7,
+        AgoraVideoFrameRateFps10 = 10,
+        AgoraVideoFrameRateFps15 = 15,
+        AgoraVideoFrameRateFps24 = 24,
+        AgoraVideoFrameRateFps30 = 30,
+        AgoraVideoFrameRateFps60 = 60
+    }
+
+    [Native]
+    public enum VideoOutputOrientationMode : long
+    {
+        Adaptative = 0,
+        FixedLandscape = 1,
+        FixedPortrait = 2
     }
 }
