@@ -3,30 +3,25 @@
   <metadata>
     <id>Xamarin.Agora.Full.Android</id>
     <title>Xamarin bindings to the native Android Agora Video SDK</title>
-    <version>2.1.0-beta1</version>
+    <version>3.0.1.1</version>
     <authors>dreamteammobile</authors>
     <owners>dreamteammobile</owners>
-    <projectUrl>http://www.agora.io/</projectUrl>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/AgoraIO-Community/Agora-RTC-SDK-for-Xamarin</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Xamarin bindings to the native Android Agora.io Full SDK.</description>
-    <summary>Xamarin Agora Full Android SDK lets you use Agora.in-powered video sessions in apps</summary>
-    <tags>Agora Agora.io Full SDK Xamarin Android Xamarin.Android MonoDroid Binding DreamTeam DreamTeamMobile</tags>
+    <description>Xamarin bindings to the native Android Agora.io Video SDK.</description>
+    <summary>Xamarin Agora Video Android SDK lets you use Agora.io-powered video sessions in your Xamarin apps</summary>
+    <tags>Agora Agora.io Full Video SDK Xamarin Android Xamarin.Android MonoDroid Binding DreamTeam DreamTeamMobile</tags>
+    <icon>images/agora-xamarin-sdk-icon.png</icon>
     <releaseNotes>
-v2.2.2 (Released Jun 21st, 2018)
+Please see release notes https://docs.agora.io/en/Video/release_android_video?platform=Android
 
-Issues Fixed
-Fixed occasional online statistics crashes.
-Fixed occasional audio crashes on some Android devices.
-Fixed the issue that the broadcaster’s voice distorts occasionally on some Android devices.
-Fixed the issue of failing to report the uid and volume of the speaker in a channel.
-Fixed the issue of receiving the onLeaveChannel callback long after a user has left the channel on some Android devices.
-Fixed the issue of occasional video freeze after a view size change.
-Fixed the occasional ANR (application no response) problem on some Android devices after the user turns off the camera to end a video session.
-
-origin: https://docs.agora.io/en/2.3.1/product/Video/Product%20Overview/release_android_video
-</releaseNotes>
+This is a preview of an upcoming update.
+*BREAKING* change: names of parameters are now nice, that might break some compilation.
+    </releaseNotes>
   </metadata>
   <files>
     <file src="lib/MonoAndroid/*.dll" target="lib/MonoAndroid" />
+    <file src="../agora-xamarin-sdk-icon.png" target="images/" />
   </files>
 </package>

@@ -138,7 +138,7 @@ namespace Xamarin.Agora.Full.Forms
         /// </summary>
         /// <param name="sessionId">Session identifier.</param>
         /// <param name="agoraAPI">Agora API key.</param>
-        public virtual void StartSession(string sessionId, string agoraAPI, VideoAgoraProfile profile = VideoAgoraProfile.Portrait360P, bool swapWidthAndHeight = false, bool webSdkInteroperability = false)
+        public virtual void StartSession(string sessionId, string agoraAPI, string token, VideoAgoraProfile profile = VideoAgoraProfile.Portrait360P, bool swapWidthAndHeight = false, bool webSdkInteroperability = false)
         {
             _knownStreams.Add(_myId);
             _agoraDelegate = new AgoraRtcDelegate(this);
@@ -150,7 +150,7 @@ namespace Xamarin.Agora.Full.Forms
             _agoraEngine.EnableVideo();
             _agoraEngine.SetVideoProfile(GetVideoProfile(profile), swapWidthAndHeight);
             // if you do not specify the uid, we will generate the uid for you
-            _agoraEngine.JoinChannelByToken(null, sessionId, null, 0, JoiningCompleted);
+            _agoraEngine.JoinChannelByToken(token, sessionId, null, 0, JoiningCompleted);
         }
         /// <summary>
         /// Setups the view.

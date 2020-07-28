@@ -107,9 +107,7 @@ namespace Xamarin.Agora.Full.Forms
         {
             switch(profile)
             {
-                case VideoAgoraProfile.Landscape1080P:
-                    return new VideoEncoderConfiguration(VideoEncoderConfiguration.VD1920x1080, VideoEncoderConfiguration.FRAME_RATE.FrameRateFps15, VideoEncoderConfiguration.StandardBitrate, VideoEncoderConfiguration.ORIENTATION_MODE.OrientationModeFixedLandscape);
-                case VideoAgoraProfile.Landscape720P:
+               case VideoAgoraProfile.Landscape720P:
                     return new VideoEncoderConfiguration(VideoEncoderConfiguration.VD1280x720, VideoEncoderConfiguration.FRAME_RATE.FrameRateFps15, VideoEncoderConfiguration.StandardBitrate, VideoEncoderConfiguration.ORIENTATION_MODE.OrientationModeFixedLandscape);
                 case VideoAgoraProfile.Landscape480P:
                     return new VideoEncoderConfiguration(VideoEncoderConfiguration.VD840x480, VideoEncoderConfiguration.FRAME_RATE.FrameRateFps15, VideoEncoderConfiguration.StandardBitrate, VideoEncoderConfiguration.ORIENTATION_MODE.OrientationModeFixedLandscape);
@@ -119,10 +117,6 @@ namespace Xamarin.Agora.Full.Forms
                     return new VideoEncoderConfiguration(VideoEncoderConfiguration.VD320x240, VideoEncoderConfiguration.FRAME_RATE.FrameRateFps15, VideoEncoderConfiguration.StandardBitrate, VideoEncoderConfiguration.ORIENTATION_MODE.OrientationModeFixedLandscape);
                 case VideoAgoraProfile.Landscape120P:
                     return new VideoEncoderConfiguration(VideoEncoderConfiguration.VD160x120, VideoEncoderConfiguration.FRAME_RATE.FrameRateFps15, VideoEncoderConfiguration.StandardBitrate, VideoEncoderConfiguration.ORIENTATION_MODE.OrientationModeFixedLandscape);
-                case VideoAgoraProfile.Landscape4K:
-                    return new VideoEncoderConfiguration(VideoEncoderConfiguration.VD3840x2160, VideoEncoderConfiguration.FRAME_RATE.FrameRateFps15, VideoEncoderConfiguration.StandardBitrate, VideoEncoderConfiguration.ORIENTATION_MODE.OrientationModeFixedLandscape);
-                case VideoAgoraProfile.Portrait4K:
-                    return new VideoEncoderConfiguration(VideoEncoderConfiguration.VD3840x2160, VideoEncoderConfiguration.FRAME_RATE.FrameRateFps15, VideoEncoderConfiguration.StandardBitrate, VideoEncoderConfiguration.ORIENTATION_MODE.OrientationModeFixedPortrait);
                 case VideoAgoraProfile.Portrait120P:
                     return new VideoEncoderConfiguration(VideoEncoderConfiguration.VD160x120, VideoEncoderConfiguration.FRAME_RATE.FrameRateFps15, VideoEncoderConfiguration.StandardBitrate, VideoEncoderConfiguration.ORIENTATION_MODE.OrientationModeFixedPortrait);
                 case VideoAgoraProfile.Portrait240P:
@@ -133,8 +127,6 @@ namespace Xamarin.Agora.Full.Forms
                     return new VideoEncoderConfiguration(VideoEncoderConfiguration.VD840x480, VideoEncoderConfiguration.FRAME_RATE.FrameRateFps15, VideoEncoderConfiguration.StandardBitrate, VideoEncoderConfiguration.ORIENTATION_MODE.OrientationModeFixedPortrait);
                 case VideoAgoraProfile.Portrait720P:
                     return new VideoEncoderConfiguration(VideoEncoderConfiguration.VD1280x720, VideoEncoderConfiguration.FRAME_RATE.FrameRateFps15, VideoEncoderConfiguration.StandardBitrate, VideoEncoderConfiguration.ORIENTATION_MODE.OrientationModeFixedPortrait);
-                case VideoAgoraProfile.Portrait1080P:
-                    return new VideoEncoderConfiguration(VideoEncoderConfiguration.VD1920x1080, VideoEncoderConfiguration.FRAME_RATE.FrameRateFps15, VideoEncoderConfiguration.StandardBitrate, VideoEncoderConfiguration.ORIENTATION_MODE.OrientationModeFixedPortrait);
             }
             return new VideoEncoderConfiguration(VideoEncoderConfiguration.VD480x360, VideoEncoderConfiguration.FRAME_RATE.FrameRateFps15, VideoEncoderConfiguration.StandardBitrate, VideoEncoderConfiguration.ORIENTATION_MODE.OrientationModeFixedPortrait);
         }
@@ -144,7 +136,7 @@ namespace Xamarin.Agora.Full.Forms
         /// </summary>
         /// <param name="sessionId">Session identifier.</param>
         /// <param name="agoraAPI">Agora API key.</param>
-        public void StartSession(string sessionId, string agoraAPI, VideoAgoraProfile profile = VideoAgoraProfile.Portrait360P, bool swapWidthAndHeight = false, bool webSdkInteroperability = false)
+        public void StartSession(string sessionId, string agoraAPI, string token, VideoAgoraProfile profile = VideoAgoraProfile.Portrait360P, bool swapWidthAndHeight = false, bool webSdkInteroperability = false)
         {
             _knownStreams.Add(_myId);
             _agoraHandler = new AgoraRtcEngineEventHandler(this);
@@ -159,7 +151,7 @@ namespace Xamarin.Agora.Full.Forms
 
             _agoraEngine.SetEnableSpeakerphone(true);
             // if you do not specify the uid, we will generate the uid for you
-            _agoraEngine.JoinChannel(null, sessionId, string.Empty, 0);
+            _agoraEngine.JoinChannel(token, sessionId, string.Empty, 0);
         }
 
         /// <summary>
@@ -602,7 +594,7 @@ namespace Xamarin.Agora.Full.Forms
         /// </summary>
         /// <param name="uid">Uid.</param>
         /// <param name="state">State.</param>
-        public virtual void OnRemoteVideoStateChanged(int uid, int state)
+        public virtual void OnRemoteVideoStateChanged(int uid, int state, int p2, int p3)
         {
         }
 

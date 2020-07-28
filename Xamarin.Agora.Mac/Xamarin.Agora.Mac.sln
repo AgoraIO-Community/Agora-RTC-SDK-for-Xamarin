@@ -1,7 +1,9 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgoraRtcEngineKit", "Xamarin.Agora.Full.Mac\Xamarin.Agora.Full.Mac.csproj", "{3DCFFF22-E369-47D7-BB13-48FF0219B99B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Agora.Full.Mac", "Xamarin.Agora.Full.Mac\Xamarin.Agora.Full.Mac.csproj", "{3DCFFF22-E369-47D7-BB13-48FF0219B99B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Agora.Voice.Mac", "Xamarin.Agora.Voice.Mac\Xamarin.Agora.Voice.Mac.csproj", "{FCBCA2D1-A920-4C8E-AC16-9647091EE5F6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,5 +15,9 @@ Global
 		{3DCFFF22-E369-47D7-BB13-48FF0219B99B}.Debug|x86.Build.0 = Debug|Any CPU
 		{3DCFFF22-E369-47D7-BB13-48FF0219B99B}.Release|x86.ActiveCfg = Release|Any CPU
 		{3DCFFF22-E369-47D7-BB13-48FF0219B99B}.Release|x86.Build.0 = Release|Any CPU
+		{FCBCA2D1-A920-4C8E-AC16-9647091EE5F6}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FCBCA2D1-A920-4C8E-AC16-9647091EE5F6}.Debug|x86.Build.0 = Debug|Any CPU
+		{FCBCA2D1-A920-4C8E-AC16-9647091EE5F6}.Release|x86.ActiveCfg = Release|Any CPU
+		{FCBCA2D1-A920-4C8E-AC16-9647091EE5F6}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

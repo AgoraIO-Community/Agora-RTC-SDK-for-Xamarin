@@ -33,7 +33,7 @@ namespace Xamarin.Agora.Full.Forms
         /// </summary>
         /// <param name="sessionId">Session identifier.</param>
         /// <param name="agoraKey">Agora key.</param>
-        void StartSession(string sessionId, string agoraKey, VideoAgoraProfile profile = VideoAgoraProfile.Portrait360P, bool swapWidthAndHeight = false, bool webSdkInteroperability = false);
+        void StartSession(string sessionId, string agoraKey, string token, VideoAgoraProfile profile = VideoAgoraProfile.Portrait360P, bool swapWidthAndHeight = false, bool webSdkInteroperability = false);
         /// <summary>
         /// Ends the session.
         /// </summary>

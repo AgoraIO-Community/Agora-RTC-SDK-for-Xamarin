@@ -8,10 +8,12 @@
     <OutputType>Library</OutputType>
     <RootNamespace>DT.Xamarin.Agora</RootNamespace>
     <AssemblyName>Xamarin.Agora.Full.Android</AssemblyName>
-    <TargetFrameworkVersion>v4.4</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <ReleaseVersion>1.8.0</ReleaseVersion>
+    <JavaDocPaths>Javadoc\zip\Javadoc</JavaDocPaths>
+    <AndroidClassParser>class-parse</AndroidClassParser>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -44,6 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Additions\AboutAdditions.txt" />
+    <None Include="Javadoc\zip\.gitkeep" />
+    <None Include="Javadoc\Javadoc.zip" />
   </ItemGroup>
   <ItemGroup>
     <TransformFile Include="Transforms\EnumFields.xml" />
@@ -58,11 +62,17 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedNativeLibrary Include="Jars\arm64-v8a\libagora-crypto.so" />
-    <EmbeddedNativeLibrary Include="Jars\arm64-v8a\libagora-rtc-sdk-jni.so" />
+    <EmbeddedNativeLibrary Include="Jars\arm64-v8a\libagora-rtc-sdk.so" />
     <EmbeddedNativeLibrary Include="Jars\armeabi-v7a\libagora-crypto.so" />
-    <EmbeddedNativeLibrary Include="Jars\armeabi-v7a\libagora-rtc-sdk-jni.so" />
+    <EmbeddedNativeLibrary Include="Jars\armeabi-v7a\libagora-rtc-sdk.so" />
     <EmbeddedNativeLibrary Include="Jars\x86\libagora-crypto.so" />
-    <EmbeddedNativeLibrary Include="Jars\x86\libagora-rtc-sdk-jni.so" />
+    <EmbeddedNativeLibrary Include="Jars\x86\libagora-rtc-sdk.so" />
+    <EmbeddedNativeLibrary Include="Jars\x86_64\libagora-crypto.so" />
+    <EmbeddedNativeLibrary Include="Jars\x86_64\libagora-rtc-sdk.so" />
   </ItemGroup>
+  <Target Name="UnzipArchive" BeforeTargets="PrepareForBuild">
+    <Message Text="Unzipping the docs$(MSBuildProjectDirectory)\Javadoc\zip\" />
+    <Unzip Sources="Javadoc\Javadoc.zip" DestinationDirectories="$(MSBuildProjectDirectory)\Javadoc\zip\" />
+  </Target>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.Bindings.targets" />
 </Project>

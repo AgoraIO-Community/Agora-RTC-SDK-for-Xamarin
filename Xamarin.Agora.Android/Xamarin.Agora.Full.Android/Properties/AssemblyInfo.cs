@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using Android.App;
 
@@ -10,4 +10,4 @@ using Android.App;
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: AssemblyCopyright("")]
-[assembly: AssemblyVersion("1.11.1.1")]
+[assembly: AssemblyVersion("3.0.1.1")]

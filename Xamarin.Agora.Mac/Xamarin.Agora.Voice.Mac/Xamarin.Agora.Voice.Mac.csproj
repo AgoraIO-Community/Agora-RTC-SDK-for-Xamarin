@@ -3,18 +3,18 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3DCFFF22-E369-47D7-BB13-48FF0219B99B}</ProjectGuid>
+    <ProjectGuid>{FCBCA2D1-A920-4C8E-AC16-9647091EE5F6}</ProjectGuid>
     <ProjectTypeGuids>{810C163F-4746-4721-8B8E-88A3673A62EA};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <RootNamespace>Xamarin.Agora.Mac</RootNamespace>
-    <AssemblyName>Xamarin.Agora.Full.Mac</AssemblyName>
+    <AssemblyName>Xamarin.Agora.Voice.Mac</AssemblyName>
     <MacResourcePrefix>Resources</MacResourcePrefix>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\Nugets\Xamarin.Agora.Full.Mac\lib\Xamarin.Mac20</OutputPath>
+    <OutputPath>..\..\Nugets\Xamarin.Agora.Voice.Mac\lib\Xamarin.Mac20</OutputPath>
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -22,7 +22,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <Optimize>true</Optimize>
-    <OutputPath>..\..\Nugets\Xamarin.Agora.Full.Mac\lib\Xamarin.Mac20</OutputPath>
+    <OutputPath>..\..\Nugets\Xamarin.Agora.Voice.Mac\lib\Xamarin.Mac20</OutputPath>
     <DefineConstants></DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -49,11 +49,11 @@
   <ItemGroup>
     <NativeReference Include="AgoraRtcKit.framework">
       <Kind>Framework</Kind>
-      <SmartLink>False</SmartLink>      
+      <SmartLink>False</SmartLink>
+      <ForceLoad>True</ForceLoad>
       <Frameworks>CoreWLAN VideoToolbox AudioToolbox AVFoundation Accelerate SystemConfiguration CoreAudio IOKit</Frameworks>
       <IsCxx>True</IsCxx>
       <LinkerFlags>-lc++ -lresolv</LinkerFlags>
-      <ForceLoad>True</ForceLoad>
     </NativeReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.ObjcBinding.CSharp.targets" />

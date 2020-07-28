@@ -3,28 +3,25 @@
   <metadata>
     <id>Xamarin.Agora.Voice.Android</id>
     <title>Xamarin bindings to the native Android Agora Voice SDK</title>
-    <version>1.13.1.1-beta1</version>
+    <version>3.0.1.0</version>
     <authors>dreamteammobile</authors>
     <owners>dreamteammobile</owners>
-    <projectUrl>http://www.agora.io/</projectUrl>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/AgoraIO-Community/Agora-RTC-SDK-for-Xamarin/</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Xamarin bindings to the native Android Agora.io Voice SDK.</description>
-    <summary>Xamarin Agora Voice Android SDK lets you use Agora.in-powered audio sessions in apps</summary>
+    <summary>Xamarin Agora Voice Android SDK lets you use Agora.io-powered audio sessions in your Xamarin apps</summary>
     <tags>Agora Agora.io Voice SDK Xamarin Android Xamarin.Android MonoDroid Binding DreamTeam DreamTeamMobile</tags>
-    <releaseNotes>
-v2.2.2 (Released Jun 21st, 2018)
+    <icon>images/agora-xamarin-sdk-icon.png</icon>
+    <releaseNotes> 
+Please see release notes https://docs.agora.io/en/Voice/release_android_audio?platform=Android
 
-Issues Fixed
-Fixed occasional online statistics crashes.
-Fixed occasional audio crashes on some Android devices.
-Fixed the issue that the broadcaster’s voice distorts occasionally on some Android devices.
-Fixed the issue of failing to report the uid and volume of the speaker in a channel.
-Fixed the issue of receiving the onLeaveChannel callback long after a user has left the channel on some Android devices.
-
-origin: https://docs.agora.io/en/2.3.1/product/Voice/Product%20Overview/release_android_audio
-</releaseNotes>
+This is a preview of an upcoming update.
+*BREAKING* change: names of parameters are now nice, that might break some compilation.
+    </releaseNotes>
   </metadata>
   <files>
     <file src="lib/MonoAndroid/*.dll" target="lib/MonoAndroid" />
+    <file src="../agora-xamarin-sdk-icon.png" target="images/" />
   </files>
 </package>
