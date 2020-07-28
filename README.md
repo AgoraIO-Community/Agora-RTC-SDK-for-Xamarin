@@ -14,7 +14,7 @@ iOS VOICE: [![NuGet Badge](https://buildstats.info/nuget/Xamarin.Agora.Voice.iOS
 
 MacOS FULL: [![NuGet Badge](https://buildstats.info/nuget/Xamarin.Agora.Full.Mac)](https://www.nuget.org/packages/Xamarin.Agora.Full.Mac/)
 
-Xamarin.Forms FULL: [![NuGet Badge](https://buildstats.info/nuget/amarin.Agora.Full.Forms)](https://www.nuget.org/packages/Xamarin.Agora.Full.Forms/)
+Xamarin.Forms FULL: [![NuGet Badge](https://buildstats.info/nuget/Xamarin.Agora.Full.Forms)](https://www.nuget.org/packages/Xamarin.Agora.Full.Forms/)
 
 ## Native SDKs
 
