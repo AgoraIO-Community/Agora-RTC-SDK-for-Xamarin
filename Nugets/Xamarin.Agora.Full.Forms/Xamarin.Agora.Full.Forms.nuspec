@@ -3,15 +3,16 @@
   <metadata>
     <id>Xamarin.Agora.Full.Forms</id>
     <title>Agora Xamarin SDK for Xamarin.Forms. Supports iOS, Android and MacOS</title>
-    <version>2.3.3</version>
+    <version>3.0.1-beta1</version>
     <authors>dreamteammobile</authors>
     <owners>dreamteammobile</owners>
+    <license type="expression">MIT</license>
     <projectUrl>https://github.com/AgoraIO-Community/Agora-RTC-SDK-for-Xamarin</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Agora Xamarin SDK for Xamarin.Forms. Supports iOS, Android and MacOS</description>
     <summary>Xamarin Agora Forms SDK lets you use Agora.in-powered video sessions in apps</summary>
     <tags>Agora Agora.io SDK Xamarin iOS Android MacOS Xamarin.iOS Xamarin.Android Xamarin.Mac Xamarin.Forms Binding DreamTeam DreamTeamMobile</tags>
-    <iconUrl>https://dreamteam-mobile.com/Images/agora-xamarin-sdk-icon.png</iconUrl>
+    <icon>images/agora-xamarin-sdk-icon.png</icon>
     <releaseNotes>
     </releaseNotes>
     <dependencies>
@@ -19,15 +20,15 @@
         <dependency id="Xamarin.Forms" version="3.4.0" />
       </group>
       <group targetFramework="Xamarin.iOS10">
-        <dependency id="Xamarin.Agora.Full.iOS" version="2.3.3" />
+        <dependency id="Xamarin.Agora.Full.iOS" version="2.9.1-beta1" />
         <dependency id="Xamarin.Forms" version="3.4.0" />
       </group>
       <group targetFramework="MonoAndroid10">
-        <dependency id="Xamarin.Agora.Full.Android" version="2.3.3" />
+        <dependency id="Xamarin.Agora.Full.Android" version="2.9.1-beta1" />
         <dependency id="Xamarin.Forms" version="3.4.0" />
       </group>
       <group targetFramework="Xamarin.Mac20">
-        <dependency id="Xamarin.Agora.Full.Mac" version="2.3.3" />
+        <dependency id="Xamarin.Agora.Full.Mac" version="2.9.1-beta1" />
         <dependency id="Xamarin.Forms" version="3.4.0" />
       </group>
     </dependencies>
@@ -41,5 +42,6 @@
     <file src="lib/MonoAndroid10/Xamarin.Agora.Full.Forms*.dll" target="lib/MonoAndroid10" />
     <!--Xamarin.Mac-->
     <file src="lib/Xamarin.Mac20/Xamarin.Agora.Full.Forms*.dll" target="lib/Xamarin.Mac20" />
+    <file src="../agora-xamarin-sdk-icon.png" target="images/" />
   </files>
 </package>

@@ -1,20 +1,16 @@
-## Get native libraries
+## Get native libs
 
-Download native Full and Voice SDK from [https://docs.agora.io/en/Agora%20Platform/downloads](https://docs.agora.io/en/Agora%20Platform/downloads)
+Download native Full and Voice SDK from [https://www.agora.io/en/download/](https://www.agora.io/en/download/)
 
 unpack and copy files:
 
-`Agora_Native_SDK_for_iOS_FULL/libs/libcrypto.a` to `Xamarin.Agora.iOS/Xamarin.Agora.Full.iOS/libcrypto.a`
+`Agora_Native_SDK_for_iOS_FULL/libs/ALL_ARCHITECTURE/AgoraRtcKit.framework/*` to `Xamarin.Agora.iOS/Xamarin.Agora.Full.iOS/AgoraRtcKit.framework/`
 
-`Agora_Native_SDK_for_iOS_FULL/libs/AgoraRtcEngineKit.framework` to `Xamarin.Agora.iOS/Xamarin.Agora.Full.iOS/AgoraRtcEngineKit.framework`
+`Agora_Native_SDK_for_iOS_FULL/libs/ALL_ARCHITECTURE/AgoraRtcCryptoLoader.framework/*` to `Xamarin.Agora.iOS/Xamarin.Agora.Full.iOS/AgoraRtcCryptoLoader.framework/`
 
-`Agora_Native_SDK_for_iOS_FULL/libs/AgoraRtcCryptoLoader.framework` to `Xamarin.Agora.iOS/Xamarin.Agora.Full.iOS/AgoraRtcCryptoLoader.framework`
+`Agora_Native_SDK_for_iOS_VOICE/libs/ALL_ARCHITECTURE/AgoraRtcKit.framework/*` to `Xamarin.Agora.iOS/Xamarin.Agora.Voice.iOS/AgoraRtcKit.framework/`
 
-`Agora_Native_SDK_for_iOS_VOICE/libs/libcrypto.a` to `Xamarin.Agora.iOS/Xamarin.Agora.Voice.iOS/libcrypto.a`
-
-`Agora_Native_SDK_for_iOS_VOICE/libs/AgoraAudioKit.framework` to `Xamarin.Agora.iOS/Xamarin.Agora.Voice.iOS/AgoraAudioKit.framework`
-
-`Agora_Native_SDK_for_iOS_VOICE/libs/AgoraRtcCryptoLoader.framework` to `Xamarin.Agora.iOS/Xamarin.Agora.Voice.iOS/AgoraRtcCryptoLoader.framework`
+`Agora_Native_SDK_for_iOS_VOICE/libs/ALL_ARCHITECTURE/AgoraRtcCryptoLoader.framework/*` to `Xamarin.Agora.iOS/Xamarin.Agora.Voice.iOS/AgoraRtcCryptoLoader.framework/`
 
 
 ## Update/Install Sharpie
@@ -23,15 +19,15 @@ download latest [Sharpie](https://download.xamarin.com/objective-sharpie/Objecti
 
 ## Update [ApiDefinitions & StructsAndEnums files](https://docs.microsoft.com/en-us/xamarin/cross-platform/macios/binding/objective-sharpie/platform/apidefinitions-structsandenums)
 
-### Generate binding files for AgoraRtcEngineKit.framework
+### Generate binding files for AgoraRtcKit.framework
 
 ```
-MacBook-Pro:AgoraRtcEngineKit.framework user$ sharpie bind -output Binding -sdk iphoneos -scope Headers Headers/AgoraRtcEngineKit.h -c
+MacBook-Pro:AgoraRtcKit.framework user$ sharpie bind -output Binding -sdk iphoneos -scope Headers Headers/AgoraRtcChannel.h -c
 ...
 ...
 Submitting usage data to Xamarin...
   usage data:
-    CommandLine: -output binding --namespace=AgoraRtcEngineKit --sdk=iphoneos Headers/AgoraRtcEngineKit.h -v
+    CommandLine: -output binding --namespace=AgoraRtcChannel --sdk=iphoneos Headers/AgoraRtcChannel.h -v
     DocsWritten: 2
     ToolName: bind
     ExitCode: 0

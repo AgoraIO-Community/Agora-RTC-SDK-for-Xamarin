@@ -341,9 +341,9 @@ namespace Xamarin.Agora.Full.Forms
         /// </summary>
         /// <param name="p0">P0.</param>
         /// <param name="p1">P1.</param>
-        public override void OnRemoteVideoStateChanged(int p0, int p1)
+        public override void OnRemoteVideoStateChanged(int p0, int p1, int p2, int p3)
         {
-            _agoraService.OnRemoteVideoStateChanged(p0, p1);
+            _agoraService.OnRemoteVideoStateChanged(p0, p1, p2, p3);
         }
         /// <summary>
         /// Ons the remote video stats.

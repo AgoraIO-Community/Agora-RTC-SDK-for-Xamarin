@@ -3,20 +3,22 @@
   <metadata>
     <id>Xamarin.Agora.Full.Mac</id>
     <title>Xamarin bindings to the native Mac Agora Video SDK.</title>
-    <version>2.3.3-beta1</version>
+    <version>3.0.1.0</version>
     <authors>dreamteammobile</authors>
     <owners>dreamteammobile</owners>
+    <license type="expression">MIT</license>
     <projectUrl>https://github.com/AgoraIO-Community/Agora-RTC-SDK-for-Xamarin/</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Xamarin bindings to the native Mac Agora.io Full SDK.</description>
     <summary>Xamarin Agora Mac SDK lets you use Agora.in-powered video sessions in apps</summary>
     <tags>Agora Agora.io Full SDK Xamarin Mac MacOS Xamarin.Mac MonoTouch Binding DreamTeam DreamTeamMobile</tags>
-    <iconUrl>https://dreamteam-mobile.com/Images/agora-xamarin-sdk-icon.png</iconUrl>
+    <icon>images/agora-xamarin-sdk-icon.png</icon>
     <releaseNotes>
 Please see release notes https://docs.agora.io/en/Video/release_mac_video?platform=macOS
     </releaseNotes>
   </metadata>
   <files>
     <file src="lib/Xamarin.Mac20/*.dll" target="lib/Xamarin.Mac20" />
+    <file src="../agora-xamarin-sdk-icon.png" target="images/" />
   </files>
 </package>

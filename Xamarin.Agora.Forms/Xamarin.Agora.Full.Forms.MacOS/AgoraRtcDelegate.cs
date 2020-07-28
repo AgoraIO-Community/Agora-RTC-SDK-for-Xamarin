@@ -35,7 +35,7 @@ namespace Xamarin.Agora.Full.Forms
         /// <param name="engine">Engine.</param>
         /// <param name="uid">Uid.</param>
         /// <param name="reason">Reason.</param>
-        public override void DidOfflineOfUid(AgoraRtcEngineKit engine, nuint uid, AgoraUserOfflineReason reason)
+        public override void DidOfflineOfUid(AgoraRtcEngineKit engine, nuint uid, UserOfflineReason reason)
         {
             Console.WriteLine($"DidOfflineOfUid: {uid}, {reason}");
             _controller.OnUserOffline(engine, uid, reason);

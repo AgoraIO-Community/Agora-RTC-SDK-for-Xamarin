@@ -93,40 +93,40 @@ namespace Xamarin.Agora.Full.Forms
             //_agoraEngine.SetEnableSpeakerphone(speaker);
         }
 
-        private AgoraVideoProfile GetVideoProfile(VideoAgoraProfile profile)
+        private VideoProfile GetVideoProfile(VideoAgoraProfile profile)
         {
             switch (profile)
             {
                 case VideoAgoraProfile.Landscape1080P:
-                    return AgoraVideoProfile.Landscape1080P;
+                    return VideoProfile.Landscape1080P;
                 case VideoAgoraProfile.Landscape720P:
-                    return AgoraVideoProfile.Landscape720P;
+                    return VideoProfile.Landscape720P;
                 case VideoAgoraProfile.Landscape480P:
-                    return AgoraVideoProfile.Landscape480P;
+                    return VideoProfile.Landscape480P;
                 case VideoAgoraProfile.Landscape360P:
-                    return AgoraVideoProfile.Landscape360P;
+                    return VideoProfile.Landscape360P;
                 case VideoAgoraProfile.Landscape240P:
-                    return AgoraVideoProfile.Landscape240P;
+                    return VideoProfile.Landscape240P;
                 case VideoAgoraProfile.Landscape120P:
-                    return AgoraVideoProfile.Landscape120P;
+                    return VideoProfile.Landscape120P;
                 case VideoAgoraProfile.Landscape4K:
-                    return AgoraVideoProfile.Landscape4K;
+                    return VideoProfile.Landscape4K;
                 case VideoAgoraProfile.Portrait4K:
-                    return AgoraVideoProfile.Portrait4K;
+                    return VideoProfile.Portrait4K;
                 case VideoAgoraProfile.Portrait120P:
-                    return AgoraVideoProfile.Portrait120P;
+                    return VideoProfile.Portrait120P;
                 case VideoAgoraProfile.Portrait240P:
-                    return AgoraVideoProfile.Portrait240P;
+                    return VideoProfile.Portrait240P;
                 case VideoAgoraProfile.Portrait360P:
-                    return AgoraVideoProfile.Portrait360P;
+                    return VideoProfile.Portrait360P;
                 case VideoAgoraProfile.Portrait480P:
-                    return AgoraVideoProfile.Portrait480P;
+                    return VideoProfile.Portrait480P;
                 case VideoAgoraProfile.Portrait720P:
-                    return AgoraVideoProfile.Portrait720P;
+                    return VideoProfile.Portrait720P;
                 case VideoAgoraProfile.Portrait1080P:
-                    return AgoraVideoProfile.Portrait1080P;
+                    return VideoProfile.Portrait1080P;
             }
-            return AgoraVideoProfile.Default;
+            return VideoProfile.Default;
         }
 
         /// <summary>
@@ -134,7 +134,7 @@ namespace Xamarin.Agora.Full.Forms
         /// </summary>
         /// <param name="sessionId">Session identifier.</param>
         /// <param name="agoraAPI">Agora API key.</param>
-        public virtual void StartSession(string sessionId, string agoraAPI, VideoAgoraProfile profile = VideoAgoraProfile.Portrait360P, bool swapWidthAndHeight = false, bool webSdkInteroperability = false)
+        public virtual void StartSession(string sessionId, string agoraAPI, string token, VideoAgoraProfile profile = VideoAgoraProfile.Portrait360P, bool swapWidthAndHeight = false, bool webSdkInteroperability = false)
         {
             _knownStreams.Add(_myId);
             _agoraDelegate = new AgoraRtcDelegate(this);
@@ -147,7 +147,7 @@ namespace Xamarin.Agora.Full.Forms
             _agoraEngine.SetVideoProfile(GetVideoProfile(profile), swapWidthAndHeight);
             //_agoraEngine.SetVideoProfile(VideoProfile.Portrait360P, false);
             // if you do not specify the uid, we will generate the uid for you
-            _agoraEngine.JoinChannelByToken(null, sessionId, null, 0, JoiningCompleted);
+            _agoraEngine.JoinChannelByToken(token, sessionId, null, 0, JoiningCompleted);
         }
 
         public virtual void SetupView(AgoraVideoViewHolder<NSView> holder)
@@ -160,7 +160,7 @@ namespace Xamarin.Agora.Full.Forms
                 SetupVideo(holder.GUID);
         }
 
-        internal void OnUserOffline(AgoraRtcEngineKit engine, nuint uid, AgoraUserOfflineReason reason)
+        internal void OnUserOffline(AgoraRtcEngineKit engine, nuint uid, UserOfflineReason reason)
         {
             var id = (uint)uid;
             _knownStreams.Remove(id);
@@ -195,7 +195,7 @@ namespace Xamarin.Agora.Full.Forms
                 var canvas = new AgoraRtcVideoCanvas()
                 {
                     View = container.NativeView,
-                    RenderMode = (AgoraVideoRenderMode)(int)container.VideoView.Mode,
+                    RenderMode = (VideoRenderMode)(int)container.VideoView.Mode,
                     Uid = uid
                 };
                 container.VideoView.IsOffline = false;
@@ -222,7 +222,7 @@ namespace Xamarin.Agora.Full.Forms
             var canvas = new AgoraRtcVideoCanvas()
             {
                 View = container.NativeView,
-                RenderMode = (AgoraVideoRenderMode)(int)container.VideoView.Mode,
+                RenderMode = (VideoRenderMode)(int)container.VideoView.Mode,
                 Uid = container.StreamUID
             };
             container.VideoView.IsOffline = false;
