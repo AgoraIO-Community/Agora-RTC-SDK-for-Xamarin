@@ -5,16 +5,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Agora.Full.iOS", "X
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Agora.Voice.iOS", "Xamarin.Agora.Voice.iOS\Xamarin.Agora.Voice.iOS.csproj", "{6648D844-B989-4C04-9F8B-89F2202D6B11}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nugets", "Nugets", "{D965193E-96B0-4A2E-86C2-49F7672B7CF1}"
-	ProjectSection(SolutionItems) = preProject
-		..\Nugets\Xamarin.Agora.Full.iOS\Xamarin.Agora.Full.iOS.nuspec = ..\Nugets\Xamarin.Agora.Full.iOS\Xamarin.Agora.Full.iOS.nuspec
-		..\Nugets\Xamarin.Agora.Voice.iOS\Xamarin.Agora.Voice.iOS.nuspec = ..\Nugets\Xamarin.Agora.Voice.iOS\Xamarin.Agora.Voice.iOS.nuspec
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2AC287C3-D899-42A7-94D3-5FC52A8462CC}"
-	ProjectSection(SolutionItems) = preProject
-		README.md = README.md
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
