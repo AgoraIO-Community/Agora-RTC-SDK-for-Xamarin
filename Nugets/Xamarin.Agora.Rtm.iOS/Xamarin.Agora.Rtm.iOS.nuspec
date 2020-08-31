@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Xamarin.Agora.Rtm.iOS</id>
+    <title>Xamarin bindings to the native iOS Agora RTM SDK.</title>
+    <version>1.2.2-beta1</version>
+    <authors>dreamteammobile</authors>
+    <owners>dreamteammobile</owners>
+    <projectUrl>https://github.com/AgoraIO/RTM</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Xamarin bindings to the native iOS Agora.io RTM SDK.</description>
+    <summary>The Agora Signaling SDK is based on the TCP protocol and provides a stable messaging channel for you to implement real-time communication scenarios.</summary>
+    <tags>Agora Agora.io RTM SDK Xamarin iOS Xamarin.iOS MonoTouch Binding DreamTeam DreamTeamMobile</tags>
+    <iconUrl>https://dreamteam-mobile.com/Images/agora-xamarin-sdk-icon.png</iconUrl>
+    <releaseNotes>
+Please see documentation https://docs-preview.agoralab.co/en/Video/API%20Reference/RTM_oc/v1.1.0/index.html
+    </releaseNotes>
+  </metadata>
+  <files>
+    <file src="lib/Xamarin.iOS10/*.dll" target="lib/Xamarin.iOS10" />
+  </files>
+</package>

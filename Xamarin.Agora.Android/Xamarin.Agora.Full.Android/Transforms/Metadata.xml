@@ -18,6 +18,8 @@
     <attr path="/api/package[@name='io.agora.rtc.live']" name="managedName">DT.Xamarin.Agora.Live</attr>
     <attr path="/api/package[@name='io.agora.rtc.xm']" name="managedName">DT.Xamarin.Agora.XM</attr>
     <attr path="/api/package[@name='io.agora.rtc.models']" name="managedName">DT.Xamarin.Agora.Models</attr>
+    <remove-node path="/api/package[@name='com.coloros.ocs.mediaunit']/class" />
+    <remove-node path="/api/package[@name='com.coloros.ocs.base.task']/class" />
     <remove-node path="/api/package[@name='io.agora.rtc.internal']/class" />
     <remove-node path="/api/package[@name='io.agora.rtc.gl']/class[@name='EglBase']/method[@name='getEglBaseContext' and count(parameter)=0]" />
     <attr path="/api/package[@name='io.agora.rtc.gl']/class[@name='EglBase14']/method[@name='getEglBaseContext' and count(parameter)=0]" name="return">IO.Agora.Rtc.GL.EglBase.IContext</attr>

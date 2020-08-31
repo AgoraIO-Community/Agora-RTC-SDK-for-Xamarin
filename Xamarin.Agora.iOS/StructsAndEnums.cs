@@ -6,32 +6,35 @@ namespace DT.Xamarin.Agora
 	[Native]
 	public enum WarningCode : long
 	{
-        InvalidView = 8,
-        InitVideo = 16,
-        Pending = 20,
-        NoAvailableChannel = 103,
-        LookupChannelTimeout = 104,
-        LookupChannelRejected = 105,
-        OpenChannelTimeout = 106,
-        OpenChannelRejected = 107,
-        SwitchLiveVideoTimeout = 111,
-        SetClientRoleTimeout = 118,
-        SetClientRoleNotAuthorized = 119,
-        OpenChannelInvalidTicket = 121,
-        OpenChannelTryNextVos = 122,
-        AudioMixingOpenError = 701,
-        AdmRuntimePlayoutWarning = 1014,
-        AdmRuntimeRecordingWarning = 1016,
-        AdmRecordAudioSilence = 1019,
-        AdmPlaybackMalfunction = 1020,
-        AdmRecordMalfunction = 1021,
-        AdmInterruption = 1025,
-        AdmRecordAudioLowlevel = 1031,
-        AdmPlayoutAudioLowlevel = 1032,
-        ApmHowling = 1051,
-        AdmGlitchState = 1052,
-        AdmImproperSettings = 1053
-    }
+		InvalidView = 8,
+		InitVideo = 16,
+		Pending = 20,
+		NoAvailableChannel = 103,
+		LookupChannelTimeout = 104,
+		LookupChannelRejected = 105,
+		OpenChannelTimeout = 106,
+		OpenChannelRejected = 107,
+		SwitchLiveVideoTimeout = 111,
+		SetClientRoleTimeout = 118,
+		SetClientRoleNotAuthorized = 119,
+		OpenChannelInvalidTicket = 121,
+		OpenChannelTryNextVos = 122,
+		AudioMixingOpenError = 701,
+		AdmRuntimePlayoutWarning = 1014,
+		AdmRuntimeRecordingWarning = 1016,
+		AdmRecordAudioSilence = 1019,
+		AdmPlaybackMalfunction = 1020,
+		AdmRecordMalfunction = 1021,
+		AdmInterruption = 1025,
+		AdmCategoryNotPlayAndRecord = 1029,
+		AdmRecordAudioLowlevel = 1031,
+		AdmPlayoutAudioLowlevel = 1032,
+		AdmNoDataReadyCallback = 1040,
+		AdmInconsistentDevices = 1042,
+		ApmHowling = 1051,
+		AdmGlitchState = 1052,
+		ApmResidualEcho = 1053
+	}
 
 	[Native]
 	public enum ErrorCode : long
@@ -59,7 +62,8 @@ namespace DT.Xamarin.Agora
         ResourceLimited = 22,
         InvalidAppId = 101,
         InvalidChannelId = 102,
-        TokenExpired = 109,
+		NoServerResources = 103,
+		TokenExpired = 109,
         InvalidToken = 110,
         ConnectionInterrupted = 111,
         ConnectionLost = 112,
@@ -272,8 +276,10 @@ namespace DT.Xamarin.Agora
 	{
 		None = 0,
 		Aes128xts = 1,
-		Aes256xts = 2,
-		Aes128ecb = 3
+		Aes128ecb = 2,
+		Aes256xts = 3,
+		Sm4128ecb = 4,
+		End
 	}
 
 	[Native]
@@ -294,22 +300,6 @@ namespace DT.Xamarin.Agora
 		Failure = 4
 	}
 
-	public enum RtmpStreamPublishError : ulong
-	{
-		Ok = 0,
-		InvalidArgument = 1,
-		EncryptedStreamNotAllowed = 2,
-		ConnectionTimeout = 3,
-		InternalServerError = 4,
-		RtmpServerError = 5,
-		TooOften = 6,
-		ReachLimit = 7,
-		NotAuthorized = 8,
-		StreamNotFound = 9,
-		FormatNotSupported = 10
-	}
-
-	[Native]
 	public enum RtmpStreamingErrorCode : ulong
 	{
 		Ok = 0,
@@ -323,6 +313,12 @@ namespace DT.Xamarin.Agora
 		NotAuthorized = 8,
 		StreamNotFound = 9,
 		FormatNotSupported = 10
+	}
+
+	[Native]
+	public enum RtmpStreamingEvent : ulong
+	{
+		AgoraRtmpStreamingEventFailedLoadImage = 1
 	}
 
 	[Native]
@@ -437,6 +433,24 @@ namespace DT.Xamarin.Agora
 	}
 
 	[Native]
+	public enum StreamPublishState : ulong
+	{
+		Idle = 0,
+		NoPublished = 1,
+		Publishing = 2,
+		Published = 3
+	}
+
+	[Native]
+	public enum StreamSubscribeState : ulong
+	{
+		Idle = 0,
+		NoSubscribed = 1,
+		Subscribing = 2,
+		Subscribed = 3
+	}
+
+	[Native]
 	public enum VideoContentHint : ulong
 	{
 		None = 0,
@@ -516,7 +530,11 @@ namespace DT.Xamarin.Agora
 		HeadsetNoMic = 2,
 		Speakerphone = 3,
 		Loudspeaker = 4,
-		HeadsetBluetooth = 5
+		HeadsetBluetooth = 5,
+		Usb = 6,
+		Hdmi = 7,
+		DisplayPort = 8,
+		AirPlay = 9
 	}
 
 	[Native]
@@ -663,8 +681,8 @@ namespace DT.Xamarin.Agora
 	public enum MediaDeviceType : long
 	{
 		AudioUnknown = -1,
-		AudioRecording = 0,
-		AudioPlayout = 1,
+		AudioPlayout = 0,
+		AudioRecording = 1,
 		VideoRender = 2,
 		VideoCapture = 3
 	}
@@ -801,11 +819,13 @@ namespace DT.Xamarin.Agora
 	[Native]
 	public enum AgoraIpAreaCode : ulong
 	{
-		Cn = (1uL << 0),
-		Na = (1uL << 1),
-		Eur = (1uL << 2),
-		As = (1uL << 3),
-		Global = (4294967295L)
+		Cn = 1,
+		Na = 2,
+		Eu = 4,
+		As = 8,
+		Jp = 16,
+		In = 32,
+		Glob = 4294967295L
 	}
 
 	[Native]
@@ -833,6 +853,14 @@ namespace DT.Xamarin.Agora
 	}
 
 	[Native]
+	public enum VideoCaptureType : long
+	{
+		Unknown = 0,
+		Camera = 1,
+		Screen = 2
+	}
+
+	[Native]
 	public enum RtcDefaultCameraPosition : long
 	{
 		Front = 0,
@@ -845,42 +873,4 @@ namespace DT.Xamarin.Agora
 		Unknown = -1,
 		Video = 0
 	}
-
-	[Native]
-	public enum Quality : ulong
-	{
-		Unknown = 0,
-		Excellent = 1,
-		Good = 2,
-		Poor = 3,
-		Bad = 4,
-		VBad = 5,
-		Down = 6,
-		Unsupported = 7,
-		Detecting = 8
-	}
-
-	/// <summary>
-	/// ///////////////////////////////////////////////////////////////////
-	/// </summary>
-
-
-
-
-	/*	[Native]
-		public enum Quality : ulong
-		{
-			Unknown = 0,
-			Excellent = 1,
-			Good = 2,
-			Poor = 3,
-			Bad = 4,
-			VBad = 5,
-			Down = 6
-		}
-			 */
-
-
-
-
 }

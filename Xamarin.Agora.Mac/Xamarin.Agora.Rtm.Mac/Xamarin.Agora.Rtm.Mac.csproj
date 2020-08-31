@@ -6,7 +6,7 @@
     <ProjectGuid>{FCBCA2D1-A920-4C8E-AC16-9647091EE5F6}</ProjectGuid>
     <ProjectTypeGuids>{810C163F-4746-4721-8B8E-88A3673A62EA};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <RootNamespace>DT.Xamarin.Agora</RootNamespace>
+    <RootNamespace>Xamarin.Agora.Mac</RootNamespace>
     <AssemblyName>Xamarin.Agora.Voice.Mac</AssemblyName>
     <MacResourcePrefix>Resources</MacResourcePrefix>
   </PropertyGroup>
@@ -37,6 +37,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <NativeReference Include="AgoraAudioKit.framework">
+      <Kind>Framework</Kind>
+      <SmartLink>False</SmartLink>
+      <ForceLoad>True</ForceLoad>
+      <Frameworks>CoreWLAN VideoToolbox AudioToolbox AVFoundation Accelerate SystemConfiguration CoreAudio IOKit</Frameworks>
+      <IsCxx>True</IsCxx>
+      <LinkerFlags>-lc++ -lresolv</LinkerFlags>
+    </NativeReference>
+  </ItemGroup>
+  <ItemGroup>
     <ObjcBindingApiDefinition Include="..\ApiDefinition.cs">
       <Link>ApiDefinition.cs</Link>
     </ObjcBindingApiDefinition>
@@ -45,16 +55,6 @@
     <ObjcBindingCoreSource Include="..\StructsAndEnums.cs">
       <Link>StructsAndEnums.cs</Link>
     </ObjcBindingCoreSource>
-  </ItemGroup>
-  <ItemGroup>
-    <NativeReference Include="AgoraRtcKit.framework">
-      <Kind>Framework</Kind>
-      <SmartLink>False</SmartLink>
-      <ForceLoad>True</ForceLoad>
-      <Frameworks>CoreWLAN VideoToolbox AudioToolbox AVFoundation Accelerate SystemConfiguration CoreAudio IOKit</Frameworks>
-      <IsCxx>True</IsCxx>
-      <LinkerFlags>-lc++ -lresolv</LinkerFlags>
-    </NativeReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.ObjcBinding.CSharp.targets" />
 </Project>
