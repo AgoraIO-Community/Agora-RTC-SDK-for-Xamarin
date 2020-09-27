@@ -1,6 +1,0 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<metadata>
-    <attr path="/api/package[@name='io.agora.rtm']" name="managedName">DT.Xamarin.Agora.Rtm</attr>
-    <attr path="/api/package[@name='io.agora.rtm']/interface[@name='RtmClientListener']/method[@name='onMessageReceived']/parameter[1]" name="managedName">param1</attr>
-    <attr path="/api/package[@name='io.agora.rtm']/interface[@name='RtmClientListener']/method[@name='onMessageReceived']/parameter[2]" name="managedName">param2</attr>
-</metadata>

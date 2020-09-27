@@ -14,7 +14,9 @@ iOS VOICE: [![NuGet Badge](https://buildstats.info/nuget/Xamarin.Agora.Voice.iOS
 
 MacOS FULL: [![NuGet Badge](https://buildstats.info/nuget/Xamarin.Agora.Full.Mac)](https://www.nuget.org/packages/Xamarin.Agora.Full.Mac/)
 
-Xamarin.Forms FULL: [![NuGet Badge](https://buildstats.info/nuget/Xamarin.Agora.Full.Forms)](https://www.nuget.org/packages/Xamarin.Agora.Full.Forms/)
+MacOS VOICE: [![NuGet Badge](https://buildstats.info/nuget/Xamarin.Agora.Full.Mac)](https://www.nuget.org/packages/Xamarin.Agora.Voice.Mac/)
+
+Xamarin.Forms FULL (discontinued): [![NuGet Badge](https://buildstats.info/nuget/Xamarin.Agora.Full.Forms)](https://www.nuget.org/packages/Xamarin.Agora.Full.Forms/)
 
 ## Native SDKs
 
@@ -37,3 +39,8 @@ Step by step iOS tutorial is available on [GitHub](https://github.com/DreamTeamM
 
 ## License
 The MIT License (MIT).
+
+P.S.
+Known Issues:
+- removed AgoraScreenCaptureParameters - linking failed in release mode to find this class in sdk, but sharpie see that class
+- from 3.0 agora providing 2 builds for 1 version in iOS SDK "AgoraRtcKit.framework" and "ALL_ARCHITECTURE/AgoraRtcKit.framework" we using "AgoraRtcKit.framework", because if we bind "ALL_ARCHITECTURE/AgoraRtcKit.framework" - unable to submit built app to store, it raise issue that build contains code for simulator

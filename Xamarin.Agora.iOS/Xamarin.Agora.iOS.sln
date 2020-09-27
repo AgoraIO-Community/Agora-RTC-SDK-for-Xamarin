@@ -5,8 +5,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Agora.Full.iOS", "X
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Agora.Voice.iOS", "Xamarin.Agora.Voice.iOS\Xamarin.Agora.Voice.iOS.csproj", "{6648D844-B989-4C04-9F8B-89F2202D6B11}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Agora.Rtm.iOS", "Xamarin.Agora.Rtm.iOS\Xamarin.Agora.Rtm.iOS.csproj", "{F3E467C5-BF9B-46A6-A527-5E293AE5D897}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,10 +19,6 @@ Global
 		{6648D844-B989-4C04-9F8B-89F2202D6B11}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6648D844-B989-4C04-9F8B-89F2202D6B11}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6648D844-B989-4C04-9F8B-89F2202D6B11}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F3E467C5-BF9B-46A6-A527-5E293AE5D897}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F3E467C5-BF9B-46A6-A527-5E293AE5D897}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F3E467C5-BF9B-46A6-A527-5E293AE5D897}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F3E467C5-BF9B-46A6-A527-5E293AE5D897}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		Policies = $0
