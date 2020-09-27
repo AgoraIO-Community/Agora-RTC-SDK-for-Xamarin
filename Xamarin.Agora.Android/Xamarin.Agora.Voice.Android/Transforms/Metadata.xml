@@ -17,6 +17,8 @@
   <attr path="/api/package[@name='io.agora.rtc.audio']" name="managedName">DT.Xamarin.Agora.Audio</attr>
   <attr path="/api/package[@name='io.agora.rtc.live']" name="managedName">DT.Xamarin.Agora.Live</attr>
   <attr path="/api/package[@name='io.agora.rtc.xm']" name="managedName">DT.Xamarin.Agora.XM</attr>
+  <remove-node path="/api/package[@name='com.coloros.ocs.mediaunit']/class" />
+  <remove-node path="/api/package[@name='com.coloros.ocs.base.task']/class" />
   <remove-node path="/api/package[@name='io.agora.rtc.internal']/class" />
   <attr path="/api/package[@name='io.agora.rtc.gl']/class[@name='EglBase14']/method[@name='getEglBaseContext' and count(parameter)=0]" name="return">DT.Xamarin.Agora.GL.EglBase.IContext</attr>
   <attr path="/api/package[@name='io.agora.rtc.mediaio']/class[@name='AgoraBufferedCamera2.CompareSizesByArea']/method[@name='compare' and count(parameter)=2 and parameter[1][@type='android.util.Size'] and parameter[2][@type='android.util.Size']]/parameter[1]" name="managedType">Java.Lang.Object</attr> 

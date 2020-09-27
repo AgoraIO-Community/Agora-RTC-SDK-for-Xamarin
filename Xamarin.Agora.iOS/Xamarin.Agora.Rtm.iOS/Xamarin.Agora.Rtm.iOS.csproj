@@ -1,20 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\NuGet.Build.Packaging.0.2.2\build\NuGet.Build.Packaging.props" Condition="Exists('..\packages\NuGet.Build.Packaging.0.2.2\build\NuGet.Build.Packaging.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6648D844-B989-4C04-9F8B-89F2202D6B11}</ProjectGuid>
+    <ProjectGuid>{F3E467C5-BF9B-46A6-A527-5E293AE5D897}</ProjectGuid>
     <ProjectTypeGuids>{8FFB629D-F513-41CE-95D2-7ECE97B6EEEC};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <RootNamespace>DT.Xamarin.Agora</RootNamespace>
-    <AssemblyName>Xamarin.Agora.Voice.iOS</AssemblyName>
+    <AssemblyName>Xamarin.Agora.Rtm.iOS</AssemblyName>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <PackageVersion>0.9</PackageVersion>
+    <Authors>DreamTeam</Authors>
+    <PackageId>Xamarin.Agora.Rtm.iOS</PackageId>
+    <Owners>DreamTeam</Owners>
+    <PackageProjectUrl>https://github.com/AgoraIO/RTM/tree/master/Agora-RTM-Tutorial-Android</PackageProjectUrl>
+    <PackageReleaseNotes>First version</PackageReleaseNotes>
+    <Summary>Xamarin.Agora.Rtm.iOS</Summary>
+    <Title>Xamarin.Agora.Rtm.iOS</Title>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\Nugets\Xamarin.Agora.Voice.iOS\lib\Xamarin.iOS10</OutputPath>
+    <OutputPath>..\..\Nugets\Xamarin.Agora.Rtm.iOS\lib\Xamarin.iOS10</OutputPath>
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -22,8 +31,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <Optimize>true</Optimize>
-    <OutputPath>..\..\Nugets\Xamarin.Agora.Voice.iOS\lib\Xamarin.iOS10</OutputPath>
-    <DefineConstants></DefineConstants>
+    <OutputPath>..\..\Nugets\Xamarin.Agora.Rtm.iOS\lib\Xamarin.iOS10</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -36,28 +44,24 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ObjcBindingApiDefinition Include="..\ApiDefinition.cs">
-      <Link>ApiDefinition.cs</Link>
-    </ObjcBindingApiDefinition>
+    <ObjcBindingApiDefinition Include="ApiDefinition.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ObjcBindingCoreSource Include="..\StructsAndEnums.cs">
-      <Link>StructsAndEnums.cs</Link>
-    </ObjcBindingCoreSource>
+    <ObjcBindingCoreSource Include="Structs.cs" />
   </ItemGroup>
   <ItemGroup>
-    <NativeReference Include="AgoraRtcKit.framework">
+    <NativeReference Include="AgoraRtmKit.framework">
       <Kind>Framework</Kind>
-      <Frameworks>CoreMotion OpenGLES CoreTelephony CoreMedia AudioToolbox AVFoundation QuartzCore</Frameworks>
       <ForceLoad>True</ForceLoad>
       <IsCxx>True</IsCxx>
-    </NativeReference>
-    <NativeReference Include="AgoraRtcCryptoLoader.framework">
-      <Kind>Framework</Kind>
-      <ForceLoad>True</ForceLoad>
       <LinkerFlags>-lresolv</LinkerFlags>
-      <IsCxx>True</IsCxx>
+      <Frameworks>CoreTelephony SystemConfiguration</Frameworks>
+      <WeakFrameworks></WeakFrameworks>
     </NativeReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.ObjCBinding.CSharp.targets" />
+  <Import Project="..\packages\NuGet.Build.Packaging.0.2.2\build\NuGet.Build.Packaging.targets" Condition="Exists('..\packages\NuGet.Build.Packaging.0.2.2\build\NuGet.Build.Packaging.targets')" />
 </Project>

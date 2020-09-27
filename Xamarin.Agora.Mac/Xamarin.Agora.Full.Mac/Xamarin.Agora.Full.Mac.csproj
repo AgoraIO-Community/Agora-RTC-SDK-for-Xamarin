@@ -6,7 +6,7 @@
     <ProjectGuid>{3DCFFF22-E369-47D7-BB13-48FF0219B99B}</ProjectGuid>
     <ProjectTypeGuids>{810C163F-4746-4721-8B8E-88A3673A62EA};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <RootNamespace>Xamarin.Agora.Mac</RootNamespace>
+    <RootNamespace>DT.Xamarin.Agora</RootNamespace>
     <AssemblyName>Xamarin.Agora.Full.Mac</AssemblyName>
     <MacResourcePrefix>Resources</MacResourcePrefix>
   </PropertyGroup>

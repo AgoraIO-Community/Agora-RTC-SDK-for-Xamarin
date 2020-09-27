@@ -8,4 +8,4 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyProduct("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCopyright("")]
-[assembly: AssemblyVersion("3.0.1.3")]
+[assembly: AssemblyVersion("3.1.2")]

@@ -1,4 +1,4 @@
-﻿<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -44,13 +44,18 @@
     </ObjcBindingCoreSource>
   </ItemGroup>
   <ItemGroup>
-    <NativeReference Include="AgoraRtcKit.framework">
-      <Kind>Framework</Kind>
-      <SmartLink>False</SmartLink>
-    </NativeReference>
     <NativeReference Include="AgoraRtcCryptoLoader.framework">
       <Kind>Framework</Kind>
-      <SmartLink>False</SmartLink>
+      <IsCxx>True</IsCxx>
+      <ForceLoad>True</ForceLoad>
+      <LinkerFlags>-lresolv</LinkerFlags>
+    </NativeReference>
+    <NativeReference Include="AgoraRtcKit.framework">
+      <Kind>Framework</Kind>
+      <Frameworks>CoreMotion OpenGLES SystemConfiguration CoreTelephony CoreVideo CoreMedia VideoToolbox AudioToolbox AVFoundation QuartzCore</Frameworks>
+      <ForceLoad>True</ForceLoad>
+      <IsCxx>True</IsCxx>
+      <LinkerFlags>-lresolv</LinkerFlags>
     </NativeReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.ObjCBinding.CSharp.targets" />

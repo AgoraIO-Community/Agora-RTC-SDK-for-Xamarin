@@ -1,12 +1,11 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 
-[assembly: AssemblyTitle("Xamarin.Agora.Voice.iOS")]
+[assembly: AssemblyTitle("Xamarin.Agora.Rtm.Android")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("")]
-[assembly: AssemblyTrademark("")]
 [assembly: AssemblyCopyright("")]
+[assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-[assembly: AssemblyVersion("3.1.2")]
+[assembly: AssemblyVersion("1.2.2")]

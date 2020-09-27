@@ -3,7 +3,7 @@
   <metadata>
     <id>Xamarin.Agora.Voice.Android</id>
     <title>Xamarin bindings to the native Android Agora Voice SDK</title>
-    <version>3.0.1.0</version>
+    <version>3.1.2</version>
     <authors>dreamteammobile</authors>
     <owners>dreamteammobile</owners>
     <license type="expression">MIT</license>
@@ -16,8 +16,6 @@
     <releaseNotes> 
 Please see release notes https://docs.agora.io/en/Voice/release_android_audio?platform=Android
 
-This is a preview of an upcoming update.
-*BREAKING* change: names of parameters are now nice, that might break some compilation.
     </releaseNotes>
   </metadata>
   <files>
