@@ -3,7 +3,7 @@
   <metadata>
     <id>Xamarin.Agora.Full.Android</id>
     <title>Xamarin bindings to the native Android Agora Video SDK</title>
-    <version>3.1.1-beta1</version>
+    <version>3.1.2</version>
     <authors>dreamteammobile</authors>
     <owners>dreamteammobile</owners>
     <license type="expression">MIT</license>
@@ -16,8 +16,10 @@
     <releaseNotes>
 Please see release notes https://docs.agora.io/en/Video/release_android_video?platform=Android
 
-This is a preview of an upcoming update.
-*BREAKING* change: names of parameters are now nice, that might break some compilation.
+v3.1.2 was released on September 14, 2020. This release fixed the following issues:
+
+When you use MediaIO to switch to a different video source, the screen gets frozen.
+The onFirstLocalVideoFrame and onFirstRemoteVideoFrame callbacks are not triggered at the right time.
     </releaseNotes>
   </metadata>
   <files>

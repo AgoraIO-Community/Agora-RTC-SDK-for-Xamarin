@@ -50,7 +50,7 @@
     <ObjcBindingCoreSource Include="Structs.cs" />
   </ItemGroup>
   <ItemGroup>
-    <NativeReference Include="libs\AgoraRtmKit.framework">
+    <NativeReference Include="AgoraRtmKit.framework">
       <Kind>Framework</Kind>
       <ForceLoad>True</ForceLoad>
       <IsCxx>True</IsCxx>

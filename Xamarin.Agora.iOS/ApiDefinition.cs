@@ -526,34 +526,34 @@ namespace DT.Xamarin.Agora
         IntPtr Constructor(nint width, nint height, VideoFrameRate frameRate, nint bitrate, VideoOutputOrientationMode orientationMode);
     }
 
-    //// @interface AgoraScreenCaptureParameters : NSObject
-    [BaseType(typeof(NSObject))]
-    interface AgoraScreenCaptureParameters
-    {
-        // @property (assign, nonatomic) CGSize dimensions;
-        [Export("dimensions", ArgumentSemantic.Assign)]
-        CGSize Dimensions { get; set; }
+    ////// @interface AgoraScreenCaptureParameters : NSObject
+    //[BaseType(typeof(NSObject))]
+    //interface AgoraScreenCaptureParameters
+    //{
+    //    // @property (assign, nonatomic) CGSize dimensions;
+    //    [Export("dimensions", ArgumentSemantic.Assign)]
+    //    CGSize Dimensions { get; set; }
 
-        // @property (assign, nonatomic) NSInteger frameRate;
-        [Export("frameRate")]
-        nint FrameRate { get; set; }
+    //    // @property (assign, nonatomic) NSInteger frameRate;
+    //    [Export("frameRate")]
+    //    nint FrameRate { get; set; }
 
-        // @property (assign, nonatomic) NSInteger bitrate;
-        [Export("bitrate")]
-        nint Bitrate { get; set; }
+    //    // @property (assign, nonatomic) NSInteger bitrate;
+    //    [Export("bitrate")]
+    //    nint Bitrate { get; set; }
 
-        // @property (assign, nonatomic) BOOL captureMouseCursor;
-        [Export("captureMouseCursor")]
-        bool CaptureMouseCursor { get; set; }
+    //    // @property (assign, nonatomic) BOOL captureMouseCursor;
+    //    [Export("captureMouseCursor")]
+    //    bool CaptureMouseCursor { get; set; }
 
-        // @property (assign, nonatomic) BOOL windowFocus;
-        [Export("windowFocus")]
-        bool WindowFocus { get; set; }
+    //    // @property (assign, nonatomic) BOOL windowFocus;
+    //    [Export("windowFocus")]
+    //    bool WindowFocus { get; set; }
 
-        // @property (copy, nonatomic) NSArray * excludeWindowList;
-        [Export("excludeWindowList", ArgumentSemantic.Copy)]
-        NSObject[] ExcludeWindowList { get; set; }
-    }
+    //    // @property (copy, nonatomic) NSArray * excludeWindowList;
+    //    [Export("excludeWindowList", ArgumentSemantic.Copy)]
+    //    NSObject[] ExcludeWindowList { get; set; }
+    //}
 
     // @interface AgoraLiveTranscodingUser : NSObject
     [BaseType(typeof(NSObject))]
@@ -2218,12 +2218,6 @@ namespace DT.Xamarin.Agora
         [Export("setVideoResolution:andFrameRate:bitrate:")]
         [Obsolete("use setVideoEncoderConfiguration: instead.")]
         int SetVideoResolution(CGSize size, nint frameRate, nint bitrate);
-
-        // -(NSString * _Nullable)getDeviceId:(AgoraMediaDeviceType)type __attribute__((deprecated("use getDeviceInfo: instead.")));
-        [Export("getDeviceId:")]
-        [return: NullAllowed]
-        [Obsolete("use GetDeviceInfo: instead.")]
-        string GetDeviceId(MediaDeviceType type);
 
         // -(int)playEffect:(int)soundId filePath:(NSString * _Nullable)filePath loopCount:(int)loopCount pitch:(double)pitch pan:(double)pan gain:(double)gain __attribute__((deprecated("use playEffect:filePath:loopCount:pitch:pan:gain:publish: instead.")));
         [Export("playEffect:filePath:loopCount:pitch:pan:gain:")]

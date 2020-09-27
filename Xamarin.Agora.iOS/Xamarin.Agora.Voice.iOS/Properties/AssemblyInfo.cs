@@ -9,4 +9,4 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCopyright("")]
 [assembly: AssemblyCulture("")]
-[assembly: AssemblyVersion("3.1.1")]
+[assembly: AssemblyVersion("3.1.2")]
