@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
-    <id>Xamarin.Agora.Voice.iOS</id>
-    <title>Xamarin bindings to the native iOS Agora Voice SDK.</title>
-    <version>3.2.1</version>
+    <id>Xamarin.Agora.Voice.iOS.AllArchitecture</id>
+    <title>Xamarin bindings to the native iOS Agora Voice SDK for All Architecture.</title>
+    <version>3.2.2</version>
     <authors>dreamteammobile</authors>
     <owners>dreamteammobile</owners>
     <license type="expression">MIT</license>
@@ -11,7 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Xamarin bindings to the native iOS Agora.io Voice SDK.</description>
     <summary>Xamarin Agora iOS SDK lets you use Agora.in-powered audio sessions in apps</summary>
-    <tags>Agora Agora.io Voice SDK Xamarin iOS Xamarin.iOS MonoTouch Binding DreamTeam DreamTeamMobile</tags>
+    <tags>Agora Agora.io Voice SDK Xamarin iOS Xamarin.iOS MonoTouch Binding DreamTeam DreamTeamMobile Simulator</tags>
     <icon>images/agora-xamarin-sdk-icon.png</icon>
     <releaseNotes>
 Please see release notes https://docs.agora.io/en/Voice/release_ios_audio?platform=iOS

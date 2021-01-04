@@ -33,7 +33,10 @@ namespace DT.Xamarin.Agora
 		AdmInconsistentDevices = 1042,
 		ApmHowling = 1051,
 		AdmGlitchState = 1052,
-		ApmResidualEcho = 1053
+		ApmResidualEcho = 1053,
+		SuperResolutionStreamOverLimitation = 1610,
+		SuperResolutionUserCountOverLimitation = 1611,
+		SuperResolutionDeviceNotSupported = 1612
 	}
 
 	[Native]
@@ -107,6 +110,7 @@ namespace DT.Xamarin.Agora
         AdmInitLoopback = 1022,
         AdmStartLoopback = 1023,
         AdmNoPermission = 1027,
+		AdmActivateSessionFail = 1206,
 		AdmNoRecordingDevice = 1359,
         AdmNoPlayoutDevice = 1360,
         VdmCameraNotAuthorized = 1501,
@@ -263,6 +267,13 @@ namespace DT.Xamarin.Agora
 	}
 
 	[Native]
+	public enum AudienceLatencyLevelType : long
+	{
+		LowLatency = 1,
+		UltraLowLatency = 2
+	}
+
+	[Native]
 	public enum MediaType : long
 	{
 		None = 0,
@@ -271,7 +282,7 @@ namespace DT.Xamarin.Agora
 		AudioAndVideo = 3
 	}
 
-    [Native]
+	[Native]
 	public enum EncryptionMode : long
 	{
 		None = 0,
@@ -300,6 +311,7 @@ namespace DT.Xamarin.Agora
 		Failure = 4
 	}
 
+	[Native]
 	public enum RtmpStreamingErrorCode : ulong
 	{
 		Ok = 0,
@@ -425,6 +437,13 @@ namespace DT.Xamarin.Agora
 	}
 
 	[Native]
+	public enum VideoCodecTypeForStream : long
+	{
+		VideoCodecTypeH264ForStream = 1,
+		VideoCodecTypeH265ForStream = 2
+	}
+
+	[Native]
 	public enum VideoMirrorMode : ulong
 	{
 		Auto = 0,
@@ -484,6 +503,15 @@ namespace DT.Xamarin.Agora
 	}
 
 	[Native]
+	public enum SuperResolutionStateReason : ulong
+	{
+		Success = 0,
+		StreamOverLimitation = 1,
+		UserCountOverLimitation = 2,
+		DeviceNotSupported = 3
+	}
+
+	[Native]
 	public enum StreamFallbackOptions : long
 	{
 		Disabled = 0,
@@ -518,7 +546,9 @@ namespace DT.Xamarin.Agora
 		Education = 2,
 		GameStreaming = 3,
 		ShowRoom = 4,
-		ChatRoomGaming = 5
+		ChatRoomGaming = 5,
+		Iot = 6,
+		Meeting = 8
 	}
 
 	[Native]
@@ -613,7 +643,50 @@ namespace DT.Xamarin.Agora
 		VocalConcert = 5,
 		Ktv = 6,
 		Studio = 7,
-		VirtualStereo = 2097153
+		VirtualStereo = 2097153,
+		ElectronicVoice = 3145729,
+		ThreeDimVoice = 4194305
+	}
+
+	[Native]
+	public enum VoiceBeautifierPreset : long
+	{
+		VoiceBeautifierOff = 0,
+		ChatBeautifierMagnetic = 16843008,
+		ChatBeautifierFresh = 16843264,
+		ChatBeautifierVitality = 16843520,
+		TimbreTransformationVigorous = 16974080,
+		TimbreTransformationDeep = 16974336,
+		TimbreTransformationMellow = 16974592,
+		TimbreTransformationFalsetto = 16974848,
+		TimbreTransformationFull = 16975104,
+		TimbreTransformationClear = 16975360,
+		TimbreTransformationResounding = 16975616,
+		TimbreTransformationRinging = 16975872
+	}
+
+	[Native]
+	public enum AudioEffectPreset : long
+	{
+		AudioEffectOff = 0,
+		RoomAcousticsKTV = 33620224,
+		RoomAcousticsVocalConcert = 33620480,
+		RoomAcousticsStudio = 33620736,
+		RoomAcousticsPhonograph = 33620992,
+		RoomAcousticsVirtualStereo = 33621248,
+		RoomAcousticsSpacial = 33621504,
+		RoomAcousticsEthereal = 33621760,
+		RoomAcoustics3DVoice = 33622016,
+		VoiceChangerEffectUncle = 33685760,
+		VoiceChangerEffectOldMan = 33686016,
+		VoiceChangerEffectBoy = 33686272,
+		VoiceChangerEffectSister = 33686528,
+		VoiceChangerEffectGirl = 33686784,
+		VoiceChangerEffectPigKing = 33687040,
+		VoiceChangerEffectHulk = 33687296,
+		StyleTransformationRnB = 33751296,
+		StyleTransformationPopular = 33751552,
+		PitchCorrection = 33816832
 	}
 
 	[Flags]
@@ -813,7 +886,9 @@ namespace DT.Xamarin.Agora
 		DeviceNoPermission = 2,
 		DeviceBusy = 3,
 		CaptureFailure = 4,
-		EncodeFailure = 5
+		EncodeFailure = 5,
+		ScreenCaptureWindowMinimized = 11,
+		ScreenCaptureWindowClosed = 12
 	}
 
 	[Native]
