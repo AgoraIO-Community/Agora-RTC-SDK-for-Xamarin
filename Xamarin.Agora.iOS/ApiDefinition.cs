@@ -550,8 +550,9 @@ namespace DT.Xamarin.Agora
     //    [Export("windowFocus")]
     //    bool WindowFocus { get; set; }
 
-    //    // @property (copy, nonatomic) NSArray * excludeWindowList;
-    //    [Export("excludeWindowList", ArgumentSemantic.Copy)]
+    //    //@property (copy, nonatomic) NSArray * _Nullable excludeWindowList;
+    //    [NullAllowed, Export("excludeWindowList", ArgumentSemantic.Copy)]
+    //    [Verify(StronglyTypedNSArray)]
     //    NSObject[] ExcludeWindowList { get; set; }
     //}
 
@@ -651,6 +652,10 @@ namespace DT.Xamarin.Agora
         [Export("videoCodecProfile", ArgumentSemantic.Assign)]
         VideoCodecProfileType VideoCodecProfile { get; set; }
 
+        // @property (assign, nonatomic) AgoraVideoCodecTypeForStream videoCodecType;
+        [Export("videoCodecType", ArgumentSemantic.Assign)]
+        VideoCodecTypeForStream VideoCodecType { get; set; }
+
         // @property (copy, nonatomic) NSArray<AgoraLiveTranscodingUser *> * _Nullable transcodingUsers;
         [NullAllowed, Export("transcodingUsers", ArgumentSemantic.Copy)]
         AgoraLiveTranscodingUser[] TranscodingUsers { get; set; }
@@ -705,7 +710,7 @@ namespace DT.Xamarin.Agora
         void SetAdvancedFeatures(string featureName, bool opened);
 
         // -(NSArray<AgoraLiveStreamAdvancedFeature *> *)getAdvancedFeatures;
-        [Export("getAdvancedFeatures")]
+        [NullAllowed, Export("getAdvancedFeatures")]
         AgoraLiveStreamAdvancedFeature[] AdvancedFeatures { get; }
     }
 
@@ -785,11 +790,11 @@ namespace DT.Xamarin.Agora
         int Height { get; set; }
 
         //@property (assign, nonatomic) CVPixelBufferRef textureBuf;
-        [Export("textureBuf", ArgumentSemantic.Assign)]
+        [NullAllowed, Export("textureBuf", ArgumentSemantic.Assign)]
         unsafe IntPtr TextureBuf { get; set; }
 
         // @property (nonatomic, strong) NSData * dataBuf;
-        [Export("dataBuf", ArgumentSemantic.Strong)]
+        [NullAllowed, Export("dataBuf", ArgumentSemantic.Strong)]
         NSData DataBuf { get; set; }
 
         // @property (assign, nonatomic) int cropLeft;
@@ -952,6 +957,15 @@ namespace DT.Xamarin.Agora
         // @property (copy, nonatomic) NSString * _Nullable encryptionKey;
         [NullAllowed, Export("encryptionKey")]
         string EncryptionKey { get; set; }
+    }
+
+    // @interface AgoraClientRoleOptions : NSObject
+    [BaseType(typeof(NSObject))]
+    interface AgoraClientRoleOptions
+    {
+        // @property (assign, nonatomic) AgoraAudienceLatencyLevelType audienceLatencyLevel;
+        [Export("audienceLatencyLevel", ArgumentSemantic.Assign)]
+        AudienceLatencyLevelType AudienceLatencyLevel { get; set; }
     }
 
     // @protocol AgoraVideoFrameConsumer <NSObject>
@@ -1243,6 +1257,11 @@ namespace DT.Xamarin.Agora
         [EventArgs("RemoteVideoStateChangedOfUid2")]
         void RemoteVideoStateChangedOfUid2(AgoraRtcEngineKit engine, nuint uid, VideoRemoteState state, VideoRemoteStateReason reason, nint elapsed);
 
+        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine superResolutionEnabledOfUid:(NSUInteger)uid enabled:(BOOL)enabled reason:(AgoraSuperResolutionStateReason)reason;
+        [Export("rtcEngine:superResolutionEnabledOfUid:enabled:reason:")]
+        [EventArgs("SuperResolutionEnabledOfUid")]
+        void SuperResolutionEnabledOfUid(AgoraRtcEngineKit engine, nuint uid, bool enabled, SuperResolutionStateReason reason);
+
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine localVideoStateChange:(AgoraLocalVideoStreamState)state error:(AgoraLocalVideoStreamError)error;
         [Export("rtcEngine:localVideoStateChange:error:")]
         [EventArgs("LocalVideoStateChange")]
@@ -1293,6 +1312,11 @@ namespace DT.Xamarin.Agora
         [EventArgs("DidRemoteSubscribeFallbackToAudioOnly")]
         void DidRemoteSubscribeFallbackToAudioOnly(AgoraRtcEngineKit engine, bool isFallbackOrRecover, nuint uid);
 
+        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine facePositionDidChangeWidth:(int)width previewHeight:(int)height faces:(NSArray<AgoraFacePositionInfo *> * _Nullable)faces;
+        [Export("rtcEngine:facePositionDidChangeWidth:previewHeight:faces:")]
+        [EventArgs("FacePositionDidChangeWidth")]
+        void FacePositionDidChangeWidth(AgoraRtcEngineKit engine, int width, int height, [NullAllowed] AgoraFacePositionInfo[] faces);
+
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit *)engine didAudioRouteChanged:(AudioOutputRouting)routing;
         [Export("rtcEngine:didAudioRouteChanged:")]
         [EventArgs("DidAudioRouteChanged")]
@@ -1302,11 +1326,6 @@ namespace DT.Xamarin.Agora
         [Export("rtcEngine:cameraFocusDidChangedToRect:")]
         [EventArgs("CameraFocusDidChangedToRect")]
         void CameraFocusDidChangedToRect(AgoraRtcEngineKit engine, CGRect rect);
-
-        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine facePositionDidChangeWidth:(int)width previewHeight:(int)height faces:(NSArray<AgoraFacePositionInfo *> * _Nullable)faces;
-        [Export("rtcEngine:facePositionDidChangeWidth:previewHeight:faces:")]
-        [EventArgs("FacePositionDidChangeWidth")]
-        void FacePositionDidChangeWidth(AgoraRtcEngineKit engine, int width, int height, [NullAllowed] AgoraFacePositionInfo[] faces);
 
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine cameraExposureDidChangedToRect:(CGRect)rect;
         [Export("rtcEngine:cameraExposureDidChangedToRect:")]
@@ -1553,6 +1572,10 @@ namespace DT.Xamarin.Agora
         [Export("setClientRole:")]
         int SetClientRole(ClientRole role);
 
+        // -(int)setClientRole:(AgoraClientRole)role options:(AgoraClientRoleOptions * _Nullable)options;
+        [Export("setClientRole:options:")]
+        int SetClientRole(ClientRole role, [NullAllowed] AgoraClientRoleOptions options);
+
         // -(int)joinChannelByToken:(NSString * _Nullable)token channelId:(NSString * _Nonnull)channelId info:(NSString * _Nullable)info uid:(NSUInteger)uid joinSuccess:(void (^ _Nullable)(NSString * _Nonnull, NSUInteger, NSInteger))joinSuccessBlock;
         [Export("joinChannelByToken:channelId:info:uid:joinSuccess:")]
         int JoinChannelByToken([NullAllowed] string token, string channelId, [NullAllowed] string info, nuint uid, [NullAllowed] Action<NSString, nuint, nint> joinSuccessBlock);
@@ -1715,6 +1738,10 @@ namespace DT.Xamarin.Agora
         [Export("enableRemoteSuperResolution:enabled:")]
         int EnableRemoteSuperResolution(nuint uid, bool enabled);
 
+        // -(int)enableFaceDetection:(_Bool)enable;
+        [Export("enableFaceDetection:")]
+        int EnableFaceDetection(bool enable);
+
         // -(int)setDefaultAudioRouteToSpeakerphone:(BOOL)defaultToSpeaker;
         [Export("setDefaultAudioRouteToSpeakerphone:")]
         int SetDefaultAudioRouteToSpeakerphone(bool defaultToSpeaker);
@@ -1747,13 +1774,17 @@ namespace DT.Xamarin.Agora
         [Export("setLocalVoiceReverbOfType:withValue:")]
         int SetLocalVoiceReverbOfType(AudioReverbType reverbType, nint value);
 
-        // -(int)setLocalVoiceChanger:(AgoraAudioVoiceChanger)voiceChanger;
-        [Export("setLocalVoiceChanger:")]
-        int SetLocalVoiceChanger(AudioVoiceChanger voiceChanger);
+        // -(int)setVoiceBeautifierPreset:(AgoraVoiceBeautifierPreset)preset;
+        [Export("setVoiceBeautifierPreset:")]
+        int SetVoiceBeautifierPreset(VoiceBeautifierPreset preset);
 
-        // -(int)setLocalVoiceReverbPreset:(AgoraAudioReverbPreset)reverbPreset;
-        [Export("setLocalVoiceReverbPreset:")]
-        int SetLocalVoiceReverbPreset(AudioReverbPreset reverbPreset);
+        // -(int)setAudioEffectPreset:(AgoraAudioEffectPreset)preset;
+        [Export("setAudioEffectPreset:")]
+        int SetAudioEffectPreset(AudioEffectPreset preset);
+
+        // -(int)setAudioEffectParameters:(AgoraAudioEffectPreset)preset param1:(int)param1 param2:(int)param2;
+        [Export("setAudioEffectParameters:param1:param2:")]
+        int SetAudioEffectParameters(AudioEffectPreset preset, int param1, int param2);
 
         // -(int)enableSoundPositionIndication:(BOOL)enabled;
         [Export("enableSoundPositionIndication:")]
@@ -1826,10 +1857,6 @@ namespace DT.Xamarin.Agora
         // -(int)setVolumeOfEffect:(int)soundId withVolume:(double)volume;
         [Export("setVolumeOfEffect:withVolume:")]
         int SetVolumeOfEffect(int soundId, double volume);
-
-        // -(int)enableFaceDetection:(_Bool)enable;
-        [Export("enableFaceDetection:")]
-        int EnableFaceDetection(bool enable);
 
         // -(int)playEffect:(int)soundId filePath:(NSString * _Nullable)filePath loopCount:(int)loopCount pitch:(double)pitch pan:(double)pan gain:(double)gain publish:(BOOL)publish;
         [Export("playEffect:filePath:loopCount:pitch:pan:gain:publish:")]
@@ -2154,7 +2181,24 @@ namespace DT.Xamarin.Agora
 
         // -(NSString *)getParameter:(NSString *)parameter args:(NSString *)args;
         [Export("getParameter:args:")]
+        [return: NullAllowed]
         string GetParameter(string parameter, [NullAllowed] string args);
+
+        // -(int)setLocalVoiceChanger:(AgoraAudioVoiceChanger)voiceChanger __attribute__((deprecated("use setAudioEffectPreset or setVoiceBeautifierPreset instead.")));
+        [Export("setLocalVoiceChanger:")]
+        int SetLocalVoiceChanger(AudioVoiceChanger voiceChanger);
+
+        // -(int)setLocalVoiceReverbPreset:(AgoraAudioReverbPreset)reverbPreset __attribute__((deprecated("use setAudioEffectPreset or setVoiceBeautifierPreset instead.")));
+        [Export("setLocalVoiceReverbPreset:")]
+        int SetLocalVoiceReverbPreset(AudioReverbPreset reverbPreset);
+
+        // -(int)setEncryptionSecret:(NSString * _Nullable)secret;
+        [Export("setEncryptionSecret:")]
+        int SetEncryptionSecret([NullAllowed] string secret);
+
+        // -(int)setEncryptionMode:(NSString * _Nullable)encryptionMode;
+        [Export("setEncryptionMode:")]
+        int SetEncryptionMode([NullAllowed] string encryptionMode);
 
         // -(int)setLocalRenderMode:(AgoraRtcRenderMode)mode;
         [Export("setLocalRenderMode:")]
@@ -2182,7 +2226,7 @@ namespace DT.Xamarin.Agora
 
         // -(int)startEchoTest:(void (^)(NSString *, NSUInteger, NSInteger))successBlock;
         [Export("startEchoTest:")]
-        int StartEchoTest(Action<NSString, nuint, nint> successBlock);
+        int StartEchoTest([NullAllowed] Action<NSString, nuint, nint> successBlock);
 
         // -(int)setVideoQualityParameters:(BOOL)preferFrameRateOverImageQuality;
         [Export("setVideoQualityParameters:")]
@@ -2227,14 +2271,6 @@ namespace DT.Xamarin.Agora
         [Static]
         [Export("getMediaEngineVersion")]
         string MediaEngineVersion { get; }
-
-        // -(int)setEncryptionSecret:(NSString * _Nullable)secret;
-        [Export("setEncryptionSecret:")]
-        int SetEncryptionSecret([NullAllowed] string secret);
-
-        // -(int)setEncryptionMode:(NSString * _Nullable)encryptionMode;
-        [Export("setEncryptionMode:")]
-        int SetEncryptionMode([NullAllowed] string encryptionMode);
 
         // -(void)audioVolumeIndicationBlock:(void (^)(NSArray *, NSInteger))audioVolumeIndicationBlock __attribute__((deprecated("")));
         [Export("audioVolumeIndicationBlock:")]
@@ -2377,6 +2413,10 @@ namespace DT.Xamarin.Agora
         // -(int)setClientRole:(AgoraClientRole)role;
         [Export("setClientRole:")]
         int SetClientRole(ClientRole role);
+
+        // -(int)setClientRole:(AgoraClientRole)role options:(AgoraClientRoleOptions * _Nullable)options;
+        [Export("setClientRole:options:")]
+        int SetClientRole(ClientRole role, [NullAllowed] AgoraClientRoleOptions options);
 
         // -(int)renewToken:(NSString * _Nonnull)token;
         [Export("renewToken:")]
@@ -2582,6 +2622,11 @@ namespace DT.Xamarin.Agora
         [Export("rtcChannel:remoteVideoStateChangedOfUid:state:reason:elapsed:")]
         [EventArgs("RemoteVideoStateChangedOfUid")]
         void RemoteVideoStateChangedOfUid(AgoraRtcChannel rtcChannel, nuint uid, VideoRemoteState state, VideoRemoteStateReason reason, nint elapsed);
+
+        // @optional -(void)rtcChannel:(AgoraRtcChannel * _Nonnull)rtcChannel superResolutionEnabledOfUid:(NSUInteger)uid enabled:(BOOL)enabled reason:(AgoraSuperResolutionStateReason)reason;
+        [Export("rtcChannel:superResolutionEnabledOfUid:enabled:reason:")]
+        [EventArgs("SuperResolutionEnabledOfUid")]
+        void SuperResolutionEnabledOfUid(AgoraRtcChannel rtcChannel, nuint uid, bool enabled, SuperResolutionStateReason reason);
 
         // @optional -(void)rtcChannel:(AgoraRtcChannel * _Nonnull)rtcChannel remoteAudioStateChangedOfUid:(NSUInteger)uid state:(AgoraAudioRemoteState)state reason:(AgoraAudioRemoteStateReason)reason elapsed:(NSInteger)elapsed;
         [Export("rtcChannel:remoteAudioStateChangedOfUid:state:reason:elapsed:")]

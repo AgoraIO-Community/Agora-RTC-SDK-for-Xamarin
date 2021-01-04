@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6648D844-B989-4C04-9F8B-89F2202D6B11}</ProjectGuid>
+    <ProjectTypeGuids>{8FFB629D-F513-41CE-95D2-7ECE97B6EEEC};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>DT.Xamarin.Agora</RootNamespace>
+    <AssemblyName>Xamarin.Agora.Voice.iOS.AllArchitecture</AssemblyName>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Nugets\Xamarin.Agora.Voice.iOS.AllArchitecture\lib\Xamarin.iOS10</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Nugets\Xamarin.Agora.Voice.iOS.AllArchitecture\lib\Xamarin.iOS10</OutputPath>
+    <DefineConstants></DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="Xamarin.iOS" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ObjcBindingApiDefinition Include="..\ApiDefinition.cs">
+      <Link>ApiDefinition.cs</Link>
+    </ObjcBindingApiDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <ObjcBindingCoreSource Include="..\StructsAndEnums.cs">
+      <Link>StructsAndEnums.cs</Link>
+    </ObjcBindingCoreSource>
+  </ItemGroup>
+  <ItemGroup>
+    <NativeReference Include="libs\Agorafdkaac.framework">
+      <Kind>Framework</Kind>
+      <SmartLink>False</SmartLink>
+    </NativeReference>
+    <NativeReference Include="libs\AgoraRtcKit.framework">
+      <Kind>Framework</Kind>
+      <Frameworks>CoreMotion SystemConfiguration CoreTelephony CoreMedia AudioToolbox AVFoundation Accelerate CoreML</Frameworks>
+      <ForceLoad>True</ForceLoad>
+      <IsCxx>True</IsCxx>
+      <SmartLink>True</SmartLink>
+      <LinkerFlags>-lresolv -lc++</LinkerFlags>
+    </NativeReference>
+    <NativeReference Include="libs\AgoraSoundTouch.framework">
+      <Kind>Framework</Kind>
+      <SmartLink>False</SmartLink>
+    </NativeReference>
+    <NativeReference Include="libs\AgoraRtcCryptoLoader.framework">
+      <Kind>Framework</Kind>
+      <SmartLink>False</SmartLink>
+      <IsCxx>True</IsCxx>
+      <LinkerFlags>-lc++ -lresolv</LinkerFlags>
+    </NativeReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.ObjCBinding.CSharp.targets" />
+</Project>

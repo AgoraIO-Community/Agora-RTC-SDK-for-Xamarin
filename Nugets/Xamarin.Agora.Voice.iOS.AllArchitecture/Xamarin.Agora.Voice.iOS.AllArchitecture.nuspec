@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Xamarin.Agora.Voice.iOS.AllArchitecture</id>
+    <title>Xamarin bindings to the native iOS Agora Voice SDK for All Architecture.</title>
+    <version>3.2.2</version>
+    <authors>dreamteammobile</authors>
+    <owners>dreamteammobile</owners>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/AgoraIO-Community/Agora-RTC-SDK-for-Xamarin/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Xamarin bindings to the native iOS Agora.io Voice SDK.</description>
+    <summary>Xamarin Agora iOS SDK lets you use Agora.in-powered audio sessions in apps</summary>
+    <tags>Agora Agora.io Voice SDK Xamarin iOS Xamarin.iOS MonoTouch Binding DreamTeam DreamTeamMobile Simulator</tags>
+    <icon>images/agora-xamarin-sdk-icon.png</icon>
+    <releaseNotes>
+Please see release notes https://docs.agora.io/en/Voice/release_ios_audio?platform=iOS
+
+v3.2.1 was released on December 17, 2020. This release fixed the following issues:
+
+Crashes occurred when using IPv6.
+When Native clients integrated with the Agora Voice SDK interoperated with Web clients, the Web clients continuously reported the Client.on(disable-local-video) or Client.on(mute-video) callback.
+v3.2.0
+v3.2.0 was released on November 30, 2020.
+
+Compatibility changes
+1. Integration change
+
+Since v3.2.0, the following files have been added to the SDK package:
+
+Agorafdkaac.framework: The Fraunhofer FDK AAC dynamic library.
+AgoraSoundTouch.framework: The SoundTouch dynamic library.
+If you upgrade the SDK to v3.2.0 or later, refer to the following steps to add the above dynamic libraries when integrating the SDK:
+
+Copy the above files to the folder where the AgoraRtcKit.framework file is located.
+This release also merges AgoraRtcCryptoLoader.framework into AgoraRtcKit.framework. After integrating AgoraRtcKit.framework, you can use built-in encryption directly.
+
+2. Cloud proxy
+This release optimizes the Agora cloud proxy architecture. If you are already using cloud proxy, to avoid compatibility issues between the new SDK and the old cloud proxy, please contact support@agora.io before upgrading the SDK. See Cloud Proxy.
+
+3. Security and compliance
+
+Agora has passed ISO 27001, ISO 27017, and ISO 27018 international certifications, providing safe and reliable real-time interactive cloud services for users worldwide. See ISO Certificates.
+
+This release supports transport layer encryption by adding TLS (Transport Layer Security) and UDP (User Datagram Protocol) encryption methods.
+
+Transport layer encryption affects the following indicators:
+Size of the SDK package: For details, see Product Overview.
+The rendering time of the first video frame: The rendering time (median) of the first video frame increases by 0 ~ 70 ms compared to that in v3.1.0.
+New features
+Interactive Live Streaming Standard
+
+This release adds setClientRole for setting the latency level of an audience member. You can use this method to switch between Interactive Live Streaming Premium and Interactive Live Streaming Standard as follows:
+
+Set the latency level as ultra low latency to use Interactive Live Streaming Premium.
+Set the latency level as low latency to use Interactive Live Streaming Standard.
+For details, see the product overview of Interactive Live Streaming Standard.
+
+Improvements
+1. Meeting scenario
+
+To improve the audio experience for multi-person meetings, this release adds AgoraAudioScenarioMeeting(8) in setAudioProfile.
+
+2. Voice beautifier and audio effects
+
+To improve the usability of the APIs related to voice beautifier and audio effects, this release deprecates setLocalVoiceChanger and setLocalVoiceReverbPreset, and adds the following methods instead:
+
+setVoiceBeautifierPreset: Compared with setLocalVoiceChanger, this method deletes audio effects such as a little boy’s voice and a more spatially resonant voice.
+setAudioEffectPreset: Compared with setLocalVoiceReverbPreset, this method adds audio effects such as the 3D voice, the pitch correction, a little boy’s voice and a more spatially resonant voice.
+setAudioEffectParameters: This method sets detailed parameters for a specified audio effect. In this release, the supported audio effects are the 3D voice and pitch correction.
+3. Interactive streaming delay
+
+This release reduces the latency on the audience's client during an interactive live streaming by about 500 ms.
+
+Issues fixed
+This release fixed the following issues:
+
+The stopChannelMediaRelay method did not take effect.
+The SDK mistakenly returned the AgoraErrorCodeAdmStartRecording(1012) error.
+API changes
+Added
+
+setClientRole
+setAudioEffectPreset
+setVoiceBeautifierPreset
+setAudioEffectParameters
+AgoraAudioScenarioMeeting(8) in AgoraAudioScenario
+Deprecated
+
+setLocalVoiceChanger
+setLocalVoiceReverbPreset
+    </releaseNotes>
+  </metadata>
+  <files>
+    <file src="lib/Xamarin.iOS10/*.dll" target="lib/Xamarin.iOS10" />
+    <file src="../agora-xamarin-sdk-icon.png" target="images/" />
+  </files>
+</package>

@@ -44,18 +44,31 @@
     </ObjcBindingCoreSource>
   </ItemGroup>
   <ItemGroup>
-    <NativeReference Include="AgoraRtcCryptoLoader.framework">
+    <NativeReference Include="libs\Agorafdkaac.framework">
       <Kind>Framework</Kind>
-      <IsCxx>True</IsCxx>
-      <ForceLoad>True</ForceLoad>
-      <LinkerFlags>-lresolv</LinkerFlags>
+      <SmartLink>False</SmartLink>
     </NativeReference>
-    <NativeReference Include="AgoraRtcKit.framework">
+    <NativeReference Include="libs\Agoraffmpeg.framework">
       <Kind>Framework</Kind>
-      <Frameworks>CoreMotion OpenGLES SystemConfiguration CoreTelephony CoreVideo CoreMedia VideoToolbox AudioToolbox AVFoundation QuartzCore</Frameworks>
+      <SmartLink>False</SmartLink>
+    </NativeReference>
+    <NativeReference Include="libs\AgoraRtcKit.framework">
+      <Kind>Framework</Kind>
+      <Frameworks>CoreMotion SystemConfiguration CoreTelephony CoreMedia VideoToolbox AudioToolbox AVFoundation Accelerate CoreML</Frameworks>
       <ForceLoad>True</ForceLoad>
       <IsCxx>True</IsCxx>
-      <LinkerFlags>-lresolv</LinkerFlags>
+      <SmartLink>True</SmartLink>
+      <LinkerFlags>-lresolv -lc++</LinkerFlags>
+    </NativeReference>
+    <NativeReference Include="libs\AgoraSoundTouch.framework">
+      <Kind>Framework</Kind>
+      <SmartLink>False</SmartLink>
+    </NativeReference>
+    <NativeReference Include="libs\AgoraRtcCryptoLoader.framework">
+      <Kind>Framework</Kind>
+      <SmartLink>False</SmartLink>
+      <IsCxx>True</IsCxx>
+      <LinkerFlags>-lc++ -lresolv</LinkerFlags>
     </NativeReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.ObjCBinding.CSharp.targets" />

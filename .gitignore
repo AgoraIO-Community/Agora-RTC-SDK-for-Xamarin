@@ -82,3 +82,5 @@ Xamarin.Agora.Mac/Xamarin.Agora.Rtm.Mac/AgoraRtmKit.framework
 Xamarin.Agora.Mac/Xamarin.Agora.Rtm.Mac/bin
 Xamarin.Agora.Mac/Xamarin.Agora.Rtm.Mac/obj
 Xamarin.Agora.iOS/Xamarin.Agora.Rtm.iOS/AgoraRtmKit.framework
+Xamarin.Agora.iOS/Xamarin.Agora.Voice.iOS.AllArchitecture/obj
+Xamarin.Agora.iOS/Xamarin.Agora.Full.iOS.AllArchitecture/obj

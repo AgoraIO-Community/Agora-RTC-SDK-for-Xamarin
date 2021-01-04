@@ -24,6 +24,8 @@ Native packages you can [download here](http://www.agora.io/en/blog/download/).
 
 In this repo you will find binding projects for both versions - FULL and VOICE, difference is in support of video and size of lib
 
+first of all if you want to build - go to https://docs.agora.io/en/All/downloads?platform=All%20Platforms and download packages, then place xcframeworks/aar to /lib folders for needed platforms
+
 ## Sample App
 
 You can build and run OneToOne sample app available on [GitHub](https://github.com/DreamTeamMobile/Xamarin.Agora.Samples)

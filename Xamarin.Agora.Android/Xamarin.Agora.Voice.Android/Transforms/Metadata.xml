@@ -5,12 +5,14 @@
   <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='AsyncTaskLoader.LoadTask']" />
   
   This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
+
   <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
   -->
   <attr path="/api/package[@name='io.agora.rtc']" name="managedName">DT.Xamarin.Agora</attr>
   <attr path="/api/package[@name='io.agora.live']" name="managedName">DT.Xamarin.Agora.Live</attr>
   <attr path="/api/package[@name='io.agora.live.impl']" name="managedName">DT.Xamarin.Agora.Live.Impl</attr>
   <attr path="/api/package[@name='io.agora.rtc.gl']" name="managedName">DT.Xamarin.Agora.GL</attr>
+    <attr path="/api/package[@name='io.agora.rtc.gdp']" name="managedName">DT.Xamarin.Agora.Gdp</attr>
   <attr path="/api/package[@name='io.agora.rtc.mediaio']" name="managedName">DT.Xamarin.Agora.MediaIO</attr>
   <attr path="/api/package[@name='io.agora.rtc.utils']" name="managedName">DT.Xamarin.Agora.Utils</attr>
   <attr path="/api/package[@name='io.agora.rtc.video']" name="managedName">DT.Xamarin.Agora.Video</attr>
@@ -20,6 +22,7 @@
   <remove-node path="/api/package[@name='com.coloros.ocs.mediaunit']/class" />
   <remove-node path="/api/package[@name='com.coloros.ocs.base.task']/class" />
   <remove-node path="/api/package[@name='io.agora.rtc.internal']/class" />
+  <remove-node path="/api/package[@name='io.agora.rtc.mediaio']/interface[@name='SurfaceTextureHelper.OnTextureFrameAvailableListener']" />
   <attr path="/api/package[@name='io.agora.rtc.gl']/class[@name='EglBase14']/method[@name='getEglBaseContext' and count(parameter)=0]" name="return">DT.Xamarin.Agora.GL.EglBase.IContext</attr>
   <attr path="/api/package[@name='io.agora.rtc.mediaio']/class[@name='AgoraBufferedCamera2.CompareSizesByArea']/method[@name='compare' and count(parameter)=2 and parameter[1][@type='android.util.Size'] and parameter[2][@type='android.util.Size']]/parameter[1]" name="managedType">Java.Lang.Object</attr> 
   <attr path="/api/package[@name='io.agora.rtc.mediaio']/class[@name='AgoraBufferedCamera2.CompareSizesByArea']/method[@name='compare' and count(parameter)=2 and parameter[1][@type='android.util.Size'] and parameter[2][@type='android.util.Size']]/parameter[2]" name="managedType">Java.Lang.Object</attr>
