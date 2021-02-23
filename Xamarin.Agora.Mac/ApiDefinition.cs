@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using AppKit;
 using CoreGraphics;
 using CoreMedia;
@@ -236,6 +236,14 @@ namespace Xamarin.Agora.Mac
         // @property (assign, nonatomic) AgoraVideoCodecType codecType;
         [Export("codecType", ArgumentSemantic.Assign)]
         VideoCodecType CodecType { get; set; }
+
+        // @property (assign, nonatomic) NSInteger txPacketLossRate;
+        [Export("txPacketLossRate")]
+        nint TxPacketLossRate { get; set; }
+
+        // @property (assign, nonatomic) NSInteger captureFrameRate;
+        [Export("captureFrameRate")]
+        nint CaptureFrameRate { get; set; }
     }
 
     // @interface AgoraRtcRemoteVideoStats : NSObject
@@ -289,6 +297,10 @@ namespace Xamarin.Agora.Mac
         // @property (assign, nonatomic) int totalActiveTime;
         [Export("totalActiveTime")]
         int TotalActiveTime { get; set; }
+
+        // @property (assign, nonatomic) NSInteger publishDuration;
+        [Export("publishDuration")]
+        nint PublishDuration { get; set; }
     }
 
     // @interface AgoraRtcLocalAudioStats : NSObject
@@ -306,6 +318,10 @@ namespace Xamarin.Agora.Mac
         // @property (assign, nonatomic) NSUInteger sentBitrate;
         [Export("sentBitrate")]
         nuint SentBitrate { get; set; }
+
+        // @property (assign, nonatomic) NSUInteger txPacketLossRate;
+        [Export("txPacketLossRate")]
+        nuint TxPacketLossRate { get; set; }
     }
 
     // @interface AgoraRtcRemoteAudioStats : NSObject
@@ -355,6 +371,10 @@ namespace Xamarin.Agora.Mac
         // @property (assign, nonatomic) int totalActiveTime;
         [Export("totalActiveTime")]
         int TotalActiveTime { get; set; }
+
+        // @property (assign, nonatomic) NSInteger publishDuration;
+        [Export("publishDuration")]
+        nint PublishDuration { get; set; }
     }
 
     // @interface AgoraRtcAudioVolumeInfo : NSObject
@@ -539,6 +559,14 @@ namespace Xamarin.Agora.Mac
         // @property (assign, nonatomic) BOOL captureMouseCursor;
         [Export("captureMouseCursor")]
         bool CaptureMouseCursor { get; set; }
+
+        // @property (assign, nonatomic) BOOL windowFocus;
+        [Export("windowFocus")]
+        bool WindowFocus { get; set; }
+
+        //@property (copy, nonatomic) NSArray * _Nullable excludeWindowList;
+        [NullAllowed, Export("excludeWindowList", ArgumentSemantic.Copy)]
+        NSObject[] ExcludeWindowList { get; set; }
     }
 
 
@@ -565,6 +593,19 @@ namespace Xamarin.Agora.Mac
         // @property (assign, nonatomic) NSInteger audioChannel;
         [Export("audioChannel")]
         nint AudioChannel { get; set; }
+    }
+
+    // @interface AgoraLiveStreamAdvancedFeature : NSObject
+    [BaseType(typeof(NSObject))]
+    interface AgoraLiveStreamAdvancedFeature
+    {
+        // @property (copy, nonatomic) NSString * _Nullable featureName;
+        [NullAllowed, Export("featureName")]
+        string FeatureName { get; set; }
+
+        // @property (assign, nonatomic) BOOL opened;
+        [Export("opened")]
+        bool Opened { get; set; }
     }
 
     // @interface AgoraImage : NSObject
@@ -673,6 +714,14 @@ namespace Xamarin.Agora.Mac
         // -(int)removeUser:(NSUInteger)uid;
         [Export("removeUser:")]
         int RemoveUser(nuint uid);
+
+        // -(void)setAdvancedFeatures:(NSString *)featureName opened:(BOOL)opened;
+        [Export("setAdvancedFeatures:opened:")]
+        void SetAdvancedFeatures(string featureName, bool opened);
+
+        // -(NSArray<AgoraLiveStreamAdvancedFeature *> *)getAdvancedFeatures;
+        [NullAllowed, Export("getAdvancedFeatures")]
+        AgoraLiveStreamAdvancedFeature[] AdvancedFeatures { get; }
     }
 
     // @interface AgoraLiveInjectStreamConfig : NSObject
@@ -1075,6 +1124,28 @@ namespace Xamarin.Agora.Mac
         int AreaCode { get; set; }
     }
 
+    // @interface AgoraEncryptionConfig : NSObject
+    [BaseType(typeof(NSObject))]
+    interface AgoraEncryptionConfig
+    {
+        // @property (assign, nonatomic) AgoraEncryptionMode encryptionMode;
+        [Export("encryptionMode", ArgumentSemantic.Assign)]
+        EncryptionMode EncryptionMode { get; set; }
+
+        // @property (copy, nonatomic) NSString * _Nullable encryptionKey;
+        [NullAllowed, Export("encryptionKey")]
+        string EncryptionKey { get; set; }
+    }
+
+    // @interface AgoraClientRoleOptions : NSObject
+    [BaseType(typeof(NSObject))]
+    interface AgoraClientRoleOptions
+    {
+        // @property (assign, nonatomic) AgoraAudienceLatencyLevelType audienceLatencyLevel;
+        [Export("audienceLatencyLevel", ArgumentSemantic.Assign)]
+        AudienceLatencyLevelType AudienceLatencyLevel { get; set; }
+    }
+
     // @protocol AgoraVideoSourceProtocol <NSObject>
     [Protocol, Model]
     [BaseType(typeof(NSObject))]
@@ -1111,6 +1182,16 @@ namespace Xamarin.Agora.Mac
         [Export("bufferType")]
         ////[Verify(MethodToProperty)]
         VideoBufferType BufferType { get; }
+
+        // @required -(AgoraVideoCaptureType)captureType;
+        [Abstract]
+        [Export("captureType")]
+        VideoCaptureType CaptureType { get; }
+
+        // @required -(AgoraVideoContentHint)contentHint;
+        [Abstract]
+        [Export("contentHint")]
+        VideoContentHint ContentHint { get; }
     }
 
     // @protocol AgoraVideoSinkProtocol <NSObject>
@@ -1362,6 +1443,11 @@ namespace Xamarin.Agora.Mac
         [EventArgs("OnActiveSpeaker")]
         void ActiveSpeaker(AgoraRtcEngineKit engine, nuint speakerUid);
 
+        // @optional -(void)rtcEngine:(AgoraRtcEngineKit *)engine firstLocalAudioFramePublished:(NSInteger)elapsed;
+        [Export("rtcEngine:firstLocalAudioFramePublished:")]
+        [EventArgs("FirstLocalAudioFramePublished")]
+        void FirstLocalAudioFramePublished(AgoraRtcEngineKit engine, nint elapsed);
+
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine firstLocalAudioFrame:(NSInteger)elapsed;
         [Export("rtcEngine:firstLocalAudioFrame:")]
         [EventArgs("FirstLocalAudioFrame")]
@@ -1381,6 +1467,31 @@ namespace Xamarin.Agora.Mac
         [Export("rtcEngine:firstLocalVideoFrameWithSize:elapsed:")]
         [EventArgs("FirstLocalVideoFrameWithSize")]
         void FirstLocalVideoFrameWithSize(AgoraRtcEngineKit engine, CGSize size, nint elapsed);
+
+        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine firstLocalVideoFramePublished:(NSInteger)elapsed;
+        [Export("rtcEngine:firstLocalVideoFramePublished:")]
+        [EventArgs("FirstLocalVideoFramePublished")]
+        void FirstLocalVideoFramePublished(AgoraRtcEngineKit engine, nint elapsed);
+
+        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didAudioPublishStateChange:(NSString * _Nonnull)channel oldState:(AgoraStreamPublishState)oldState newState:(AgoraStreamPublishState)newState elapseSinceLastState:(NSInteger)elapseSinceLastState;
+        [Export("rtcEngine:didAudioPublishStateChange:oldState:newState:elapseSinceLastState:")]
+        [EventArgs("DidAudioPublishStateChange")]
+        void DidAudioPublishStateChange(AgoraRtcEngineKit engine, string channel, StreamPublishState oldState, StreamPublishState newState, nint elapseSinceLastState);
+
+        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didVideoPublishStateChange:(NSString * _Nonnull)channel oldState:(AgoraStreamPublishState)oldState newState:(AgoraStreamPublishState)newState elapseSinceLastState:(NSInteger)elapseSinceLastState;
+        [Export("rtcEngine:didVideoPublishStateChange:oldState:newState:elapseSinceLastState:")]
+        [EventArgs("DidVideoPublishStateChange")]
+        void DidVideoPublishStateChange(AgoraRtcEngineKit engine, string channel, StreamPublishState oldState, StreamPublishState newState, nint elapseSinceLastState);
+
+        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didAudioSubscribeStateChange:(NSString * _Nonnull)channel withUid:(NSUInteger)uid oldState:(AgoraStreamSubscribeState)oldState newState:(AgoraStreamSubscribeState)newState elapseSinceLastState:(NSInteger)elapseSinceLastState;
+        [Export("rtcEngine:didAudioSubscribeStateChange:withUid:oldState:newState:elapseSinceLastState:")]
+        [EventArgs("DidAudioSubscribeStateChange")]
+        void DidAudioSubscribeStateChange(AgoraRtcEngineKit engine, string channel, nuint uid, StreamSubscribeState oldState, StreamSubscribeState newState, nint elapseSinceLastState);
+
+        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didVideoSubscribeStateChange:(NSString * _Nonnull)channel withUid:(NSUInteger)uid oldState:(AgoraStreamSubscribeState)oldState newState:(AgoraStreamSubscribeState)newState elapseSinceLastState:(NSInteger)elapseSinceLastState;
+        [Export("rtcEngine:didVideoSubscribeStateChange:withUid:oldState:newState:elapseSinceLastState:")]
+        [EventArgs("DidVideoSubscribeStateChange")]
+        void DidVideoSubscribeStateChange(AgoraRtcEngineKit engine, string channel, nuint uid, StreamSubscribeState oldState, StreamSubscribeState newState, nint elapseSinceLastState);
 
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine firstRemoteVideoFrameOfUid:(NSUInteger)uid size:(CGSize)size elapsed:(NSInteger)elapsed;
         [Export("rtcEngine:firstRemoteVideoFrameOfUid:size:elapsed:")]
@@ -1407,6 +1518,11 @@ namespace Xamarin.Agora.Mac
         [EventArgs("RemoteVideoStateChangedOfUid2")]
         void RemoteVideoStateChangedOfUid2(AgoraRtcEngineKit engine, nuint uid, VideoRemoteState state, VideoRemoteStateReason reason, nint elapsed);
 
+        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine superResolutionEnabledOfUid:(NSUInteger)uid enabled:(BOOL)enabled reason:(AgoraSuperResolutionStateReason)reason;
+        [Export("rtcEngine:superResolutionEnabledOfUid:enabled:reason:")]
+        [EventArgs("SuperResolutionEnabledOfUid")]
+        void SuperResolutionEnabledOfUid(AgoraRtcEngineKit engine, nuint uid, bool enabled, SuperResolutionStateReason reason);
+
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine localVideoStateChange:(AgoraLocalVideoStreamState)state error:(AgoraLocalVideoStreamError)error;
         [Export("rtcEngine:localVideoStateChange:error:")]
         [EventArgs("LocalVideoStateChange")]
@@ -1431,6 +1547,11 @@ namespace Xamarin.Agora.Mac
         [Export("rtcEngine:DidRemoteSubscribeFallbackToAudioOnly:byUid:")]
         [EventArgs("DidRemoteSubscribeFallbackToAudioOnly")]
         void DidRemoteSubscribeFallbackToAudioOnly(AgoraRtcEngineKit engine, bool isFallbackOrRecover, nuint uid);
+
+        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine facePositionDidChangeWidth:(int)width previewHeight:(int)height faces:(NSArray<AgoraFacePositionInfo *> * _Nullable)faces;
+        [Export("rtcEngine:facePositionDidChangeWidth:previewHeight:faces:")]
+        [EventArgs("FacePositionDidChangeWidth")]
+        void FacePositionDidChangeWidth(AgoraRtcEngineKit engine, int width, int height, [NullAllowed] AgoraFacePositionInfo[] faces);
 
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine device:(NSString * _Nonnull)deviceId type:(AgoraMediaDeviceType)deviceType stateChanged:(NSInteger)state;
         [Export("rtcEngine:device:type:stateChanged:")]
@@ -1531,6 +1652,11 @@ namespace Xamarin.Agora.Mac
         [Export("rtcEngine:streamInjectedStatusOfUrl:uid:status:")]
         [EventArgs("StreamInjectedStatusOfUrl")]
         void StreamInjectedStatusOfUrl(AgoraRtcEngineKit engine, string url, nuint uid, InjectStreamStatus status);
+
+        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine rtmpStreamingEventWithUrl:(NSString * _Nonnull)url eventCode:(AgoraRtmpStreamingEvent)eventCode;
+        [Export("rtcEngine:rtmpStreamingEventWithUrl:eventCode:")]
+        [EventArgs("RtmpStreamingEventWithUrl")]
+        void RtmpStreamingEventWithUrl(AgoraRtcEngineKit engine, string url, RtmpStreamingEvent eventCode);
 
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine receiveStreamMessageFromUid:(NSUInteger)uid streamId:(NSInteger)streamId data:(NSData * _Nonnull)data;
         [Export("rtcEngine:receiveStreamMessageFromUid:streamId:data:")]
@@ -1681,7 +1807,7 @@ namespace Xamarin.Agora.Mac
         // -(int)renewToken:(NSString * _Nonnull)token;
         [Export("renewToken:")]
         int RenewToken(string token);
-        
+
         // -(int)enableWebSdkInteroperability:(BOOL)enabled;
         [Export("enableWebSdkInteroperability:")]
         int EnableWebSdkInteroperability(bool enabled);
@@ -1748,6 +1874,10 @@ namespace Xamarin.Agora.Mac
         [Export("setDefaultMuteAllRemoteAudioStreams:")]
         int SetDefaultMuteAllRemoteAudioStreams(bool mute);
 
+        // -(int)adjustUserPlaybackSignalVolume:(id)uid volume:(int)volume;
+        [Export("adjustUserPlaybackSignalVolume:volume:")]
+        int AdjustUserPlaybackSignalVolume(NSObject uid, int volume);
+
         // -(int)enableVideo;
         [Export("enableVideo")]
         //[Verify(MethodToProperty)]
@@ -1796,7 +1926,7 @@ namespace Xamarin.Agora.Mac
         [Export("muteLocalVideoStream:")]
         int MuteLocalVideoStream(bool mute);
 
-        
+
         // -(int)muteAllRemoteVideoStreams:(BOOL)mute;
         [Export("muteAllRemoteVideoStreams:")]
         int MuteAllRemoteVideoStreams(bool mute);
@@ -1824,6 +1954,18 @@ namespace Xamarin.Agora.Mac
         // -(int)setLocalVoiceReverbOfType:(AgoraAudioReverbType)reverbType withValue:(NSInteger)value;
         [Export("setLocalVoiceReverbOfType:withValue:")]
         int SetLocalVoiceReverbOfType(AudioReverbType reverbType, nint value);
+
+        // -(int)setVoiceBeautifierPreset:(AgoraVoiceBeautifierPreset)preset;
+        [Export("setVoiceBeautifierPreset:")]
+        int SetVoiceBeautifierPreset(VoiceBeautifierPreset preset);
+
+        // -(int)setAudioEffectPreset:(AgoraAudioEffectPreset)preset;
+        [Export("setAudioEffectPreset:")]
+        int SetAudioEffectPreset(AudioEffectPreset preset);
+
+        // -(int)setAudioEffectParameters:(AgoraAudioEffectPreset)preset param1:(int)param1 param2:(int)param2;
+        [Export("setAudioEffectParameters:param1:param2:")]
+        int SetAudioEffectParameters(AudioEffectPreset preset, int param1, int param2);
 
         // -(int)setLocalVoiceChanger:(AgoraAudioVoiceChanger)voiceChanger;
         [Export("setLocalVoiceChanger:")]
@@ -1880,7 +2022,6 @@ namespace Xamarin.Agora.Mac
         [Export("getAudioMixingPlayoutVolume")]
         int AudioMixingPlayoutVolume { get; }
 
-
         // -(int)getAudioMixingDuration;
         [Export("getAudioMixingDuration")]
         //[Verify(MethodToProperty)]
@@ -1894,6 +2035,10 @@ namespace Xamarin.Agora.Mac
         // -(int)setAudioMixingPosition:(NSInteger)pos;
         [Export("setAudioMixingPosition:")]
         int SetAudioMixingPosition(nint pos);
+
+        // -(int)setAudioMixingPitch:(NSInteger)pitch;
+        [Export("setAudioMixingPitch:")]
+        int SetAudioMixingPitch(nint pitch);
 
         // -(double)getEffectsVolume;
         [Export("getEffectsVolume")]
@@ -1950,6 +2095,10 @@ namespace Xamarin.Agora.Mac
         [Export("resumeAllEffects")]
         //[Verify(MethodToProperty)]
         int ResumeAllEffects();
+
+        // -(int)startAudioRecording:(NSString * _Nonnull)filePath sampleRate:(NSInteger)sampleRate quality:(AgoraAudioRecordingQuality)quality;
+        [Export("startAudioRecording:sampleRate:quality:")]
+        int StartAudioRecording(string filePath, nint sampleRate, AudioRecordingQuality quality);
 
         // -(int)stopAudioRecording;
         [Export("stopAudioRecording")]
@@ -2101,6 +2250,10 @@ namespace Xamarin.Agora.Mac
         // -(int)setEncryptionMode:(NSString * _Nullable)encryptionMode;
         [Export("setEncryptionMode:")]
         int SetEncryptionMode([NullAllowed] string encryptionMode);
+
+        // -(int)enableEncryption:(_Bool)enabled encryptionConfig:(AgoraEncryptionConfig *)config;
+        [Export("enableEncryption:encryptionConfig:")]
+        int EnableEncryption(bool enabled, AgoraEncryptionConfig config);
 
         // -(int)addInjectStreamUrl:(NSString * _Nonnull)url config:(AgoraLiveInjectStreamConfig * _Nonnull)config;
         [Export("addInjectStreamUrl:config:")]
@@ -2255,6 +2408,11 @@ namespace Xamarin.Agora.Mac
         //[Verify(MethodToProperty)]
         string SdkVersion { get; }
 
+        // +(NSString * _Nullable)getErrorDescription:(NSInteger)code;
+        [Static]
+        [Export("getErrorDescription:")]
+        string GetErrorDescription(nint code);
+
         // -(int)setLogFile:(NSString * _Nonnull)filePath;
         [Export("setLogFile:")]
         int SetLogFile(string filePath);
@@ -2266,6 +2424,10 @@ namespace Xamarin.Agora.Mac
         // -(int)setLogFileSize:(NSUInteger)fileSizeInKBytes;
         [Export("setLogFileSize:")]
         int SetLogFileSize(nuint fileSizeInKBytes);
+
+        // -(int)sendCustomReportMessage:(NSString * _Nonnull)id category:(NSString * _Nonnull)category event:(NSString * _Nonnull)event label:(NSString * _Nonnull)label value:(NSInteger)value;
+        [Export("sendCustomReportMessage:category:event:label:value:")]
+        int SendCustomReportMessage(string id, string category, string @event, string label, nint value);
 
         // -(void * _Nullable)getNativeHandle;
         [NullAllowed, Export("getNativeHandle")]
@@ -2405,7 +2567,7 @@ namespace Xamarin.Agora.Mac
         // -(void)remoteAudioStatBlock:(void (^ _Nullable)(NSUInteger, NSInteger, NSInteger, NSInteger, NSInteger))remoteAudioStatBlock __attribute__((deprecated("use delegate instead.")));
         [Export("remoteAudioStatBlock:")]
         void RemoteAudioStatBlock([NullAllowed] Action<nuint, nint, nint, nint, nint> remoteAudioStatBlock);
-                
+
         // -(void)cameraReadyBlock:(void (^ _Nullable)(void))cameraReadyBlock __attribute__((deprecated("")));
         [Export("cameraReadyBlock:")]
         void CameraReadyBlock([NullAllowed] Action cameraReadyBlock);
@@ -2505,6 +2667,10 @@ namespace Xamarin.Agora.Mac
         [Export("setClientRole:")]
         int SetClientRole(ClientRole role);
 
+        // -(int)setClientRole:(AgoraClientRole)role options:(AgoraClientRoleOptions * _Nullable)options;
+        [Export("setClientRole:options:")]
+        int SetClientRole(ClientRole role, [NullAllowed] AgoraClientRoleOptions options);
+
         // -(int)renewToken:(NSString * _Nonnull)token;
         [Export("renewToken:")]
         int RenewToken(string token);
@@ -2516,6 +2682,10 @@ namespace Xamarin.Agora.Mac
         // -(int)setEncryptionMode:(NSString * _Nullable)encryptionMode;
         [Export("setEncryptionMode:")]
         int SetEncryptionMode([NullAllowed] string encryptionMode);
+
+        // -(int)enableEncryption:(_Bool)enabled encryptionConfig:(AgoraEncryptionConfig *)config;
+        [Export("enableEncryption:encryptionConfig:")]
+        int EnableEncryption(bool enabled, AgoraEncryptionConfig config);
 
         // -(int)setRemoteUserPriority:(NSUInteger)uid type:(AgoraUserPriority)userPriority;
         [Export("setRemoteUserPriority:type:")]
@@ -2745,6 +2915,11 @@ namespace Xamarin.Agora.Mac
         [EventArgs("RtmpStreamingChangedToState")]
         void RtmpStreamingChangedToState(AgoraRtcChannel rtcChannel, string url, RtmpStreamingState state, RtmpStreamingErrorCode errorCode);
 
+        // @optional -(void)rtcChannel:(AgoraRtcChannel * _Nonnull)rtcChannel rtmpStreamingEventWithUrl:(NSString * _Nonnull)url eventCode:(AgoraRtmpStreamingEvent)eventCode;
+        [Export("rtcChannel:rtmpStreamingEventWithUrl:eventCode:")]
+        [EventArgs("RtmpStreamingEventWithUrl")]
+        void RtmpStreamingEventWithUrl(AgoraRtcChannel rtcChannel, string url, RtmpStreamingEvent eventCode);
+
         // @optional -(void)rtcChannelTranscodingUpdated:(AgoraRtcChannel * _Nonnull)rtcChannel;
         [Export("rtcChannelTranscodingUpdated:")]
         void RtcChannelTranscodingUpdated(AgoraRtcChannel rtcChannel);
@@ -2773,6 +2948,27 @@ namespace Xamarin.Agora.Mac
         [Export("rtcChannel:didReceiveChannelMediaRelayEvent:")]
         [EventArgs("DidReceiveChannelMediaRelayEvent")]
         void DidReceiveChannelMediaRelayEvent(AgoraRtcChannel rtcChannel, ChannelMediaRelayEvent relayEvent);
+
+        // @optional -(void)rtcChannel:(AgoraRtcChannel * _Nonnull)rtcChannel didAudioPublishStateChange:(AgoraStreamPublishState)oldState newState:(AgoraStreamPublishState)newState elapseSinceLastState:(NSInteger)elapseSinceLastState;
+        [Export("rtcChannel:didAudioPublishStateChange:newState:elapseSinceLastState:")]
+        [EventArgs("DidAudioPublishStateChange")]
+        void DidAudioPublishStateChange(AgoraRtcChannel rtcChannel, StreamPublishState oldState, StreamPublishState newState, nint elapseSinceLastState);
+
+        // @optional -(void)rtcChannel:(AgoraRtcChannel * _Nonnull)rtcChannel didVideoPublishStateChange:(AgoraStreamPublishState)oldState newState:(AgoraStreamPublishState)newState elapseSinceLastState:(NSInteger)elapseSinceLastState;
+        [Export("rtcChannel:didVideoPublishStateChange:newState:elapseSinceLastState:")]
+        [EventArgs("DidVideoPublishStateChange")]
+        void DidVideoPublishStateChange(AgoraRtcChannel rtcChannel, StreamPublishState oldState, StreamPublishState newState, nint elapseSinceLastState);
+
+        // @optional -(void)rtcChannel:(AgoraRtcChannel * _Nonnull)rtcChannel didAudioSubscribeStateChange:(NSUInteger)uid oldState:(AgoraStreamSubscribeState)oldState newState:(AgoraStreamSubscribeState)newState elapseSinceLastState:(NSInteger)elapseSinceLastState;
+        [Export("rtcChannel:didAudioSubscribeStateChange:oldState:newState:elapseSinceLastState:")]
+        [EventArgs("DidAudioSubscribeStateChange")]
+        void DidAudioSubscribeStateChange(AgoraRtcChannel rtcChannel, nuint uid, StreamSubscribeState oldState, StreamSubscribeState newState, nint elapseSinceLastState);
+
+        // @optional -(void)rtcChannel:(AgoraRtcChannel * _Nonnull)rtcChannel didVideoSubscribeStateChange:(NSUInteger)uid oldState:(AgoraStreamSubscribeState)oldState newState:(AgoraStreamSubscribeState)newState elapseSinceLastState:(NSInteger)elapseSinceLastState;
+        [Export("rtcChannel:didVideoSubscribeStateChange:oldState:newState:elapseSinceLastState:")]
+        [EventArgs("DidVideoSubscribeStateChange")]
+        void DidVideoSubscribeStateChange(AgoraRtcChannel rtcChannel, nuint uid, StreamSubscribeState oldState, StreamSubscribeState newState, nint elapseSinceLastState);
+
     }
 
     [Protocol]

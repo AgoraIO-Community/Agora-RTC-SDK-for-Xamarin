@@ -47,13 +47,24 @@
     </ObjcBindingCoreSource>
   </ItemGroup>
   <ItemGroup>
-    <NativeReference Include="AgoraRtcKit.framework">
+    <NativeReference Include="libs\AgoraRtcKit.framework">
       <Kind>Framework</Kind>
-      <SmartLink>False</SmartLink>      
-      <Frameworks>CoreWLAN VideoToolbox AudioToolbox AVFoundation Accelerate SystemConfiguration CoreAudio IOKit</Frameworks>
+      <Frameworks>CoreWLAN VideoToolbox AudioToolbox AVFoundation Accelerate SystemConfiguration CoreAudio IOKit CoreML</Frameworks>
       <IsCxx>True</IsCxx>
       <LinkerFlags>-lc++ -lresolv</LinkerFlags>
       <ForceLoad>True</ForceLoad>
+    </NativeReference>
+    <NativeReference Include="libs\Agorafdkaac.framework">
+      <Kind>Framework</Kind>
+      <SmartLink>False</SmartLink>
+    </NativeReference>
+    <NativeReference Include="libs\Agoraffmpeg.framework">
+      <Kind>Framework</Kind>
+      <SmartLink>False</SmartLink>
+    </NativeReference>
+    <NativeReference Include="libs\AgoraSoundTouch.framework">
+      <Kind>Framework</Kind>
+      <SmartLink>False</SmartLink>
     </NativeReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.ObjcBinding.CSharp.targets" />
