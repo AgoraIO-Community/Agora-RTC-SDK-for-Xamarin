@@ -47,12 +47,23 @@
     </ObjcBindingCoreSource>
   </ItemGroup>
   <ItemGroup>
+    <NativeReference Include="libs\av1.framework">
+      <Kind>Framework</Kind>
+      <SmartLink>False</SmartLink>
+    </NativeReference>
+    <NativeReference Include="libs\AgoraAIDenoiseExtension.framework">
+      <Kind>Framework</Kind>
+      <SmartLink>False</SmartLink>
+    </NativeReference>
     <NativeReference Include="libs\AgoraRtcKit.framework">
       <Kind>Framework</Kind>
-      <Frameworks>CoreWLAN VideoToolbox AudioToolbox AVFoundation Accelerate SystemConfiguration CoreAudio IOKit CoreML</Frameworks>
       <IsCxx>True</IsCxx>
       <LinkerFlags>-lc++ -lresolv</LinkerFlags>
-      <ForceLoad>True</ForceLoad>
+      <Frameworks>CoreWLAN VideoToolbox AudioToolbox AVFoundation Accelerate SystemConfiguration CoreAudio IOKit CoreML</Frameworks>
+    </NativeReference>
+    <NativeReference Include="libs\AgoraCore.framework">
+      <Kind>Framework</Kind>
+      <SmartLink>False</SmartLink>
     </NativeReference>
     <NativeReference Include="libs\Agorafdkaac.framework">
       <Kind>Framework</Kind>
