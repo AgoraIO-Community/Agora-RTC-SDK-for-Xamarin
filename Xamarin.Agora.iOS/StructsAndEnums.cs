@@ -89,7 +89,8 @@ namespace DT.Xamarin.Agora
         PublishStreamInternalServerError = 154,
         PublishStreamNotFound = 155,
         PublishStreamFormatNotSuppported = 156,
-        LoadMediaEngine = 1001,
+		ModuleNotFound = 157,
+		LoadMediaEngine = 1001,
         StartCall = 1002,
         StartCamera = 1003,
         StartVideoRender = 1004,
@@ -221,7 +222,8 @@ namespace DT.Xamarin.Agora
 		Auto = 0,
 		Performance = 1,
 		Preview = 2,
-		Unkown = 3
+		Manual = 3,
+		Unkown = 4
 	}
 
 	[Native]
@@ -271,6 +273,15 @@ namespace DT.Xamarin.Agora
 	{
 		LowLatency = 1,
 		UltraLowLatency = 2
+	}
+
+	[Native]
+	public enum CaptureBrightnessLevelType : long
+	{
+		Invalid = -1,
+		Normal = 0,
+		Bright = 1,
+		Dark = 2
 	}
 
 	[Native]
@@ -387,6 +398,31 @@ namespace DT.Xamarin.Agora
 		Down = 6,
 		Unsupported = 7,
 		Detecting = 8
+	}
+
+	[Native]
+	public enum ExperienceQuality : ulong
+	{
+		Good = 0,
+		Bad = 1
+	}
+
+	[Native]
+	public enum ExperiencePoorReason : ulong
+	{
+		ExperienceReasonNone = 0,
+		RemoteNetworkPoor = 1,
+		LocalNetworkPoor = 2,
+		WirelessSignalPoor = 4,
+		WifiBluetoothCoexist = 8
+	}
+
+	[Native]
+	public enum UploadErrorReason : long
+	{
+		Success = 0,
+		NetError = 1,
+		ServerError = 2
 	}
 
 	[Native]
@@ -655,6 +691,7 @@ namespace DT.Xamarin.Agora
 		ChatBeautifierMagnetic = 16843008,
 		ChatBeautifierFresh = 16843264,
 		ChatBeautifierVitality = 16843520,
+		SingingBeautifier = 16908544,
 		TimbreTransformationVigorous = 16974080,
 		TimbreTransformationDeep = 16974336,
 		TimbreTransformationMellow = 16974592,
@@ -787,7 +824,8 @@ namespace DT.Xamarin.Agora
 		SettingProxyServer = 11,
 		RenewToken = 12,
 		ClientIpAddressChanged = 13,
-		KeepAliveTimeout = 14
+		KeepAliveTimeout = 14,
+		ProxyServerInterrupted = 15
 	}
 
 	[Native]
@@ -901,6 +939,24 @@ namespace DT.Xamarin.Agora
 		Jp = 16,
 		In = 32,
 		Glob = 4294967295L
+	}
+
+	[Native]
+	public enum AgoraLogLevel : long
+	{
+		None = 0,
+		Info = 1,
+		Warn = 2,
+		Error = 4,
+		Fatal = 8
+	}
+
+	[Native]
+	public enum CloudProxyType : ulong
+	{
+		NoneProxy = 0,
+		UdpProxy = 1,
+		TcpProxy = 2
 	}
 
 	[Native]

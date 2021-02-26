@@ -46,23 +46,22 @@
     </ObjcBindingCoreSource>
   </ItemGroup>
   <ItemGroup>
-    <NativeReference Include="libs\Agorafdkaac.xcframework">
+    <NativeReference Include="libs\AgoraRtcKit.framework">
+      <Kind>Framework</Kind>
+    </NativeReference>
+    <NativeReference Include="libs\AgoraAIDenoiseExtension.framework">
       <Kind>Framework</Kind>
       <SmartLink>False</SmartLink>
     </NativeReference>
-    <NativeReference Include="libs\AgoraSoundTouch.xcframework">
+    <NativeReference Include="libs\Agorafdkaac.framework">
       <Kind>Framework</Kind>
       <SmartLink>False</SmartLink>
     </NativeReference>
-    <NativeReference Include="libs\AgoraRtcKit.xcframework">
-      <Kind>Framework</Kind>
-      <Frameworks>oreMotion OpenGLES CoreTelephony CoreMedia AudioToolbox AVFoundation QuartzCore</Frameworks>
-    </NativeReference>
-    <NativeReference Include="libs\AgoraAIDenoiseExtension.xcframework">
+    <NativeReference Include="libs\AgoraSoundTouch.framework">
       <Kind>Framework</Kind>
       <SmartLink>False</SmartLink>
     </NativeReference>
-    <NativeReference Include="libs\AgoraCore.xcframework">
+    <NativeReference Include="libs\AgoraCore.framework">
       <Kind>Framework</Kind>
       <SmartLink>False</SmartLink>
     </NativeReference>

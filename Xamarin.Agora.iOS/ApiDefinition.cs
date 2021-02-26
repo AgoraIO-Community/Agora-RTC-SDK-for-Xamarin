@@ -85,7 +85,48 @@ namespace DT.Xamarin.Agora
         // extern const CGSize AgoraVideoDimension1280x720;
         [Field("AgoraVideoDimension1280x720", "__Internal")]
         CGSize AgoraVideoDimension1280x720 { get; }
+
+        // extern NSString *const _Nonnull LBHQ;
+        [Field("LBHQ", LibraryName = "AgoraRtcKit.framework")]
+        NSString LBHQ { get; }
+
+        // extern NSString *const _Nonnull VEO;
+        [Field("VEO", LibraryName = "AgoraRtcKit.framework")]
+        NSString VEO { get; }
     }
+
+    // @interface AgoraAudioFrame : NSObject
+    //[BaseType(typeof(NSObject))]
+    //interface AgoraAudioFrame
+    //{
+    //    // @property (assign, nonatomic) NSInteger samplesPerChannel;
+    //    [Export("samplesPerChannel")]
+    //    nint SamplesPerChannel { get; set; }
+
+    //    // @property (assign, nonatomic) NSInteger bytesPerSample;
+    //    [Export("bytesPerSample")]
+    //    nint BytesPerSample { get; set; }
+
+    //    // @property (assign, nonatomic) NSInteger channels;
+    //    [Export("channels")]
+    //    nint Channels { get; set; }
+
+    //    // @property (assign, nonatomic) NSInteger samplesPerSec;
+    //    [Export("samplesPerSec")]
+    //    nint SamplesPerSec { get; set; }
+
+    //    // @property (nonatomic, strong) NSData * _Nullable buffer;
+    //    [NullAllowed, Export("buffer", ArgumentSemantic.Strong)]
+    //    NSData Buffer { get; set; }
+
+    //    // @property (assign, nonatomic) int64_t renderTimeMs;
+    //    [Export("renderTimeMs")]
+    //    long RenderTimeMs { get; set; }
+
+    //    // @property (assign, nonatomic) NSInteger avSyncType;
+    //    [Export("avSyncType")]
+    //    nint AvSyncType { get; set; }
+    //}
 
     // @interface AgoraRtcVideoCanvas : NSObject
     [BaseType(typeof(NSObject))]
@@ -230,6 +271,10 @@ namespace DT.Xamarin.Agora
         // @property (assign, nonatomic) NSInteger captureFrameRate;
         [Export("captureFrameRate")]
         nint CaptureFrameRate { get; set; }
+
+        // @property (assign, nonatomic) AgoraCaptureBrightnessLevelType captureBrightnessLevel;
+        [Export("captureBrightnessLevel", ArgumentSemantic.Assign)]
+        CaptureBrightnessLevelType CaptureBrightnessLevel { get; set; }
     }
 
     // @interface AgoraRtcRemoteVideoStats : NSObject
@@ -361,6 +406,14 @@ namespace DT.Xamarin.Agora
         // @property (assign, nonatomic) NSInteger publishDuration;
         [Export("publishDuration")]
         nint PublishDuration { get; set; }
+
+        // @property (assign, nonatomic) NSUInteger qoeQuality;
+        [Export("qoeQuality")]
+        nuint QoeQuality { get; set; }
+
+        // @property (assign, nonatomic) NSUInteger qualityChangedReason;
+        [Export("qualityChangedReason")]
+        nuint QualityChangedReason { get; set; }
     }
 
     // @interface AgoraRtcAudioVolumeInfo : NSObject
@@ -760,9 +813,25 @@ namespace DT.Xamarin.Agora
         [Export("preference", ArgumentSemantic.Assign)]
         CameraCaptureOutputPreference Preference { get; set; }
 
+        // @property (assign, nonatomic) int captureWidth;
+        [Export("captureWidth")]
+        int CaptureWidth { get; set; }
+
+        // @property (assign, nonatomic) int captureHeight;
+        [Export("captureHeight")]
+        int CaptureHeight { get; set; }
+
         // @property (assign, nonatomic) AgoraCameraDirection cameraDirection;
         [Export("cameraDirection", ArgumentSemantic.Assign)]
         CameraDirection CameraDirection { get; set; }
+
+        // -(instancetype _Nonnull)initWithSize:(CGSize)size facing:(AgoraCameraDirection)facing;
+        [Export("initWithSize:facing:")]
+        IntPtr Constructor(CGSize size, CameraDirection facing);
+
+        // -(instancetype _Nonnull)initWithWidth:(NSInteger)width height:(NSInteger)height facing:(AgoraCameraDirection)facing;
+        [Export("initWithWidth:height:facing:")]
+        IntPtr Constructor(nint width, nint height, CameraDirection facing);
     }
 
     // @interface AgoraVideoFrame : NSObject
@@ -837,6 +906,19 @@ namespace DT.Xamarin.Agora
         // -(instancetype _Nonnull)initWithToken:(NSString * _Nullable)token;
         [Export("initWithToken:")]
         IntPtr Constructor([NullAllowed] string token);
+    }
+
+    // @interface AgoraDataStreamConfig : NSObject
+    [BaseType(typeof(NSObject))]
+    interface AgoraDataStreamConfig
+    {
+        // @property (assign, nonatomic) BOOL ordered;
+        [Export("ordered")]
+        bool Ordered { get; set; }
+
+        // @property (assign, nonatomic) BOOL syncWithAudio;
+        [Export("syncWithAudio")]
+        bool SyncWithAudio { get; set; }
     }
 
     // @interface AgoraChannelMediaRelayConfiguration : NSObject
@@ -933,6 +1015,23 @@ namespace DT.Xamarin.Agora
         nint Distance { get; set; }
     }
 
+    // @interface AgoraLogConfig : NSObject
+    [BaseType(typeof(NSObject))]
+    interface AgoraLogConfig
+    {
+        // @property (copy, nonatomic) NSString * _Nullable filePath;
+        [NullAllowed, Export("filePath")]
+        string FilePath { get; set; }
+
+        // @property (assign, nonatomic) NSInteger fileSize;
+        [Export("fileSize")]
+        nint FileSize { get; set; }
+
+        // @property (assign, nonatomic) AgoraLogLevel level;
+        [Export("level", ArgumentSemantic.Assign)]
+        AgoraLogLevel Level { get; set; }
+    }
+
     // @interface AgoraRtcEngineConfig : NSObject
     [BaseType(typeof(NSObject))]
     interface AgoraRtcEngineConfig
@@ -944,6 +1043,10 @@ namespace DT.Xamarin.Agora
         // @property (assign, nonatomic) int areaCode;
         [Export("areaCode")]
         nuint AreaCode { get; set; }
+
+        // @property (nonatomic, strong) AgoraLogConfig * _Nullable logConfig;
+        [NullAllowed, Export("logConfig", ArgumentSemantic.Strong)]
+        AgoraLogConfig LogConfig { get; set; }
     }
 
     // @interface AgoraEncryptionConfig : NSObject
@@ -1136,6 +1239,32 @@ namespace DT.Xamarin.Agora
         [Export("receiveMetadata:fromUser:atTimestamp:")]
         void FromUser(NSData data, nint uid, double timestamp);
     }
+
+    // @protocol AgoraAudioFrameDelegate <NSObject>
+    //[Protocol, Model(AutoGeneratedName = true)]
+    //[BaseType(typeof(NSObject))]
+    //interface AgoraAudioFrameDelegate
+    //{
+    //    // @required -(BOOL)onRecordAudioFrame:(AgoraAudioFrame * _Nonnull)frame;
+    //    [Abstract]
+    //    [Export("onRecordAudioFrame:")]
+    //    bool OnRecordAudioFrame(AgoraAudioFrame frame);
+
+    //    // @required -(BOOL)onPlaybackAudioFrame:(AgoraAudioFrame * _Nonnull)frame;
+    //    [Abstract]
+    //    [Export("onPlaybackAudioFrame:")]
+    //    bool OnPlaybackAudioFrame(AgoraAudioFrame frame);
+
+    //    // @required -(BOOL)onMixedAudioFrame:(AgoraAudioFrame * _Nonnull)frame;
+    //    [Abstract]
+    //    [Export("onMixedAudioFrame:")]
+    //    bool OnMixedAudioFrame(AgoraAudioFrame frame);
+
+    //    // @required -(BOOL)onPlaybackAudioFrameBeforeMixing:(AgoraAudioFrame * _Nonnull)frame uid:(NSUInteger)uid;
+    //    [Abstract]
+    //    [Export("onPlaybackAudioFrameBeforeMixing:uid:")]
+    //    bool OnPlaybackAudioFrameBeforeMixing(AgoraAudioFrame frame, nuint uid);
+    //}
 
     // @protocol AgoraRtcEngineDelegate <NSObject>
     [Protocol, Model(AutoGeneratedName = true)]
@@ -1536,6 +1665,11 @@ namespace DT.Xamarin.Agora
         [Export("rtcEngineVideoDidStop:")]
         [EventArgs("VideoDidStop")]
         void VideoDidStop(AgoraRtcEngineKit engine);
+
+        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine uploadLogResultRequestId:(NSString * _Nonnull)requestId success:(BOOL)success reason:(AgoraUploadErrorReason)reason;
+        [Export("rtcEngine:uploadLogResultRequestId:success:reason:")]
+        [EventArgs("UploadLogResultRequestId")]
+        void UploadLogResultRequestId(AgoraRtcEngineKit engine, string requestId, bool success, UploadErrorReason reason);
     }
 
     [Protocol]
@@ -1625,6 +1759,10 @@ namespace DT.Xamarin.Agora
         // -(int)stopChannelMediaRelay;
         [Export("stopChannelMediaRelay")]
         int StopChannelMediaRelay();
+
+        // -(int)setCloudProxy:(AgoraCloudProxyType)proxyType;
+        [Export("setCloudProxy:")]
+        int SetCloudProxy(CloudProxyType proxyType);
 
         // -(int)enableAudio;
         [Export("enableAudio")]
@@ -1785,6 +1923,14 @@ namespace DT.Xamarin.Agora
         // -(int)setAudioEffectParameters:(AgoraAudioEffectPreset)preset param1:(int)param1 param2:(int)param2;
         [Export("setAudioEffectParameters:param1:param2:")]
         int SetAudioEffectParameters(AudioEffectPreset preset, int param1, int param2);
+
+        // -(int)setVoiceBeautifierParameters:(AgoraVoiceBeautifierPreset)preset param1:(int)param1 param2:(int)param2;
+        [Export("setVoiceBeautifierParameters:param1:param2:")]
+        int SetVoiceBeautifierParameters(VoiceBeautifierPreset preset, int param1, int param2);
+
+        // -(int)enableDeepLearningDenoise:(BOOL)enabled;
+        [Export("enableDeepLearningDenoise:")]
+        int EnableDeepLearningDenoise(bool enabled);
 
         // -(int)enableSoundPositionIndication:(BOOL)enabled;
         [Export("enableSoundPositionIndication:")]
@@ -2060,7 +2206,11 @@ namespace DT.Xamarin.Agora
 
         // -(int)createDataStream:(NSInteger *)streamId reliable:(BOOL)reliable ordered:(BOOL)ordered;
         [Export("createDataStream:reliable:ordered:")]
-        int CreateDataStream(ref nint streamId, bool reliable, bool ordered);
+        unsafe int CreateDataStream(ref nint streamId, bool reliable, bool ordered);
+
+        // -(int)createDataStream:(NSInteger * _Nonnull)streamId config:(AgoraDataStreamConfig * _Nonnull)config;
+        [Export("createDataStream:config:")]
+        unsafe int CreateDataStream(ref nint streamId, AgoraDataStreamConfig config);
 
         // -(int)sendStreamMessage:(NSInteger)streamId data:(NSData *)data;
         [Export("sendStreamMessage:data:")]
@@ -2122,6 +2272,10 @@ namespace DT.Xamarin.Agora
         [Export("setMediaMetadataDelegate:withType:")]
         bool SetMediaMetadataDelegate([NullAllowed] AgoraMediaMetadataDelegate metadataDelegate, MetadataType type);
 
+        // -(BOOL)setAudioFrameDelegate:(id<AgoraAudioFrameDelegate> _Nullable)delegate;
+        //[Export("setAudioFrameDelegate:")]
+        //bool SetAudioFrameDelegate([NullAllowed] AgoraAudioFrameDelegate @delegate);
+
         // -(NSString * _Nullable)getCallId;
         [NullAllowed, Export("getCallId")]
         string CallId { get; }
@@ -2159,6 +2313,10 @@ namespace DT.Xamarin.Agora
         // -(int)setLogFileSize:(NSUInteger)fileSizeInKBytes;
         [Export("setLogFileSize:")]
         int SetLogFileSize(nuint fileSizeInKBytes);
+
+        // -(NSString * _Nullable)uploadLogFile;
+        [Export("uploadLogFile")]
+        string UploadLogFile();
 
         // -(int)sendCustomReportMessage:(NSString * _Nonnull)id category:(NSString * _Nonnull)category event:(NSString * _Nonnull)event label:(NSString * _Nonnull)label value:(NSInteger)value;
         [Export("sendCustomReportMessage:category:event:label:value:")]
@@ -2505,6 +2663,10 @@ namespace DT.Xamarin.Agora
         // -(int)createDataStream:(NSInteger * _Nonnull)streamId reliable:(BOOL)reliable ordered:(BOOL)ordered;
         [Export("createDataStream:reliable:ordered:")]
         unsafe int CreateDataStream(ref nint streamId, bool reliable, bool ordered);
+
+        // -(int)createDataStream:(NSInteger * _Nonnull)streamId config:(AgoraDataStreamConfig * _Nonnull)config;
+        [Export("createDataStream:config:")]
+        unsafe int CreateDataStream(ref nint streamId, AgoraDataStreamConfig config);
 
         // -(int)sendStreamMessage:(NSInteger)streamId data:(NSData * _Nonnull)data;
         [Export("sendStreamMessage:data:")]
