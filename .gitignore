@@ -66,14 +66,12 @@ Xamarin.Agora.Android/Xamarin.Agora.Full.Android/Jars
 Xamarin.Agora.Android/Xamarin.Agora.Voice.Android/Jars
 Xamarin.Agora.Android/Xamarin.Agora.Full.Android/Javadoc/Javadoc_3.0.0
 Xamarin.Agora.Android/Xamarin.Agora.Voice.Android/Javadoc/zip
-Xamarin.Agora.iOS/Xamarin.Agora.Full.iOS/AgoraRtcCryptoLoader.framework
-Xamarin.Agora.iOS/Xamarin.Agora.Full.iOS/AgoraRtcKit.framework
-Xamarin.Agora.iOS/Xamarin.Agora.Voice.iOS/AgoraRtcCryptoLoader.framework
-Xamarin.Agora.iOS/Xamarin.Agora.Voice.iOS/AgoraRtcKit.framework
-Xamarin.Agora.Mac/Xamarin.Agora.Full.Mac/AgoraRtcKit.framework
-Xamarin.Agora.Mac/Xamarin.Agora.Voice.Mac/AgoraRtcKit.framework
+Xamarin.Agora.iOS/Xamarin.Agora.Full.iOS/libs
+Xamarin.Agora.iOS/Xamarin.Agora.Voice.iOS/libs
+Xamarin.Agora.Mac/Xamarin.Agora.Full.Mac/libs
 Xamarin.Agora.Mac/Xamarin.Agora.Voice.Mac/bin
 Xamarin.Agora.Mac/Xamarin.Agora.Voice.Mac/obj
+Xamarin.Agora.Mac/Xamarin.Agora.Voice.Mac/libs
 Xamarin.Agora.iOS/packages
 Xamarin.Agora.Android/Xamarin.Agora.Rtm.Android/obj
 Xamarin.Agora.iOS/Xamarin.Agora.Rtm.iOS/obj
@@ -84,3 +82,4 @@ Xamarin.Agora.Mac/Xamarin.Agora.Rtm.Mac/obj
 Xamarin.Agora.iOS/Xamarin.Agora.Rtm.iOS/AgoraRtmKit.framework
 Xamarin.Agora.iOS/Xamarin.Agora.Voice.iOS.AllArchitecture/obj
 Xamarin.Agora.iOS/Xamarin.Agora.Full.iOS.AllArchitecture/obj
+Xamarin.Agora.iOS/Xamarin.Agora.Full.iOS.AllArchitecture/libs

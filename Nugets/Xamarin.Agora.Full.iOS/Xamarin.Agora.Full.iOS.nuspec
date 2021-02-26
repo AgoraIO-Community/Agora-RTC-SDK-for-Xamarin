@@ -3,7 +3,7 @@
   <metadata>
     <id>Xamarin.Agora.Full.iOS</id>
     <title>Xamarin bindings to the native iOS Agora Video SDK.</title>
-    <version>3.2.1</version>
+    <version>3.3.0-beta1</version>
     <authors>dreamteammobile</authors>
     <owners>dreamteammobile</owners>
     <license type="expression">MIT</license>
@@ -15,6 +15,8 @@
     <icon>images/agora-xamarin-sdk-icon.png</icon>
     <releaseNotes>
 Please see release notes https://docs.agora.io/en/Video/release_ios_video?platform=iOS
+
+v3.3.0 was released on January 22, 2021.
 
 v3.2.1 was released on December 17, 2020. This release fixed the following issues:
 

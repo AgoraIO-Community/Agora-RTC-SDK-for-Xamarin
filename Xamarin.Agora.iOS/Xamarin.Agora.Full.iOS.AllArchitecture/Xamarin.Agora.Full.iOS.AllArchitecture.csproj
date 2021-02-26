@@ -2,18 +2,18 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DE8F8DB5-F3BC-4EE3-B521-003C06922A14}</ProjectGuid>
+    <ProjectGuid>{DE8F8DB5-F3BC-4EE3-B521-003C06922A15}</ProjectGuid>
     <ProjectTypeGuids>{8FFB629D-F513-41CE-95D2-7ECE97B6EEEC};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <RootNamespace>DT.Xamarin.Agora</RootNamespace>
-    <AssemblyName>Xamarin.Agora.Full.iOS</AssemblyName>
+    <AssemblyName>Xamarin.Agora.Full.iOS.AllArchitecture</AssemblyName>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\Nugets\Xamarin.Agora.Full.iOS\lib\Xamarin.iOS10</OutputPath>
+    <OutputPath>..\..\Nugets\Xamarin.Agora.Full.iOS.AllArchitecture\lib\Xamarin.iOS10</OutputPath>
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -21,7 +21,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <Optimize>true</Optimize>
-    <OutputPath>..\..\Nugets\Xamarin.Agora.Full.iOS\lib\Xamarin.iOS10</OutputPath>
+    <OutputPath>..\..\Nugets\Xamarin.Agora.Full.iOS.AllArchitecture\lib\Xamarin.iOS10</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
