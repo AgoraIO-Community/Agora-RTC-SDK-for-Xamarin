@@ -11,79 +11,79 @@ namespace DT.Xamarin.Agora
     partial interface Constants
     {
         // extern const NSInteger AgoraVideoBitrateStandard;
-        [Field("AgoraVideoBitrateStandard", "__Internal")]
+        [Field("AgoraVideoBitrateStandard", "AgoraRtcKit.framework")]
         nint AgoraVideoBitrateStandard { get; }
 
         // extern const NSInteger AgoraVideoBitrateCompatible;
-        [Field("AgoraVideoBitrateCompatible", "__Internal")]
+        [Field("AgoraVideoBitrateCompatible", "AgoraRtcKit.framework")]
         nint AgoraVideoBitrateCompatible { get; }
 
         //// extern const NSInteger AgoraVideoBitrateDefaultMin;
-        /*[Field("AgoraVideoBitrateDefaultMin", "__Internal")]
+        /*[Field("AgoraVideoBitrateDefaultMin", "AgoraRtcKit.framework")]
         nint AgoraVideoBitrateDefaultMin { get; }
         */
         // extern const CGSize AgoraVideoDimension120x120;
-        [Field("AgoraVideoDimension120x120", "__Internal")]
+        [Field("AgoraVideoDimension120x120", "AgoraRtcKit.framework")]
         CGSize AgoraVideoDimension120x120 { get; }
 
         // extern const CGSize AgoraVideoDimension160x120;
-        [Field("AgoraVideoDimension160x120", "__Internal")]
+        [Field("AgoraVideoDimension160x120", "AgoraRtcKit.framework")]
         CGSize AgoraVideoDimension160x120 { get; }
 
         // extern const CGSize AgoraVideoDimension180x180;
-        [Field("AgoraVideoDimension180x180", "__Internal")]
+        [Field("AgoraVideoDimension180x180", "AgoraRtcKit.framework")]
         CGSize AgoraVideoDimension180x180 { get; }
 
         // extern const CGSize AgoraVideoDimension240x180;
-        [Field("AgoraVideoDimension240x180", "__Internal")]
+        [Field("AgoraVideoDimension240x180", "AgoraRtcKit.framework")]
         CGSize AgoraVideoDimension240x180 { get; }
 
         // extern const CGSize AgoraVideoDimension320x180;
-        [Field("AgoraVideoDimension320x180", "__Internal")]
+        [Field("AgoraVideoDimension320x180", "AgoraRtcKit.framework")]
         CGSize AgoraVideoDimension320x180 { get; }
 
         // extern const CGSize AgoraVideoDimension240x240;
-        [Field("AgoraVideoDimension240x240", "__Internal")]
+        [Field("AgoraVideoDimension240x240", "AgoraRtcKit.framework")]
         CGSize AgoraVideoDimension240x240 { get; }
 
         // extern const CGSize AgoraVideoDimension320x240;
-        [Field("AgoraVideoDimension320x240", "__Internal")]
+        [Field("AgoraVideoDimension320x240", "AgoraRtcKit.framework")]
         CGSize AgoraVideoDimension320x240 { get; }
 
         // extern const CGSize AgoraVideoDimension424x240;
-        [Field("AgoraVideoDimension424x240", "__Internal")]
+        [Field("AgoraVideoDimension424x240", "AgoraRtcKit.framework")]
         CGSize AgoraVideoDimension424x240 { get; }
 
         // extern const CGSize AgoraVideoDimension360x360;
-        [Field("AgoraVideoDimension360x360", "__Internal")]
+        [Field("AgoraVideoDimension360x360", "AgoraRtcKit.framework")]
         CGSize AgoraVideoDimension360x360 { get; }
 
         // extern const CGSize AgoraVideoDimension480x360;
-        [Field("AgoraVideoDimension480x360", "__Internal")]
+        [Field("AgoraVideoDimension480x360", "AgoraRtcKit.framework")]
         CGSize AgoraVideoDimension480x360 { get; }
 
         // extern const CGSize AgoraVideoDimension640x360;
-        [Field("AgoraVideoDimension640x360", "__Internal")]
+        [Field("AgoraVideoDimension640x360", "AgoraRtcKit.framework")]
         CGSize AgoraVideoDimension640x360 { get; }
 
         // extern const CGSize AgoraVideoDimension480x480;
-        [Field("AgoraVideoDimension480x480", "__Internal")]
+        [Field("AgoraVideoDimension480x480", "AgoraRtcKit.framework")]
         CGSize AgoraVideoDimension480x480 { get; }
 
         // extern const CGSize AgoraVideoDimension640x480;
-        [Field("AgoraVideoDimension640x480", "__Internal")]
+        [Field("AgoraVideoDimension640x480", "AgoraRtcKit.framework")]
         CGSize AgoraVideoDimension640x480 { get; }
 
         // extern const CGSize AgoraVideoDimension840x480;
-        [Field("AgoraVideoDimension840x480", "__Internal")]
+        [Field("AgoraVideoDimension840x480", "AgoraRtcKit.framework")]
         CGSize AgoraVideoDimension840x480 { get; }
 
         // extern const CGSize AgoraVideoDimension960x720;
-        [Field("AgoraVideoDimension960x720", "__Internal")]
+        [Field("AgoraVideoDimension960x720", "AgoraRtcKit.framework")]
         CGSize AgoraVideoDimension960x720 { get; }
 
         // extern const CGSize AgoraVideoDimension1280x720;
-        [Field("AgoraVideoDimension1280x720", "__Internal")]
+        [Field("AgoraVideoDimension1280x720", "AgoraRtcKit.framework")]
         CGSize AgoraVideoDimension1280x720 { get; }
 
         // extern NSString *const _Nonnull LBHQ;

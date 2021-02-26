@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Xamarin.Agora.Voice.iOS.Simulator</id>
+    <title>Xamarin bindings to the native iOS Agora Voice SDK for running on Simulator.</title>
+    <version>3.3.0</version>
+    <authors>dreamteammobile</authors>
+    <owners>dreamteammobile</owners>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/AgoraIO-Community/Agora-RTC-SDK-for-Xamarin/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Xamarin bindings to the native iOS Agora.io Voice SDK for runnung on Simulator.</description>
+    <summary>Xamarin Agora iOS SDK lets you use Agora.in-powered audio sessions in apps</summary>
+    <tags>Agora Agora.io Voice SDK Xamarin iOS Xamarin.iOS MonoTouch Binding DreamTeam DreamTeamMobile Simulator</tags>
+    <icon>images/icon.png</icon>
+    <releaseNotes>
+      you can found full release notes here https://docs.agora.io/en/Video/release_ios_video?platform=iOS
+
+      update native sdk to v3.3.0, released on January 22, 2021.
+
+      Caution! this package is for running on a simulators only. If you want to run on device - install
+      Xamarin.Agora.Voice.iOS
+
+      nuget sources repository:
+      https://github.com/AgoraIO-Community/Agora-RTC-SDK-for-Xamarin/wiki
+
+      Samples of using Agora packages and Documentation:
+      https://github.com/DreamTeamMobile/Xamarin.Agora.Samples
+    </releaseNotes>
+  </metadata>
+  <files>
+    <file src="lib/Xamarin.iOS10/*.dll" target="lib/Xamarin.iOS10" />
+    <file src="../icon.png" target="images/" />
+    <file src="README.txt" target="" />
+  </files>
+</package>

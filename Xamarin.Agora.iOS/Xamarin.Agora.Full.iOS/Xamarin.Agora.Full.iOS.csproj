@@ -69,9 +69,10 @@
     </NativeReference>
     <NativeReference Include="libs\AgoraRtcCryptoLoader.framework">
       <Kind>Framework</Kind>
+      <LinkerFlags>-lresolv</LinkerFlags>
+      <SmartLink>False</SmartLink>
       <IsCxx>True</IsCxx>
       <ForceLoad>True</ForceLoad>
-      <LinkerFlags>-lresolv</LinkerFlags>
     </NativeReference>
     <NativeReference Include="libs\AgoraSoundTouch.framework">
       <Kind>Framework</Kind>

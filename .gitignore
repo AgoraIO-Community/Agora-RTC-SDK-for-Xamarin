@@ -83,3 +83,8 @@ Xamarin.Agora.iOS/Xamarin.Agora.Rtm.iOS/AgoraRtmKit.framework
 Xamarin.Agora.iOS/Xamarin.Agora.Voice.iOS.AllArchitecture/obj
 Xamarin.Agora.iOS/Xamarin.Agora.Full.iOS.AllArchitecture/obj
 Xamarin.Agora.iOS/Xamarin.Agora.Full.iOS.AllArchitecture/libs
+Xamarin.Agora.iOS/Xamarin.Agora.Voice.iOS.AllArchitecture/libs
+Xamarin.Agora.iOS/Xamarin.Agora.Full.iOS.Simulator/libs
+Xamarin.Agora.iOS/Xamarin.Agora.Full.iOS.Simulator/obj
+Xamarin.Agora.iOS/Xamarin.Agora.Voice.iOS.Simulator/libs
+Xamarin.Agora.iOS/Xamarin.Agora.Voice.iOS.Simulator/obj

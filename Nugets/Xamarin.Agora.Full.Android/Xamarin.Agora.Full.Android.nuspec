@@ -12,114 +12,22 @@
     <description>Xamarin bindings to the native Android Agora.io Video SDK.</description>
     <summary>Xamarin Agora Video Android SDK lets you use Agora.io-powered video sessions in your Xamarin apps</summary>
     <tags>Agora Agora.io Full Video SDK Xamarin Android Xamarin.Android MonoDroid Binding DreamTeam DreamTeamMobile</tags>
-    <icon>images/agora-xamarin-sdk-icon.png</icon>
+    <icon>images/icon.png</icon>
     <releaseNotes>
-Please see release notes https://docs.agora.io/en/Video/release_android_video?platform=Android
+you can found full release notes here https://docs.agora.io/en/Video/release_android_video?platform=Android
 
-v3.3.0 was released on January 22, 2021.
+update native sdk to v3.3.0, released on January 22, 2021.
 
-Compatibility changes
-1. Integration change
+nuget sources repository:
+https://github.com/AgoraIO-Community/Agora-RTC-SDK-for-Xamarin/wiki
 
-This release adds libagora-core.so, the Agora basic calculation framework. To integrate the SDK into your project, see Integrate the SDK.
-
-2. Behavior change
-
-This release deprecates setDefaultMuteAllRemoteAudioStreams and setDefaultMuteAllRemoteVideoStreamsand changes the behavior of mute-related methods as follows:
-
-mute-related methods must be called after joining or switching to a channel; otherwise, the method call does not take effect.
-Methods with the prefix muteAll are no longer the master switch, and each mute-related method independently controls the user's subscribing state. When you call methods with the prefixes muteAll and muteRemote together, the method that is called later takes effect.
-Methods with the prefix muteAll set whether to subscribe to the audio or video streams of all remote users, including all subsequent users, which means methods with the prefix muteAll contain the function of methods with the prefix setDefaultMute. Agora recommends not calling methods with the prefixes muteAll and setDefaultMute together; otherwise, the setting may not take effect.
-See details in Set the Subscribing State.
-
-New features
-1. Channel media options
-
-To help developers control media subscription more flexibly, this release adds the joinChannel[2/2] and switchChannel[2/2] methods to set whether users subscribe to all remote audio or video streams in a channel when joining and switching channels.
-
-2. Cloud proxy
-
-To improve the usability of the Agora Cloud Proxy, this release adds the setCloudProxy method to set the cloud proxy and allows you to select a cloud proxy that uses the UDP or TCP (encrypted) protocol. For details, see Cloud Proxy.
-
-3. Deep-learning noise reduction
-
-To eliminate non-stationary noise based on traditional noise reduction, this release adds enableDeepLearningDenoise to enable deep-learning noise reduction.
-
-Before enabling deep-learning noise reduction, integrate the libagora_ai_denoise_extension.so dynamic library into your project files.
-4. Singing beautifier
-
-To beautify the voice and add reverberation effects in a singing scenario, this release adds the setVoiceBeautifierParameters method and adds the SINGING_BEAUTIFIER enumeration value to VOICE_BEAUTIFIER_PRESET.
-
-You can call setVoiceBeautifierPreset(SINGING_BEAUTIFIER) to beautify the male voice and add the reverberation effect for a voice in a small room. For more settings, you can call setVoiceBeautifierParameters(SINGING_BEAUTIFIER, param1, param2) to beautify male or female voices and add reverberation effects for a voice in a small room, large room, or hall.
-
-5. Log files
-
-To ensure the integrity of log content, this release adds the mLogConfig member variable to RtcEngineConfig. You can use mLogConfig to set the log files output by the Agora SDK when you initialize RtcEngine. See How can I set the log file? for details.
-
-As of v3.3.0, Agora does not recommend using the setLogFile, setLogFileSize, or setLogFilter methods to set the log files.
-
-6. Quality of captured video
-
-To control the quality of video captured by the local camera, this release adds support for customizing the capture resolution and listening for abnormalities.
-
-Customize the capture resolution: Call the setCameraCapturerConfiguration method to set the capture preference to MANUAL(3) and set the width and height of the captured video image.
-Listen for abnormalities:
-The abnormal brightness level of captured video images: Use captureBrightnessLevel in the onLocalVideoStats callback.
-The camera fails to output the captured video: Use the onLocalVideoStateChanged(LOCAL_VIDEO_STREAM_STATE_FAILED, LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE) callback.
-The camera repeatedly outputs the captured video: Use the onLocalVideoStateChanged(LOCAL_VIDEO_STREAM_STATE_CAPTURING, LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE) callback.
-7. Data streams
-
-To support scenarios such as lyrics synchronization and courseware synchronization, this release deprecates the previous createDataStream method and replaces it with a new method of the same name. You can use this new method to create a data stream and set whether to synchronize the data stream with the audio stream sent to the Agora channel and whether the received data is ordered.
-
-Improvements
-1. Raw audio data
-
-This release adds raw audio data APIs for Android platforms. Once you obtain raw audio data through the following APIs, you can pre-process or post-process it for desired playback effects:
-
-onPlaybackFrameBeforeMixing
-onMixedFrame
-isMultipleChannelFrameWanted
-onPlaybackFrameBeforeMixingEx
-2. Remote audio statistics
-
-To monitor quality of experience (QoE) of the local user when receiving a remote audio stream, this release adds qoeQuality and qualityChangedReason to onRemoteAudioStats, which report QoE of the local user and the reason for poor QoE, respectively.
-
-Fixed issues
-The audio sampling failed on some Android devices after a headset was plugged in.
-Local audio sampling occasionally failed on Android 10.
-Occasionally, a video rendering issue occurred when you used Media IO to customize a video source in the texture format.
-API changes
-Added
-
-setVoiceBeautifierParameters
-SINGING_BEAUTIFIER
-enableDeepLearningDenoise
-joinChannel[2/2]
-switchChannel[2/2]
-createDataStream
-The mLogConfig member variable in the RtcEngineConfig class
-onPlaybackFrameBeforeMixing
-onMixedFrame
-isMultipleChannelFrameWanted
-onPlaybackFrameBeforeMixingEx
-qoeQuality and qualityChangedReason in the RemoteAudioStats class
-setCloudProxy
-captureBrightnessLevel in the LocalVideoStats class
-width and height in the CameraCapturerConfiguration class
-CAPTURER_OUTPUT_PREFERENCE_MANUAL(3) in the CAPTURER_OUTPUT_PREFERENCE enum
-Error code: ERR_MODULE_NOT_FOUND(157)
-Deprecated
-
-setDefaultMuteAllRemoteVideoStreams
-setDefaultMuteAllRemoteAudioStreams
-setLogFile
-setLogFileSize
-setLogFilter
-createDataStream
+Samples of using Agora packages and Documentation:
+https://github.com/DreamTeamMobile/Xamarin.Agora.Samples
     </releaseNotes>
   </metadata>
   <files>
     <file src="lib/MonoAndroid/*.dll" target="lib/MonoAndroid" />
-    <file src="../agora-xamarin-sdk-icon.png" target="images/" />
+    <file src="../icon.png" target="images/" />
+    <file src="README.txt" target="" />
   </files>
 </package>
