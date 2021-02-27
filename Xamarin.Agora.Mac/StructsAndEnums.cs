@@ -89,6 +89,7 @@ namespace Xamarin.Agora.Mac
         PublishStreamInternalServerError = 154,
         PublishStreamNotFound = 155,
         PublishStreamFormatNotSuppported = 156,
+        ModuleNotFound = 157,
         LoadMediaEngine = 1001,
         StartCall = 1002,
         StartCamera = 1003,
@@ -221,7 +222,8 @@ namespace Xamarin.Agora.Mac
         Auto = 0,
         Performance = 1,
         Preview = 2,
-        Unkown = 3
+        Manual = 3,
+        Unkown = 4
     }
 
     [Native]
@@ -271,6 +273,15 @@ namespace Xamarin.Agora.Mac
     {
         LowLatency = 1,
         UltraLowLatency = 2
+    }
+
+    [Native]
+    public enum CaptureBrightnessLevelType : long
+    {
+        Invalid = -1,
+        Normal = 0,
+        Bright = 1,
+        Dark = 2
     }
 
     [Native]
@@ -387,6 +398,31 @@ namespace Xamarin.Agora.Mac
         Down = 6,
         Unsupported = 7,
         Detecting = 8
+    }
+
+    [Native]
+    public enum ExperienceQuality : ulong
+    {
+        Good = 0,
+        Bad = 1
+    }
+
+    [Native]
+    public enum ExperiencePoorReason : ulong
+    {
+        ExperienceReasonNone = 0,
+        RemoteNetworkPoor = 1,
+        LocalNetworkPoor = 2,
+        WirelessSignalPoor = 4,
+        WifiBluetoothCoexist = 8
+    }
+
+    [Native]
+    public enum UploadErrorReason : long
+    {
+        Success = 0,
+        NetError = 1,
+        ServerError = 2
     }
 
     [Native]
@@ -655,6 +691,7 @@ namespace Xamarin.Agora.Mac
         ChatBeautifierMagnetic = 16843008,
         ChatBeautifierFresh = 16843264,
         ChatBeautifierVitality = 16843520,
+        SingingBeautifier = 16908544,
         TimbreTransformationVigorous = 16974080,
         TimbreTransformationDeep = 16974336,
         TimbreTransformationMellow = 16974592,
@@ -887,6 +924,8 @@ namespace Xamarin.Agora.Mac
         DeviceBusy = 3,
         CaptureFailure = 4,
         EncodeFailure = 5,
+        CaptureInBackGround = 6,
+        CaptureMultipleForegroundApps = 7,
         ScreenCaptureWindowMinimized = 11,
         ScreenCaptureWindowClosed = 12
     }
@@ -901,6 +940,24 @@ namespace Xamarin.Agora.Mac
         Jp = 16,
         In = 32,
         Glob = 4294967295L
+    }
+
+    [Native]
+    public enum AgoraLogLevel : long
+    {
+        None = 0,
+        Info = 1,
+        Warn = 2,
+        Error = 4,
+        Fatal = 8
+    }
+
+    [Native]
+    public enum CloudProxyType : ulong
+    {
+        NoneProxy = 0,
+        UdpProxy = 1,
+        TcpProxy = 2
     }
 
     [Native]
