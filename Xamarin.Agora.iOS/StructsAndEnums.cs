@@ -301,6 +301,8 @@ namespace DT.Xamarin.Agora
 		Aes128ecb = 2,
 		Aes256xts = 3,
 		Sm4128ecb = 4,
+		Aes128gcm = 5,
+		Aes256gcm = 6,
 		End
 	}
 
@@ -452,7 +454,8 @@ namespace DT.Xamarin.Agora
 	{
 		Hidden = 1,
 		Fit = 2,
-		Adaptive = 3
+		Adaptive = 3,
+		Fill = 4
 	}
 
 	[Native]
@@ -726,6 +729,16 @@ namespace DT.Xamarin.Agora
 		PitchCorrection = 33816832
 	}
 
+	[Native]
+	public enum VoiceConversionPreset : long
+	{
+		onversionOff = 0,
+		hangerNeutral = 50397440,
+		hangerSweet = 50397696,
+		hangerSolid = 50397952,
+		hangerBass = 50398208
+	}
+
 	[Flags]
 	[Native]
 	public enum AudioSessionOperationRestriction : ulong
@@ -906,7 +919,7 @@ namespace DT.Xamarin.Agora
 		IncompleteNoBwe = 2,
 		Unavailable = 3
 	}
-       
+
 	[Native]
 	public enum LocalVideoStreamState : long
 	{
@@ -925,6 +938,8 @@ namespace DT.Xamarin.Agora
 		DeviceBusy = 3,
 		CaptureFailure = 4,
 		EncodeFailure = 5,
+		CaptureInBackGround = 6,
+		CaptureMultipleForegroundApps = 7,
 		ScreenCaptureWindowMinimized = 11,
 		ScreenCaptureWindowClosed = 12
 	}
