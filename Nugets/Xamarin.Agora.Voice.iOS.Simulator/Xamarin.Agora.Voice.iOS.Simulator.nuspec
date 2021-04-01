@@ -3,7 +3,7 @@
   <metadata>
     <id>Xamarin.Agora.Voice.iOS.Simulator</id>
     <title>Xamarin bindings to the native iOS Agora Voice SDK for running on Simulator.</title>
-    <version>3.3.1</version>
+    <version>3.3.2</version>
     <authors>dreamteammobile</authors>
     <owners>dreamteammobile</owners>
     <license type="expression">MIT</license>
@@ -16,7 +16,7 @@
     <releaseNotes>
       you can found full release notes here https://docs.agora.io/en/Video/release_ios_video?platform=iOS
 
-      update native sdk to v3.3.1, released on March 4, 2021.
+      update native sdk to v3.3.2 was released on March 29, 2021.
 
       Caution! this package is for running on a simulators only. If you want to run on device - install
       Xamarin.Agora.Voice.iOS

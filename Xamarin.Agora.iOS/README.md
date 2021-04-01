@@ -2,20 +2,25 @@
 
 Download native Full and Voice SDK from [https://www.agora.io/en/download/](https://www.agora.io/en/download/)
 
-unpack and copy files:
+new SDK have xcframework format, so we need to apply workaround to make a binding as for now.
 
-`Agora_Native_SDK_for_iOS_FULL/libs/ALL_ARCHITECTURE/AgoraRtcKit.framework/*` to `Xamarin.Agora.iOS/Xamarin.Agora.Full.iOS/AgoraRtcKit.framework/`
+just need to copy correct framework for device and for simulator nugets
 
-`Agora_Native_SDK_for_iOS_FULL/libs/ALL_ARCHITECTURE/AgoraRtcCryptoLoader.framework/*` to `Xamarin.Agora.iOS/Xamarin.Agora.Full.iOS/AgoraRtcCryptoLoader.framework/`
+unpack archives from Agora website,
+and copy files by masks:
 
-`Agora_Native_SDK_for_iOS_VOICE/libs/ALL_ARCHITECTURE/AgoraRtcKit.framework/*` to `Xamarin.Agora.iOS/Xamarin.Agora.Voice.iOS/AgoraRtcKit.framework/`
+`Agora_Native_SDK_for_iOS_FULL/libs/*.xcframework/ios-armv7_arm64/*` to `Xamarin.Agora.iOS/Xamarin.Agora.Full.iOS/libs/`
 
-`Agora_Native_SDK_for_iOS_VOICE/libs/ALL_ARCHITECTURE/AgoraRtcCryptoLoader.framework/*` to `Xamarin.Agora.iOS/Xamarin.Agora.Voice.iOS/AgoraRtcCryptoLoader.framework/`
+`Agora_Native_SDK_for_iOS_VOICE/libs/*.xcframework/ios-armv7_arm64/*` to `Xamarin.Agora.iOS/Xamarin.Agora.Voice.iOS/libs/`
+
+`Agora_Native_SDK_for_iOS_FULL/libs/*.xcframework/ios-x86_64-simulator/*` to `Xamarin.Agora.iOS/Xamarin.Agora.Full.iOS.Simulator/libs/`
+
+`Agora_Native_SDK_for_iOS_VOICE/libs/*.xcframework/ios-x86_64-simulator/*` to `Xamarin.Agora.iOS/Xamarin.Agora.Voice.iOS.Simulator/libs/`
 
 
 ## Update/Install Sharpie
 
-download latest [Sharpie](https://download.xamarin.com/objective-sharpie/ObjectiveSharpie.pkg) (or check instructions here https://developer.xamarin.com/guides/cross-platform/macios/binding/objective-sharpie/getting-started/) 
+download latest [Sharpie](https://download.xamarin.com/objective-sharpie/ObjectiveSharpie.pkg) (or check instructions here https://developer.xamarin.com/guides/cross-platform/macios/binding/objective-sharpie/getting-started/)
 
 ## Update [ApiDefinitions & StructsAndEnums files](https://docs.microsoft.com/en-us/xamarin/cross-platform/macios/binding/objective-sharpie/platform/apidefinitions-structsandenums)
 

@@ -34,3 +34,18 @@ If your targetSdkVersion ≥ 29, add the following line in the <application> mod
 <application
      android:requestLegacyExternalStorage="true">
 </application>
+
+## Known Issues and Limitations
+Privacy changes
+If your app targets Android 9, you should keep the following behavior changes in mind. These updates to device serial and DNS information enhance user privacy.
+
+Build serial number deprecation
+
+In Android 9, Build.SERIAL is always set to "UNKNOWN" to protect users' privacy.
+If your app needs to access a device's hardware serial number, you should instead request the READ_PHONE_STATE permission, then call getSerial().
+
+DNS privacy
+
+Apps targeting Android 9 should honor the private DNS APIs. In particular, apps should ensure that, if the system resolver is doing DNS-over-TLS, any built-in DNS client either uses encrypted DNS to the same hostname as the system, or is disabled in favor of the system resolver.
+
+For more information about privacy changes, see [Android Privacy Changes](https://developer.android.com/about/versions/pie/android-9.0-changes-28#privacy-changes-p).

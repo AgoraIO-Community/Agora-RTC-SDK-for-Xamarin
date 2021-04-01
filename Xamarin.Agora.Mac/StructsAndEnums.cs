@@ -301,6 +301,8 @@ namespace Xamarin.Agora.Mac
         Aes128ecb = 2,
         Aes256xts = 3,
         Sm4128ecb = 4,
+        Aes128gcm = 5,
+        Aes256gcm = 6,
         End
     }
 
@@ -452,7 +454,8 @@ namespace Xamarin.Agora.Mac
     {
         Hidden = 1,
         Fit = 2,
-        Adaptive = 3
+        Adaptive = 3,
+        Fill = 4
     }
 
     [Native]
@@ -726,6 +729,16 @@ namespace Xamarin.Agora.Mac
         PitchCorrection = 33816832
     }
 
+    [Native]
+    public enum VoiceConversionPreset : long
+    {
+        onversionOff = 0,
+        hangerNeutral = 50397440,
+        hangerSweet = 50397696,
+        hangerSolid = 50397952,
+        hangerBass = 50398208
+    }
+
     [Flags]
     [Native]
     public enum AudioSessionOperationRestriction : ulong
@@ -824,7 +837,8 @@ namespace Xamarin.Agora.Mac
         SettingProxyServer = 11,
         RenewToken = 12,
         ClientIpAddressChanged = 13,
-        KeepAliveTimeout = 14
+        KeepAliveTimeout = 14,
+        ProxyServerInterrupted = 15
     }
 
     [Native]
