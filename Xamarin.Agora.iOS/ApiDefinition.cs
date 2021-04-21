@@ -443,6 +443,23 @@ namespace DT.Xamarin.Agora
         string ChannelId { get; set; }
     }
 
+    // @interface AgoraRtcRhythmPlayerConfig : NSObject
+    [BaseType(typeof(NSObject))]
+    interface AgoraRtcRhythmPlayerConfig
+    {
+        // @property (assign, nonatomic) NSUInteger beatsPerMeasure;
+        [Export("beatsPerMeasure")]
+        nuint BeatsPerMeasure { get; set; }
+
+        // @property (assign, nonatomic) NSUInteger beatsPerMinute;
+        [Export("beatsPerMinute")]
+        nuint BeatsPerMinute { get; set; }
+
+        // @property (assign, nonatomic) BOOL publish;
+        [Export("publish")]
+        bool Publish { get; set; }
+    }
+
     // @interface AgoraChannelStats : NSObject
     [BaseType(typeof(NSObject))]
     interface AgoraChannelStats
@@ -1021,6 +1038,27 @@ namespace DT.Xamarin.Agora
         nint Distance { get; set; }
     }
 
+    // @interface AgoraAudioRecordingConfiguration : NSObject
+    [BaseType(typeof(NSObject))]
+    interface AgoraAudioRecordingConfiguration
+    {
+        // @property (copy, nonatomic) NSString * _Nullable filePath;
+        [NullAllowed, Export("filePath")]
+        string FilePath { get; set; }
+
+        // @property (assign, nonatomic) AgoraAudioRecordingQuality recordingQuality;
+        [Export("recordingQuality", ArgumentSemantic.Assign)]
+        AudioRecordingQuality RecordingQuality { get; set; }
+
+        // @property (assign, nonatomic) AgoraAudioRecordingPosition recordingPosition;
+        [Export("recordingPosition", ArgumentSemantic.Assign)]
+        AudioRecordingPosition RecordingPosition { get; set; }
+
+        // @property (assign, nonatomic) NSInteger recordingSampleRate;
+        [Export("recordingSampleRate")]
+        nint RecordingSampleRate { get; set; }
+    }
+
     // @interface AgoraLogConfig : NSObject
     [BaseType(typeof(NSObject))]
     interface AgoraLogConfig
@@ -1263,6 +1301,22 @@ namespace DT.Xamarin.Agora
 
     [Protocol]
     interface IAgoraMediaMetadataDelegate
+    {
+    }
+
+    // @protocol AgoraLogWriterDelegate <NSObject>
+    [Protocol, Model]
+    [BaseType(typeof(NSObject))]
+    interface AgoraLogWriterDelegate
+    {
+        // @required -(NSInteger)writeLog:(const NSData *)message Length:(unsigned short)length;
+        [Abstract]
+        [Export("writeLog:Length:")]
+        nint Length(NSData message, ushort length);
+    }
+
+    [Protocol]
+    interface IAgoraLogWriterDelegate
     {
     }
 
@@ -1542,10 +1596,10 @@ namespace DT.Xamarin.Agora
         [EventArgs("LocalAudioMixingDidFinish")]
         void LocalAudioMixingDidFinish(AgoraRtcEngineKit engine);
 
-        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine localAudioMixingStateDidChanged:(AgoraAudioMixingStateCode)state errorCode:(AgoraAudioMixingErrorCode)errorCode;
-        [Export("rtcEngine:localAudioMixingStateDidChanged:errorCode:")]
+        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine localAudioMixingStateDidChanged:(AgoraAudioMixingStateCode)state reason:(AgoraAudioMixingReasonCode)reason;
+        [Export("rtcEngine:localAudioMixingStateDidChanged:reason:")]
         [EventArgs("LocalAudioMixingStateDidChanged")]
-        void LocalAudioMixingStateDidChanged(AgoraRtcEngineKit engine, AudioMixingStateCode state, AudioMixingErrorCode errorCode);
+        void LocalAudioMixingStateDidChanged(AgoraRtcEngineKit engine, AudioMixingStateCode state, AudioMixingReasonCode reason);
 
         // @optional -(void)rtcEngineRemoteAudioMixingDidStart:(AgoraRtcEngineKit * _Nonnull)engine;
         [Export("rtcEngineRemoteAudioMixingDidStart:")]
@@ -1561,6 +1615,11 @@ namespace DT.Xamarin.Agora
         [Export("rtcEngineDidAudioEffectFinish:soundId:")]
         [EventArgs("DidAudioEffectFinish")]
         void DidAudioEffectFinish(AgoraRtcEngineKit engine, nint soundId);
+
+        // @optional -(void)rtcEngineAirPlayIsConnected:(AgoraRtcEngineKit * _Nonnull)engine;
+        [Export("rtcEngineAirPlayIsConnected:")]
+        [EventArgs("AirPlayIsConnected")]
+        void AirPlayIsConnected(AgoraRtcEngineKit engine);
 
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine rtmpStreamingChangedToState:(NSString * _Nonnull)url state:(AgoraRtmpStreamingState)state errorCode:(AgoraRtmpStreamingErrorCode)errorCode;
         [Export("rtcEngine:rtmpStreamingChangedToState:state:errorCode:")]
@@ -1827,6 +1886,10 @@ namespace DT.Xamarin.Agora
         [Export("adjustPlaybackSignalVolume:")]
         int AdjustPlaybackSignalVolume(nint volume);
 
+        // -(int)adjustLoopbackRecordingSignalVolume:(NSInteger)volume;
+        [Export("adjustLoopbackRecordingSignalVolume:")]
+        int AdjustLoopbackRecordingSignalVolume(nint volume);
+
         // -(int)enableAudioVolumeIndication:(NSInteger)interval smooth:(NSInteger)smooth report_vad:(BOOL)report_vad;
         [Export("enableAudioVolumeIndication:smooth:report_vad:")]
         int EnableAudioVolumeIndication(nint interval, nint smooth, bool report_vad);
@@ -1975,7 +2038,11 @@ namespace DT.Xamarin.Agora
         [Export("setRemoteVoicePosition:pan:gain:")]
         int SetRemoteVoicePosition(nuint uid, double pan, double gain);
 
-        // -(int)startAudioMixing:(NSString *)filePath loopback:(BOOL)loopback replace:(BOOL)replace cycle:(NSInteger)cycle;
+        // -(int)startAudioMixing:(NSString * _Nonnull)filePath loopback:(BOOL)loopback replace:(BOOL)replace cycle:(NSInteger)cycle startPos:(NSInteger)startPos;
+        [Export("startAudioMixing:loopback:replace:cycle:startPos:")]
+        int StartAudioMixing(string filePath, bool loopback, bool replace, nint cycle, nint startPos);
+
+        // -(int)startAudioMixing:(NSString * _Nonnull)filePath loopback:(BOOL)loopback replace:(BOOL)replace cycle:(NSInteger)cycle __attribute__((deprecated("use startAudioMixing(.., startPos) instead")));
         [Export("startAudioMixing:loopback:replace:cycle:")]
         int StartAudioMixing(string filePath, bool loopback, bool replace, nint cycle);
 
@@ -2011,7 +2078,11 @@ namespace DT.Xamarin.Agora
         [Export("getAudioMixingPlayoutVolume")]
         int AudioMixingPlayoutVolume { get; }
 
-        // -(int)getAudioMixingDuration;
+        // -(int)getAudioMixingDuration:(NSString * _Nullable)filePath;
+        [Export("getAudioMixingDuration:")]
+        int GetAudioMixingDuration([NullAllowed] string filePath);
+
+        // -(int)getAudioMixingDuration __attribute__((deprecated("use getAudioMixingDuration:(NSString* _Nullable)filePath instead")));
         [Export("getAudioMixingDuration")]
         int AudioMixingDuration { get; }
 
@@ -2042,6 +2113,10 @@ namespace DT.Xamarin.Agora
         // -(int)playEffect:(int)soundId filePath:(NSString * _Nullable)filePath loopCount:(int)loopCount pitch:(double)pitch pan:(double)pan gain:(double)gain publish:(BOOL)publish;
         [Export("playEffect:filePath:loopCount:pitch:pan:gain:publish:")]
         int PlayEffect(int soundId, [NullAllowed] string filePath, int loopCount, double pitch, double pan, double gain, bool publish);
+
+        // -(int)playEffect:(int)soundId filePath:(NSString * _Nullable)filePath loopCount:(int)loopCount pitch:(double)pitch pan:(double)pan gain:(double)gain publish:(BOOL)publish startPos:(int)startPos;
+        [Export("playEffect:filePath:loopCount:pitch:pan:gain:publish:startPos:")]
+        int PlayEffect(int soundId, [NullAllowed] string filePath, int loopCount, double pitch, double pan, double gain, bool publish, int startPos);
 
         // -(int)stopEffect:(int)soundId;
         [Export("stopEffect:")]
@@ -2075,9 +2150,33 @@ namespace DT.Xamarin.Agora
         [Export("resumeAllEffects")]
         int ResumeAllEffects();
 
-        // -(int)startAudioRecording:(NSString * _Nonnull)filePath sampleRate:(NSInteger)sampleRate quality:(AgoraAudioRecordingQuality)quality;
-        [Export("startAudioRecording:sampleRate:quality:")]
-        int StartAudioRecording(string filePath, nint sampleRate, AudioRecordingQuality quality);
+        // -(int) getEffectCurrentPosition:(int) soundId;
+        [Export("getEffectCurrentPosition:")]
+        int GetEffectCurrentPosition(int soundId);
+
+        // -(int)setEffectPosition:(int)soundId pos:(NSInteger)pos;
+        [Export("setEffectPosition:pos:")]
+        int SetEffectPosition(int soundId, nint pos);
+
+        // -(int)getEffectDuration:(NSString *)filePath;
+        [Export("getEffectDuration:")]
+        int GetEffectDuration(string filePath);
+
+        // -(int)startRhythmPlayer:(NSString * _Nonnull)sound1 sound2:(NSString * _Nonnull)sound2 config:(AgoraRtcRhythmPlayerConfig * _Nonnull)config;
+        [Export("startRhythmPlayer:sound2:config:")]
+        int StartRhythmPlayer(string sound1, string sound2, AgoraRtcRhythmPlayerConfig config);
+
+        // -(int)stopRhythmPlayer;
+        [Export("stopRhythmPlayer")]
+        int StopRhythmPlayer { get; }
+
+        // -(int)configRhythmPlayer:(AgoraRtcRhythmPlayerConfig * _Nonnull)config;
+        [Export("configRhythmPlayer:")]
+        int ConfigRhythmPlayer(AgoraRtcRhythmPlayerConfig config);
+
+        // -(int)startAudioRecordingWithConfig:(AgoraAudioRecordingConfiguration * _Nonnull)config;
+        [Export("startAudioRecordingWithConfig:")]
+        int StartAudioRecordingWithConfig(AgoraAudioRecordingConfiguration config);
 
         // -(int)stopAudioRecording;
         [Export("stopAudioRecording")]
@@ -2175,11 +2274,11 @@ namespace DT.Xamarin.Agora
         [Export("pushExternalVideoFrame:")]
         bool PushExternalVideoFrame(AgoraVideoFrame frame);
 
-        // -(int)setRecordingAudioFrameParametersWithSampleRate:(NSInteger)sampleRate channel:(NSInteger)channel mode:(AgoraRtcRawAudioFrameOpMode)mode samplesPerCall:(NSInteger)samplesPerCall;
+        // -(int)setRecordingAudioFrameParametersWithSampleRate:(NSInteger)sampleRate channel:(NSInteger)channel mode:(AgoraAudioRawFrameOperationMode)mode samplesPerCall:(NSInteger)samplesPerCall;
         [Export("setRecordingAudioFrameParametersWithSampleRate:channel:mode:samplesPerCall:")]
         int SetRecordingAudioFrameParametersWithSampleRate(nint sampleRate, nint channel, AudioRawFrameOperationMode mode, nint samplesPerCall);
 
-        // -(int)setPlaybackAudioFrameParametersWithSampleRate:(NSInteger)sampleRate channel:(NSInteger)channel mode:(AgoraRtcRawAudioFrameOpMode)mode samplesPerCall:(NSInteger)samplesPerCall;
+        // -(int)setPlaybackAudioFrameParametersWithSampleRate:(NSInteger)sampleRate channel:(NSInteger)channel mode:(AgoraAudioRawFrameOperationMode)mode samplesPerCall:(NSInteger)samplesPerCall;
         [Export("setPlaybackAudioFrameParametersWithSampleRate:channel:mode:samplesPerCall:")]
         int SetPlaybackAudioFrameParametersWithSampleRate(nint sampleRate, nint channel, AudioRawFrameOperationMode mode, nint samplesPerCall);
 
@@ -2385,6 +2484,14 @@ namespace DT.Xamarin.Agora
         [Export ("setLogFileSize:")]
         int SetLogFileSize (nuint fileSizeInKBytes);
 
+        [Wrap("WeakLogWriterDelegate")]
+        [NullAllowed]
+        AgoraLogWriterDelegate LogWriterDelegate { get; set; }
+
+        // @property (nonatomic, weak) id<AgoraLogWriterDelegate> _Nullable logWriterDelegate;
+        [NullAllowed, Export("logWriterDelegate", ArgumentSemantic.Weak)]
+        NSObject WeakLogWriterDelegate { get; set; }
+
         // -(int)createDataStream:(NSInteger * _Nonnull)streamId reliable:(BOOL)reliable ordered:(BOOL)ordered;
         [Export ("createDataStream:reliable:ordered:")]
         unsafe int CreateDataStream (ref nint streamId, bool reliable, bool ordered);
@@ -2429,7 +2536,11 @@ namespace DT.Xamarin.Agora
         [Export("startAudioRecording:quality:")]
         int StartAudioRecording(string filePath, AudioRecordingQuality quality);
 
-        // -(int)startEchoTest:(void (^)(NSString *, NSUInteger, NSInteger))successBlock;
+        // -(int)startAudioRecording:(NSString * _Nonnull)filePath sampleRate:(NSInteger)sampleRate quality:(AgoraAudioRecordingQuality)quality __attribute__((deprecated("use startAudioRecordingWithConfig:config instead.")));
+        [Export("startAudioRecording:sampleRate:quality:")]
+        int StartAudioRecording(string filePath, nint sampleRate, AudioRecordingQuality quality);
+
+        // -(int)startEchoTest:(void (^ _Nullable)(NSString * _Nonnull, NSUInteger, NSInteger))successBlock __attribute__((deprecated("use startEchoTestWithInterval instead.")));
         [Export("startEchoTest:")]
         int StartEchoTest([NullAllowed] Action<NSString, nuint, nint> successBlock);
 

@@ -109,6 +109,7 @@ namespace Xamarin.Agora.Mac
     }
 
     // @interface AgoraAudioFrame : NSObject
+    [Protocol, Model]
     [BaseType(typeof(NSObject))]
     interface AgoraAudioFrame
     {
@@ -455,6 +456,24 @@ namespace Xamarin.Agora.Mac
         string ChannelId { get; set; }
     }
 
+
+    // @interface AgoraRtcRhythmPlayerConfig : NSObject
+    [BaseType(typeof(NSObject))]
+    interface AgoraRtcRhythmPlayerConfig
+    {
+        // @property (assign, nonatomic) NSUInteger beatsPerMeasure;
+        [Export("beatsPerMeasure")]
+        nuint BeatsPerMeasure { get; set; }
+
+        // @property (assign, nonatomic) NSUInteger beatsPerMinute;
+        [Export("beatsPerMinute")]
+        nuint BeatsPerMinute { get; set; }
+
+        // @property (assign, nonatomic) BOOL publish;
+        [Export("publish")]
+        bool Publish { get; set; }
+    }
+
     // @interface AgoraChannelStats : NSObject
     [BaseType(typeof(NSObject))]
     interface AgoraChannelStats
@@ -598,6 +617,7 @@ namespace Xamarin.Agora.Mac
     }
 
     // @interface AgoraScreenCaptureParameters : NSObject
+    [Protocol, Model]
     [BaseType(typeof(NSObject))]
     interface AgoraScreenCaptureParameters
     {
@@ -839,17 +859,34 @@ namespace Xamarin.Agora.Mac
         [Export("captureHeight")]
         int CaptureHeight { get; set; }
 
-        // @property (assign, nonatomic) AgoraCameraDirection cameraDirection;
-        [Export("cameraDirection")]
-        CameraDirection CameraDirection { get; set; }
+        // -(instancetype _Nonnull)initWithSize:(CGSize)size;
+        [Export("initWithSize:")]
+        IntPtr Constructor(CGSize size);
 
-        // -(instancetype _Nonnull)initWithSize:(CGSize)size facing:(AgoraCameraDirection)facing;
-        [Export("initWithSize:facing:")]
-        IntPtr Constructor(CGSize size, CameraDirection facing);
+        // -(instancetype _Nonnull)initWithWidth:(NSInteger)width height:(NSInteger)height;
+        [Export("initWithWidth:height:")]
+        IntPtr Constructor(nint width, nint height);
+    }
 
-        // -(instancetype _Nonnull)initWithWidth:(NSInteger)width height:(NSInteger)height facing:(AgoraCameraDirection)facing;
-        [Export("initWithWidth:height:facing:")]
-        IntPtr Constructor(nint width, nint height, CameraDirection facing);
+    // @interface AgoraRtcDeviceInfo : NSObject
+    [BaseType(typeof(NSObject))]
+    interface AgoraRtcDeviceInfo
+    {
+        // @property (assign, nonatomic) int index __attribute__((deprecated("")));
+        [Export("index")]
+        int Index { get; set; }
+
+        // @property (assign, nonatomic) AgoraMediaDeviceType type;
+        [Export("type", ArgumentSemantic.Assign)]
+        MediaDeviceType Type { get; set; }
+
+        // @property (copy, nonatomic) NSString * _Nullable deviceId;
+        [NullAllowed, Export("deviceId")]
+        string DeviceId { get; set; }
+
+        // @property (copy, nonatomic) NSString * _Nullable deviceName;
+        [NullAllowed, Export("deviceName")]
+        string DeviceName { get; set; }
     }
 
     // @interface AgoraVideoFrame : NSObject
@@ -1032,6 +1069,27 @@ namespace Xamarin.Agora.Mac
         nint Distance { get; set; }
     }
 
+    // @interface AgoraAudioRecordingConfiguration : NSObject
+    [BaseType(typeof(NSObject))]
+    interface AgoraAudioRecordingConfiguration
+    {
+        // @property (copy, nonatomic) NSString * _Nullable filePath;
+        [NullAllowed, Export("filePath")]
+        string FilePath { get; set; }
+
+        // @property (assign, nonatomic) AgoraAudioRecordingQuality recordingQuality;
+        [Export("recordingQuality", ArgumentSemantic.Assign)]
+        AudioRecordingQuality RecordingQuality { get; set; }
+
+        // @property (assign, nonatomic) AgoraAudioRecordingPosition recordingPosition;
+        [Export("recordingPosition", ArgumentSemantic.Assign)]
+        AudioRecordingPosition RecordingPosition { get; set; }
+
+        // @property (assign, nonatomic) NSInteger recordingSampleRate;
+        [Export("recordingSampleRate")]
+        nint RecordingSampleRate { get; set; }
+    }
+
     // @interface AgoraLogConfig : NSObject
     [BaseType(typeof(NSObject))]
     interface AgoraLogConfig
@@ -1207,18 +1265,63 @@ namespace Xamarin.Agora.Mac
     [BaseType(typeof(NSObject))]
     interface AgoraRtcDefaultCamera : IAgoraVideoSourceProtocol
     {
-        // @property (assign, nonatomic) AgoraRtcDefaultCameraPosition position;
-        [Export("position", ArgumentSemantic.Assign)]
-        RtcDefaultCameraPosition Position { get; set; }
 
-        // -(instancetype _Nonnull)initWithPosition:(AgoraRtcDefaultCameraPosition)position;
-        [Export("initWithPosition:")]
-        IntPtr Constructor(RtcDefaultCameraPosition position);
     }
 
     [Protocol]
     interface IAgoraVideoSinkProtocol
     {
+    }
+
+    // @interface AgoraRtcScreenCapture : NSObject <AgoraVideoSourceProtocol>
+    [BaseType(typeof(NSObject))]
+    interface AgoraRtcScreenCapture : IAgoraVideoSourceProtocol
+    {
+        // @property (readonly, assign, nonatomic) BOOL ifWindowShare;
+        [Export("ifWindowShare")]
+        bool IfWindowShare { get; }
+
+        // @property (readonly, assign, nonatomic) NSUInteger displayId;
+        [Export("displayId")]
+        nuint DisplayId { get; }
+
+        // @property (readonly, assign, nonatomic) NSUInteger windowId;
+        [Export("windowId")]
+        nuint WindowId { get; }
+
+        // @property (readonly, assign, nonatomic) CGRect rect;
+        [Export("rect", ArgumentSemantic.Assign)]
+        CGRect Rect { get; }
+
+        // @property (readonly, assign, nonatomic) CGSize dimensions;
+        [Export("dimensions", ArgumentSemantic.Assign)]
+        CGSize Dimensions { get; }
+
+        // @property (readonly, assign, nonatomic) NSInteger frameRate;
+        [Export("frameRate")]
+        nint FrameRate { get; }
+
+        // @property (readonly, assign, nonatomic) NSInteger bitrate;
+        [Export("bitrate")]
+        nint Bitrate { get; }
+
+        // @property (readonly, assign, nonatomic) BOOL captureMouseCursor;
+        [Export("captureMouseCursor")]
+        bool CaptureMouseCursor { get; }
+
+        // @property (readonly, assign, nonatomic) BOOL windowFocus;
+        [Export("windowFocus")]
+        bool WindowFocus { get; }
+
+        // +(instancetype _Nonnull)screenCaptureWithId:(NSUInteger)displayId rect:(CGRect)rect dimensions:(CGSize)dimensions frameRate:(NSInteger)frameRate bitrate:(NSInteger)bitrate captureMouseCursor:(BOOL)captureMouseCursor;
+        [Static]
+        [Export("screenCaptureWithId:rect:dimensions:frameRate:bitrate:captureMouseCursor:")]
+        AgoraRtcScreenCapture ScreenCaptureWithId(nuint displayId, CGRect rect, CGSize dimensions, nint frameRate, nint bitrate, bool captureMouseCursor);
+
+        // +(instancetype _Nonnull)windowCaptureWithId:(NSUInteger)windowId rect:(CGRect)rect dimensions:(CGSize)dimensions frameRate:(NSInteger)frameRate bitrate:(NSInteger)bitrate captureMouseCursor:(BOOL)captureMouseCursor windowFocus:(BOOL)windowFocus;
+        [Static]
+        [Export("windowCaptureWithId:rect:dimensions:frameRate:bitrate:captureMouseCursor:windowFocus:")]
+        AgoraRtcScreenCapture WindowCaptureWithId(nuint windowId, CGRect rect, CGSize dimensions, nint frameRate, nint bitrate, bool captureMouseCursor, bool windowFocus);
     }
 
     // @interface AgoraRtcDefaultRenderer : NSObject <AgoraVideoSinkProtocol>
@@ -1264,6 +1367,17 @@ namespace Xamarin.Agora.Mac
         [Abstract]
         [Export("receiveMetadata:fromUser:atTimestamp:")]
         void FromUser(NSData data, nint uid, double timestamp);
+    }
+
+    // @protocol AgoraLogWriterDelegate <NSObject>
+    [Protocol, Model]
+    [BaseType(typeof(NSObject))]
+    interface AgoraLogWriterDelegate
+    {
+        // @required -(NSInteger)writeLog:(const NSData *)message Length:(unsigned short)length;
+        [Abstract]
+        [Export("writeLog:Length:")]
+        nint Length(NSData message, ushort length);
     }
 
     // @protocol AgoraAudioFrameDelegate <NSObject>
@@ -1477,20 +1591,15 @@ namespace Xamarin.Agora.Mac
         [EventArgs("FacePositionDidChangeWidth")]
         void FacePositionDidChangeWidth(AgoraRtcEngineKit engine, int width, int height, [NullAllowed] AgoraFacePositionInfo[] faces);
 
+        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine device:(NSString * _Nonnull)deviceId type:(AgoraMediaDeviceType)deviceType stateChanged:(NSInteger)state;
+        [Export("rtcEngine:device:type:stateChanged:")]
+        [EventArgs("MediaDeviceStateChanged")]
+        void MediaDeviceStateChanged(AgoraRtcEngineKit engine, string deviceId, MediaDeviceType deviceType, nint state);
+
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didAudioRouteChanged:(AgoraAudioOutputRouting)routing;
         [Export("rtcEngine:didAudioRouteChanged:")]
         [EventArgs("DidAudioRouteChanged")]
         void DidAudioRouteChanged(AgoraRtcEngineKit engine, AudioOutputRouting routing);
-
-        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine cameraFocusDidChangedToRect:(CGRect)rect;
-        [Export("rtcEngine:cameraFocusDidChangedToRect:")]
-        [EventArgs("CameraFocusDidChangedToRect")]
-        void CameraFocusDidChangedToRect(AgoraRtcEngineKit engine, CGRect rect);
-
-        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine cameraExposureDidChangedToRect:(CGRect)rect;
-        [Export("rtcEngine:cameraExposureDidChangedToRect:")]
-        [EventArgs("CameraExposureDidChangedToRect")]
-        void CameraExposureDidChangedToRect(AgoraRtcEngineKit engine, CGRect rect);
 
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine reportRtcStats:(AgoraChannelStats * _Nonnull)stats;
         [Export("rtcEngine:reportRtcStats:")]
@@ -1537,10 +1646,10 @@ namespace Xamarin.Agora.Mac
         [EventArgs("RtcEngineLocalAudioMixingDidFinish")]
         void RtcEngineLocalAudioMixingDidFinish(AgoraRtcEngineKit engine);
 
-        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine localAudioMixingStateDidChanged:(AgoraAudioMixingStateCode)state errorCode:(AgoraAudioMixingErrorCode)errorCode;
-        [Export("rtcEngine:localAudioMixingStateDidChanged:errorCode:")]
+        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine localAudioMixingStateDidChanged:(AgoraAudioMixingStateCode)state reason:(AgoraAudioMixingReasonCode)reason;
+        [Export("rtcEngine:localAudioMixingStateDidChanged:reason:")]
         [EventArgs("LocalAudioMixingStateDidChanged")]
-        void LocalAudioMixingStateDidChanged(AgoraRtcEngineKit engine, AudioMixingStateCode state, AudioMixingErrorCode errorCode);
+        void LocalAudioMixingStateDidChanged(AgoraRtcEngineKit engine, AudioMixingStateCode state, AudioMixingReasonCode reason);
 
         // @optional -(void)rtcEngineRemoteAudioMixingDidStart:(AgoraRtcEngineKit * _Nonnull)engine;
         [Export("rtcEngineRemoteAudioMixingDidStart:")]
@@ -1556,6 +1665,11 @@ namespace Xamarin.Agora.Mac
         [Export("rtcEngineDidAudioEffectFinish:soundId:")]
         [EventArgs("RtcEngineDidAudioEffectFinish")]
         void RtcEngineDidAudioEffectFinish(AgoraRtcEngineKit engine, nint soundId);
+
+        // @optional -(void)rtcEngineAirPlayIsConnected:(AgoraRtcEngineKit * _Nonnull)engine;
+        [Export("rtcEngineAirPlayIsConnected:")]
+        [EventArgs("RtcEngineAirPlayIsConnected")]
+        void RtcEngineAirPlayIsConnected(AgoraRtcEngineKit engine);
 
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine rtmpStreamingChangedToState:(NSString * _Nonnull)url state:(AgoraRtmpStreamingState)state errorCode:(AgoraRtmpStreamingErrorCode)errorCode;
         [Export("rtcEngine:rtmpStreamingChangedToState:state:errorCode:")]
@@ -1819,6 +1933,10 @@ namespace Xamarin.Agora.Mac
         [Export("adjustPlaybackSignalVolume:")]
         int AdjustPlaybackSignalVolume(nint volume);
 
+        // -(int)adjustLoopbackRecordingSignalVolume:(NSInteger)volume;
+        [Export("adjustLoopbackRecordingSignalVolume:")]
+        int AdjustLoopbackRecordingSignalVolume(nint volume);
+
         // -(int)enableAudioVolumeIndication:(NSInteger)interval smooth:(NSInteger)smooth report_vad:(BOOL)report_vad;
         [Export("enableAudioVolumeIndication:smooth:report_vad:")]
         int EnableAudioVolumeIndication(nint interval, nint smooth, bool report_vad);
@@ -1841,7 +1959,7 @@ namespace Xamarin.Agora.Mac
 
         // -(int)adjustUserPlaybackSignalVolume:(id)uid volume:(int)volume;
         [Export("adjustUserPlaybackSignalVolume:volume:")]
-        int AdjustUserPlaybackSignalVolume(NSObject uid, int volume);
+        int AdjustUserPlaybackSignalVolume(nuint uid, int volume);
 
         // -(int)enableVideo;
         [Export("enableVideo")]
@@ -1891,7 +2009,6 @@ namespace Xamarin.Agora.Mac
         [Export("muteLocalVideoStream:")]
         int MuteLocalVideoStream(bool mute);
 
-
         // -(int)muteAllRemoteVideoStreams:(BOOL)mute;
         [Export("muteAllRemoteVideoStreams:")]
         int MuteAllRemoteVideoStreams(bool mute);
@@ -1904,33 +2021,9 @@ namespace Xamarin.Agora.Mac
         [Export("setBeautyEffectOptions:options:")]
         int SetBeautyEffectOptions(bool enable, [NullAllowed] AgoraBeautyOptions options);
 
-        // -(int)enableRemoteSuperResolution:(NSUInteger)uid enabled:(BOOL)enabled;
-        [Export("enableRemoteSuperResolution:enabled:")]
-        int EnableRemoteSuperResolution(nuint uid, bool enabled);
-
         // -(int)enableFaceDetection:(_Bool)enable;
         [Export("enableFaceDetection:")]
         int EnableFaceDetection(bool enable);
-
-        // -(int)setDefaultAudioRouteToSpeakerphone:(BOOL)defaultToSpeaker;
-        [Export("setDefaultAudioRouteToSpeakerphone:")]
-        int SetDefaultAudioRouteToSpeakerphone(bool defaultToSpeaker);
-
-        // -(int)setEnableSpeakerphone:(BOOL)enableSpeaker;
-        [Export("setEnableSpeakerphone:")]
-        int SetEnableSpeakerphone(bool enableSpeaker);
-
-        // -(BOOL)isSpeakerphoneEnabled;
-        [Export("isSpeakerphoneEnabled")]
-        bool IsSpeakerphoneEnabled();
-
-        // -(int)enableInEarMonitoring:(BOOL)enabled;
-        [Export("enableInEarMonitoring:")]
-        int EnableInEarMonitoring(bool enabled);
-
-        // -(int)setInEarMonitoringVolume:(NSInteger)volume;
-        [Export("setInEarMonitoringVolume:")]
-        int SetInEarMonitoringVolume(nint volume);
 
         // -(int)setLocalVoicePitch:(double)pitch;
         [Export("setLocalVoicePitch:")]
@@ -1972,7 +2065,11 @@ namespace Xamarin.Agora.Mac
         [Export("setRemoteVoicePosition:pan:gain:")]
         int SetRemoteVoicePosition(nuint uid, double pan, double gain);
 
-        // -(int)startAudioMixing:(NSString * _Nonnull)filePath loopback:(BOOL)loopback replace:(BOOL)replace cycle:(NSInteger)cycle;
+        /// -(int)startAudioMixing:(NSString * _Nonnull)filePath loopback:(BOOL)loopback replace:(BOOL)replace cycle:(NSInteger)cycle startPos:(NSInteger)startPos;
+        [Export("startAudioMixing:loopback:replace:cycle:startPos:")]
+        int StartAudioMixing(string filePath, bool loopback, bool replace, nint cycle, nint startPos);
+
+        // -(int)startAudioMixing:(NSString * _Nonnull)filePath loopback:(BOOL)loopback replace:(BOOL)replace cycle:(NSInteger)cycle __attribute__((deprecated("use startAudioMixing(.., startPos) instead")));
         [Export("startAudioMixing:loopback:replace:cycle:")]
         int StartAudioMixing(string filePath, bool loopback, bool replace, nint cycle);
 
@@ -2011,9 +2108,12 @@ namespace Xamarin.Agora.Mac
         [Export("getAudioMixingPlayoutVolume")]
         int AudioMixingPlayoutVolume { get; }
 
-        // -(int)getAudioMixingDuration;
+        // -(int)getAudioMixingDuration:(NSString * _Nullable)filePath;
+        [Export("getAudioMixingDuration:")]
+        int GetAudioMixingDuration([NullAllowed] string filePath);
+
+        // -(int)getAudioMixingDuration __attribute__((deprecated("use getAudioMixingDuration:(NSString* _Nullable)filePath instead")));
         [Export("getAudioMixingDuration")]
-        //[Verify(MethodToProperty)]
         int AudioMixingDuration { get; }
 
         // -(int)getAudioMixingCurrentPosition;
@@ -2045,6 +2145,10 @@ namespace Xamarin.Agora.Mac
         // -(int)playEffect:(int)soundId filePath:(NSString * _Nullable)filePath loopCount:(int)loopCount pitch:(double)pitch pan:(double)pan gain:(double)gain publish:(BOOL)publish;
         [Export("playEffect:filePath:loopCount:pitch:pan:gain:publish:")]
         int PlayEffect(int soundId, [NullAllowed] string filePath, int loopCount, double pitch, double pan, double gain, bool publish);
+
+        // -(int)playEffect:(int)soundId filePath:(NSString * _Nullable)filePath loopCount:(int)loopCount pitch:(double)pitch pan:(double)pan gain:(double)gain publish:(BOOL)publish startPos:(int)startPos;
+        [Export("playEffect:filePath:loopCount:pitch:pan:gain:publish:startPos:")]
+        int PlayEffect(int soundId, [NullAllowed] string filePath, int loopCount, double pitch, double pan, double gain, bool publish, int startPos);
 
         // -(int)stopEffect:(int)soundId;
         [Export("stopEffect:")]
@@ -2081,18 +2185,42 @@ namespace Xamarin.Agora.Mac
         //[Verify(MethodToProperty)]
         int ResumeAllEffects();
 
-        // -(int)startAudioRecording:(NSString * _Nonnull)filePath sampleRate:(NSInteger)sampleRate quality:(AgoraAudioRecordingQuality)quality;
-        [Export("startAudioRecording:sampleRate:quality:")]
-        int StartAudioRecording(string filePath, nint sampleRate, AudioRecordingQuality quality);
+        // -(int)getEffectCurrentPosition:(int)soundId;
+        [Export("getEffectCurrentPosition:")]
+        int GetEffectCurrentPosition(int soundId);
+
+        // -(int)setEffectPosition:(int)soundId pos:(NSInteger)pos;
+        [Export("setEffectPosition:pos:")]
+        int SetEffectPosition(int soundId, nint pos);
+
+        // -(int)getEffectDuration:(NSString *)filePath;
+        [Export("getEffectDuration:")]
+        int GetEffectDuration(string filePath);
+
+        // -(int)startRhythmPlayer:(NSString * _Nonnull)sound1 sound2:(NSString * _Nonnull)sound2 config:(AgoraRtcRhythmPlayerConfig * _Nonnull)config;
+        [Export("startRhythmPlayer:sound2:config:")]
+        int StartRhythmPlayer(string sound1, string sound2, AgoraRtcRhythmPlayerConfig config);
+
+        // -(int)stopRhythmPlayer;
+        [Export("stopRhythmPlayer")]
+        int StopRhythmPlayer();
+
+        // -(int)configRhythmPlayer:(AgoraRtcRhythmPlayerConfig * _Nonnull)config;
+        [Export("configRhythmPlayer:")]
+        int ConfigRhythmPlayer(AgoraRtcRhythmPlayerConfig config);
+
+        // -(int)startAudioRecordingWithConfig:(AgoraAudioRecordingConfiguration * _Nonnull)config;
+        [Export("startAudioRecordingWithConfig:")]
+        int StartAudioRecordingWithConfig(AgoraAudioRecordingConfiguration config);
 
         // -(int)stopAudioRecording;
         [Export("stopAudioRecording")]
         //[Verify(MethodToProperty)]
         int StopAudioRecording();
 
-        // -(void)setAudioSessionOperationRestriction:(AgoraAudioSessionOperationRestriction)restriction;
-        [Export("setAudioSessionOperationRestriction:")]
-        void SetAudioSessionOperationRestriction(AudioSessionOperationRestriction restriction);
+        // -(int)enableLoopbackRecording:(BOOL)enabled deviceName:(NSString * _Nullable)deviceName;
+        [Export("enableLoopbackRecording:deviceName:")]
+        int EnableLoopbackRecording(bool enabled, [NullAllowed] string deviceName);
 
         // -(int)enableDeepLearningDenoise:(BOOL)enabled;
         [Export("enableDeepLearningDenoise:")]
@@ -2123,7 +2251,7 @@ namespace Xamarin.Agora.Mac
 
         // -(int)stopLastmileProbeTest;
         [Export("stopLastmileProbeTest")]
-        int StopLastmileProbeTest { get; }
+        int StopLastmileProbeTest();
 
         // -(void)setRemoteVideoRenderer:(id<AgoraVideoSinkProtocol> _Nullable)videoRenderer forUserId:(NSUInteger)userId;
         [Export("setRemoteVideoRenderer:forUserId:")]
@@ -2271,55 +2399,87 @@ namespace Xamarin.Agora.Mac
         [Export("setCameraCapturerConfiguration:")]
         int SetCameraCapturerConfiguration([NullAllowed] AgoraCameraCapturerConfiguration configuration);
 
-        // -(int)switchCamera;
-        [Export("switchCamera")]
-        //[Verify(MethodToProperty)]
-        int SwitchCamera { get; }
+        // -(int)startScreenCaptureByDisplayId:(NSUInteger)displayId rectangle:(CGRect)rectangle parameters:(AgoraScreenCaptureParameters * _Nonnull)captureParams;
+        [Export("startScreenCaptureByDisplayId:rectangle:parameters:")]
+        int StartScreenCaptureByDisplayId(nuint displayId, CGRect rectangle, AgoraScreenCaptureParameters captureParams);
 
-        // -(BOOL)isCameraZoomSupported;
-        [Export("isCameraZoomSupported")]
-        //[Verify(MethodToProperty)]
-        bool IsCameraZoomSupported { get; }
+        // -(int)startScreenCaptureByWindowId:(NSUInteger)windowId rectangle:(CGRect)rectangle parameters:(AgoraScreenCaptureParameters * _Nonnull)captureParams;
+        [Export("startScreenCaptureByWindowId:rectangle:parameters:")]
+        int StartScreenCaptureByWindowId(nuint windowId, CGRect rectangle, AgoraScreenCaptureParameters captureParams);
 
-        // -(BOOL)isCameraTorchSupported;
-        [Export("isCameraTorchSupported")]
-        //[Verify(MethodToProperty)]
-        bool IsCameraTorchSupported { get; }
+        // -(int)setScreenCaptureContentHint:(AgoraVideoContentHint)contentHint;
+        [Export("setScreenCaptureContentHint:")]
+        int SetScreenCaptureContentHint(VideoContentHint contentHint);
 
-        // -(BOOL)isCameraFocusPositionInPreviewSupported;
-        [Export("isCameraFocusPositionInPreviewSupported")]
-        //[Verify(MethodToProperty)]
-        bool IsCameraFocusPositionInPreviewSupported { get; }
+        // -(int)updateScreenCaptureParameters:(AgoraScreenCaptureParameters * _Nonnull)captureParams;
+        [Export("updateScreenCaptureParameters:")]
+        int UpdateScreenCaptureParameters(AgoraScreenCaptureParameters captureParams);
 
-        // -(BOOL)isCameraExposurePositionSupported;
-        [Export("isCameraExposurePositionSupported")]
-        //[Verify(MethodToProperty)]
-        bool IsCameraExposurePositionSupported { get; }
+        // -(int)updateScreenCaptureRegion:(CGRect)rect;
+        [Export("updateScreenCaptureRegion:")]
+        int UpdateScreenCaptureRegion(CGRect rect);
 
-        // -(BOOL)isCameraAutoFocusFaceModeSupported;
-        [Export("isCameraAutoFocusFaceModeSupported")]
-        //[Verify(MethodToProperty)]
-        bool IsCameraAutoFocusFaceModeSupported { get; }
+        // -(int)stopScreenCapture;
+        [Export("stopScreenCapture")]
+        int StopScreenCapture();
 
-        // -(CGFloat)setCameraZoomFactor:(CGFloat)zoomFactor;
-        [Export("setCameraZoomFactor:")]
-        nfloat SetCameraZoomFactor(nfloat zoomFactor);
+        // -(void)monitorDeviceChange:(BOOL)enabled;
+        [Export("monitorDeviceChange:")]
+        void MonitorDeviceChange(bool enabled);
 
-        // -(BOOL)setCameraFocusPositionInPreview:(CGPoint)position;
-        [Export("setCameraFocusPositionInPreview:")]
-        bool SetCameraFocusPositionInPreview(CGPoint position);
+        // -(NSArray<AgoraRtcDeviceInfo *> * _Nullable)enumerateDevices:(AgoraMediaDeviceType)type;
+        [Export("enumerateDevices:")]
+        [return: NullAllowed]
+        AgoraRtcDeviceInfo[] EnumerateDevices(MediaDeviceType type);
 
-        // -(BOOL)setCameraExposurePosition:(CGPoint)positionInView;
-        [Export("setCameraExposurePosition:")]
-        bool SetCameraExposurePosition(CGPoint positionInView);
+        // -(AgoraRtcDeviceInfo * _Nullable)getDeviceInfo:(AgoraMediaDeviceType)type;
+        [Export("getDeviceInfo:")]
+        [return: NullAllowed]
+        AgoraRtcDeviceInfo GetDeviceInfo(MediaDeviceType type);
 
-        // -(BOOL)setCameraTorchOn:(BOOL)isOn;
-        [Export("setCameraTorchOn:")]
-        bool SetCameraTorchOn(bool isOn);
+        // -(int)setDevice:(AgoraMediaDeviceType)type deviceId:(NSString * _Nonnull)deviceId;
+        [Export("setDevice:deviceId:")]
+        int SetDevice(MediaDeviceType type, string deviceId);
 
-        // -(BOOL)setCameraAutoFocusFaceModeEnabled:(BOOL)enable;
-        [Export("setCameraAutoFocusFaceModeEnabled:")]
-        bool SetCameraAutoFocusFaceModeEnabled(bool enable);
+        // -(int)getDeviceVolume:(AgoraMediaDeviceType)type;
+        [Export("getDeviceVolume:")]
+        int GetDeviceVolume(MediaDeviceType type);
+
+        // -(int)setDeviceVolume:(AgoraMediaDeviceType)type volume:(int)volume;
+        [Export("setDeviceVolume:volume:")]
+        int SetDeviceVolume(MediaDeviceType type, int volume);
+
+        // -(int)startRecordingDeviceTest:(int)indicationInterval;
+        [Export("startRecordingDeviceTest:")]
+        int StartRecordingDeviceTest(int indicationInterval);
+
+        // -(int)stopRecordingDeviceTest;
+        [Export("stopRecordingDeviceTest")]
+        int StopRecordingDeviceTest();
+
+        // -(int)startPlaybackDeviceTest:(NSString * _Nonnull)audioFileName;
+        [Export("startPlaybackDeviceTest:")]
+        int StartPlaybackDeviceTest(string audioFileName);
+
+        // -(int)stopPlaybackDeviceTest;
+        [Export("stopPlaybackDeviceTest")]
+        int StopPlaybackDeviceTest();
+
+        // -(int)startCaptureDeviceTest:(NSView * _Nonnull)view;
+        [Export("startCaptureDeviceTest:")]
+        int StartCaptureDeviceTest(NSView view);
+
+        // -(int)stopCaptureDeviceTest;
+        [Export("stopCaptureDeviceTest")]
+        int StopCaptureDeviceTest();
+
+        // -(int)startAudioDeviceLoopbackTest:(int)indicationInterval;
+        [Export("startAudioDeviceLoopbackTest:")]
+        int StartAudioDeviceLoopbackTest(int indicationInterval);
+
+        // -(int)stopAudioDeviceLoopbackTest;
+        [Export("stopAudioDeviceLoopbackTest")]
+        int StopAudioDeviceLoopbackTest();
 
         // -(BOOL)setMediaMetadataDataSource:(id<AgoraMediaMetadataDataSource> _Nullable)metadataDataSource withType:(AgoraMetadataType)type;
         [Export("setMediaMetadataDataSource:withType:")]
@@ -2358,9 +2518,8 @@ namespace Xamarin.Agora.Mac
         string GetErrorDescription(nint code);
 
         // -(NSString * _Nullable)uploadLogFile;
-        [NullAllowed, Export("uploadLogFile")]
-        //[Verify(MethodToProperty)]
-        string UploadLogFile { get; }
+        [Export("uploadLogFile")]
+        string UploadLogFile();
 
         // -(int)sendCustomReportMessage:(NSString * _Nonnull)id category:(NSString * _Nonnull)category event:(NSString * _Nonnull)event label:(NSString * _Nonnull)label value:(NSInteger)value;
         [Export("sendCustomReportMessage:category:event:label:value:")]
@@ -2408,6 +2567,14 @@ namespace Xamarin.Agora.Mac
         [Export("setLogFileSize:")]
         int SetLogFileSize(nuint fileSizeInKBytes);
 
+        [Wrap("WeakLogWriterDelegate")]
+        [NullAllowed]
+        AgoraLogWriterDelegate LogWriterDelegate { get; set; }
+
+        // @property (nonatomic, weak) id<AgoraLogWriterDelegate> _Nullable logWriterDelegate;
+        [NullAllowed, Export("logWriterDelegate", ArgumentSemantic.Weak)]
+        NSObject WeakLogWriterDelegate { get; set; }
+
         // -(int)createDataStream:(NSInteger * _Nonnull)streamId reliable:(BOOL)reliable ordered:(BOOL)ordered;
         [Export("createDataStream:reliable:ordered:")]
         unsafe int CreateDataStream(ref nint streamId, bool reliable, bool ordered);
@@ -2453,7 +2620,11 @@ namespace Xamarin.Agora.Mac
         [Export("startAudioRecording:quality:")]
         int StartAudioRecording(string filePath, AudioRecordingQuality quality);
 
-        // -(int)startEchoTest:(void (^ _Nullable)(NSString * _Nonnull, NSUInteger, NSInteger))successBlock;
+        // -(int)startAudioRecording:(NSString * _Nonnull)filePath sampleRate:(NSInteger)sampleRate quality:(AgoraAudioRecordingQuality)quality __attribute__((deprecated("use startAudioRecordingWithConfig:config instead.")));
+        [Export("startAudioRecording:sampleRate:quality:")]
+        int StartAudioRecording(string filePath, nint sampleRate, AudioRecordingQuality quality);
+
+        // -(int)startEchoTest:(void (^ _Nullable)(NSString * _Nonnull, NSUInteger, NSInteger))successBlock __attribute__((deprecated("use startEchoTestWithInterval instead.")));
         [Export("startEchoTest:")]
         int StartEchoTest([NullAllowed] Action<NSString, nuint, nint> successBlock);
 
@@ -2483,7 +2654,15 @@ namespace Xamarin.Agora.Mac
         [Obsolete("use setAudioProfile:scenario: instead.")]
         int SetHighQualityAudioParametersWithFullband(bool fullband, bool stereo, bool fullBitrate);
 
-        // -(int)setVideoProfile:(AgoraVideoProfile)profile swapWidthAndHeight:(BOOL)swapWidthAndHeight;
+        // -(int)setSpeakerphoneVolume:(NSUInteger)volume __attribute__((deprecated("use setDeviceVolume:volume: instead.")));
+        [Export("setSpeakerphoneVolume:")]
+        int SetSpeakerphoneVolume(nuint volume);
+
+        // -(int)startScreenCapture:(NSUInteger)windowId withCaptureFreq:(NSInteger)captureFreq bitRate:(NSInteger)bitRate andRect:(CGRect)rect __attribute__((deprecated("use startScreenCaptureByDisplayId or startScreenCaptureByWindowId: instead.")));
+        [Export("startScreenCapture:withCaptureFreq:bitRate:andRect:")]
+        int StartScreenCapture(nuint windowId, nint captureFreq, nint bitRate, CGRect rect);
+
+        // -(int)setVideoProfile:(AgoraVideoProfile)profile swapWidthAndHeight:(BOOL)swapWidthAndHeight __attribute__((deprecated("use setVideoEncoderConfiguration: instead.")));
         [Export("setVideoProfile:swapWidthAndHeight:")]
         int SetVideoProfile(VideoProfile profile, bool swapWidthAndHeight);
 
@@ -2491,9 +2670,13 @@ namespace Xamarin.Agora.Mac
         [Export("setVideoResolution:andFrameRate:bitrate:")]
         int SetVideoResolution(CGSize size, nint frameRate, nint bitrate);
 
-        // -(int)playEffect:(int)soundId filePath:(NSString * _Nullable)filePath loopCount:(int)loopCount pitch:(double)pitch pan:(double)pan gain:(double)gain __attribute__((deprecated("")));
+        // -(NSString * _Nullable)getDeviceId:(AgoraMediaDeviceType)type __attribute__((deprecated("use getDeviceInfo: instead.")));
+        [Export("getDeviceId:")]
+        [return: NullAllowed]
+        string GetDeviceId(MediaDeviceType type);
+
+        // -(int)playEffect:(int)soundId filePath:(NSString * _Nullable)filePath loopCount:(int)loopCount pitch:(double)pitch pan:(double)pan gain:(double)gain __attribute__((deprecated("use playEffect:filePath:loopCount:pitch:pan:gain:publish:startPos instead.")));
         [Export("playEffect:filePath:loopCount:pitch:pan:gain:")]
-        [Obsolete("use playEffect:filePath:loopCount:pitch:pan:gain:publish: instead.")]
         int PlayEffect(int soundId, [NullAllowed] string filePath, int loopCount, double pitch, double pan, double gain);
 
         // +(NSString * _Nonnull)getMediaEngineVersion;
@@ -2535,7 +2718,19 @@ namespace Xamarin.Agora.Mac
         [Export("userMuteVideoBlock:")]
         void UserMuteVideoBlock([NullAllowed] Action<nuint, bool> userMuteVideoBlock);
 
-        // -(void)cameraReadyBlock:(void (^ _Nullable)(void))cameraReadyBlock __attribute__((deprecated("")));
+        // -(void)localVideoStatBlock:(void (^ _Nullable)(NSInteger, NSInteger))localVideoStatBlock __attribute__((deprecated("use delegate instead.")));
+        [Export("localVideoStatBlock:")]
+        void LocalVideoStatBlock([NullAllowed] Action<nint, nint> localVideoStatBlock);
+
+        // -(void)remoteVideoStatBlock:(void (^ _Nullable)(NSUInteger, NSInteger, NSInteger, NSInteger, NSInteger))remoteVideoStatBlock __attribute__((deprecated("use delegate instead.")));
+        [Export("remoteVideoStatBlock:")]
+        void RemoteVideoStatBlock([NullAllowed] Action<nuint, nint, nint, nint, nint> remoteVideoStatBlock);
+
+        // -(void)remoteAudioStatBlock:(void (^ _Nullable)(NSUInteger, NSInteger, NSInteger, NSInteger, NSInteger, NSInteger, NSInteger, NSInteger, NSInteger, NSInteger, NSInteger, NSInteger, NSInteger, NSInteger, NSInteger))remoteAudioStatBlock __attribute__((deprecated("use delegate instead.")));
+        [Export("remoteAudioStatBlock:")]
+        void RemoteAudioStatBlock([NullAllowed] Action<nuint, nint, nint, nint, nint, nint, nint, nint, nint, nint, nint, nint, nint, nint, nint> remoteAudioStatBlock);
+
+        // -(void)cameraReadyBlock:(void (^ _Nullable)(void))cameraReadyBlock __attribute__((deprecated("use delegate instead.")));
         [Export("cameraReadyBlock:")]
         void CameraReadyBlock([NullAllowed] Action cameraReadyBlock);
 
@@ -2735,10 +2930,6 @@ namespace Xamarin.Agora.Mac
         // -(int)stopChannelMediaRelay;
         [Export("stopChannelMediaRelay")]
         int StopChannelMediaRelay();
-
-        // -(int)enableRemoteSuperResolution:(NSUInteger)uid enabled:(BOOL)enabled;
-        [Export("enableRemoteSuperResolution:enabled:")]
-        int EnableRemoteSuperResolution(nuint uid, bool enabled);
 
         // -(void)setRemoteVideoRenderer:(id<AgoraVideoSinkProtocol> _Nullable)videoRenderer forUserId:(NSUInteger)userId;
         [Export("setRemoteVideoRenderer:forUserId:")]

@@ -90,6 +90,7 @@ namespace Xamarin.Agora.Mac
         PublishStreamNotFound = 155,
         PublishStreamFormatNotSuppported = 156,
         ModuleNotFound = 157,
+        AlreadyInRecording = 160,
         LoadMediaEngine = 1001,
         StartCall = 1002,
         StartCamera = 1003,
@@ -137,6 +138,21 @@ namespace Xamarin.Agora.Mac
         TooFrequentCall = 702,
         InterruptedEOF = 703,
         Ok = 0
+    }
+
+    [Native]
+    public enum AudioMixingReasonCode : long
+    {
+        CanNotOpen = 701,
+        TooFrequentCall = 702,
+        InterruptedEOF = 703,
+        StartedByUser = 720,
+        OneLoopCompleted = 721,
+        StartNewLoop = 722,
+        AllLoopsCompleted = 723,
+        StoppedByUser = 724,
+        PausedByUser = 725,
+        ResumedByUser = 726
     }
 
     [Native]
@@ -224,13 +240,6 @@ namespace Xamarin.Agora.Mac
         Preview = 2,
         Manual = 3,
         Unkown = 4
-    }
-
-    [Native]
-    public enum CameraDirection : long
-    {
-        Rear = 0,
-        Front = 1
     }
 
     [Native]
@@ -379,6 +388,14 @@ namespace Xamarin.Agora.Mac
         Low = 0,
         Medium = 1,
         High = 2
+    }
+
+    [Native]
+    public enum AudioRecordingPosition : long
+    {
+        MixedRecordingAndPlayback = 0,
+        Recording = 1,
+        MixedPlayback = 2
     }
 
     [Native]
@@ -940,6 +957,7 @@ namespace Xamarin.Agora.Mac
         EncodeFailure = 5,
         CaptureInBackGround = 6,
         CaptureMultipleForegroundApps = 7,
+        CaptureNoDeviceFound = 8,
         ScreenCaptureWindowMinimized = 11,
         ScreenCaptureWindowClosed = 12
     }

@@ -90,6 +90,8 @@
     <EmbeddedNativeLibrary Include="Jars\armeabi-v7a\libagora_dav1d_extension.so" />
     <EmbeddedNativeLibrary Include="Jars\x86\libagora_dav1d_extension.so" />
     <EmbeddedNativeLibrary Include="Jars\x86_64\libagora_dav1d_extension.so" />
+    <EmbeddedNativeLibrary Include="Jars\arm64-v8a\libagora_jnd_extension.so" />
+    <EmbeddedNativeLibrary Include="Jars\armeabi-v7a\libagora_jnd_extension.so" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedJar Include="Jars\agora-rtc-sdk.jar" />
