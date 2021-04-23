@@ -3,7 +3,7 @@
   <metadata>
     <id>Xamarin.Agora.Voice.Android</id>
     <title>Xamarin bindings to the native Android Agora Voice SDK</title>
-    <version>3.4.0</version>
+    <version>3.4.1</version>
     <authors>dreamteammobile</authors>
     <owners>dreamteammobile</owners>
     <license type="expression">MIT</license>
@@ -16,7 +16,7 @@
     <releaseNotes>
 you can found full release notes here https://docs.agora.io/en/Voice/release_android_audio?platform=Android
 
-update native sdk to v3.4.0 was released on April 16, 2021.
+update native sdk to v3.4.1 was released on April 22, 2021
 
 nuget sources repository:
 https://github.com/AgoraIO-Community/Agora-RTC-SDK-for-Xamarin/wiki

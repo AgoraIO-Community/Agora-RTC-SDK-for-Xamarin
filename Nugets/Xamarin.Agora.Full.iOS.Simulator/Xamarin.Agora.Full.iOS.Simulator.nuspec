@@ -3,7 +3,7 @@
   <metadata>
     <id>Xamarin.Agora.Full.iOS.Simulator</id>
     <title>Xamarin bindings to the native iOS Agora Video SDK for running on Simulator.</title>
-    <version>3.4.0</version>
+    <version>3.4.1</version>
     <authors>dreamteammobile</authors>
     <owners>dreamteammobile</owners>
     <license type="expression">MIT</license>
@@ -16,7 +16,7 @@
     <releaseNotes>
       you can found full release notes here https://docs.agora.io/en/Video/release_ios_video?platform=iOS
 
-      update native sdk to v3.4.0 was released on April 16, 2021.
+      update native sdk to v3.4.1 was released on April 22, 2021
 
       Caution! this package is for running on a simulators only. If you want to run on device - install
       Xamarin.Agora.Full.iOS

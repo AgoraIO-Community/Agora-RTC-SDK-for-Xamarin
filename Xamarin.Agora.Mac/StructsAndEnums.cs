@@ -604,6 +604,7 @@ namespace Xamarin.Agora.Mac
         ShowRoom = 4,
         ChatRoomGaming = 5,
         Iot = 6,
+        Communication = 7,
         Meeting = 8
     }
 
