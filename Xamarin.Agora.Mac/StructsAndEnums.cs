@@ -964,7 +964,7 @@ namespace Xamarin.Agora.Mac
     }
 
     [Native]
-    public enum AgoraIpAreaCode : ulong
+    public enum AgoraAreaCode : ulong
     {
         Cn = 1,
         Na = 2,

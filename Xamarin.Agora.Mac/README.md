@@ -15,21 +15,11 @@ download latest [Sharpie](https://download.xamarin.com/objective-sharpie/Objecti
 ## Update [ApiDefinitions & StructsAndEnums files](https://docs.microsoft.com/en-us/xamarin/cross-platform/macios/binding/objective-sharpie/platform/apidefinitions-structsandenums)
 
 ### Generate binding files for AgoraRtcKit.framework
-sharpie failed to map types correctly for macosx SDK, so as a workaround we do in 2 steps
 
-1) bind for iphoneos SDK
-```
-sharpie bind -output Binding -sdk iphoneos -scope Headers Headers/AgoraRtcChannel.h -c
-```
-
-that will give you 2 files with all types, just keep in mind that base classes should be from macos, for example UIView -> NSView
-
-2) bind for macosx SDK
+bind for macosx SDK
 ```
 sharpie bind -output Binding -sdk macosx -scope Headers Headers/AgoraRtcChannel.h -c
 ```
-
-and verify class members, because in that mode 2 files will contain only property and functions belongs to macos and supported on macos, but will have types-trash, ignore thash and only correct members of protocols(classes and interfaces)
 
 output looks like that:
 ```
@@ -47,7 +37,7 @@ Submitting usage data to Xamarin...
 
 Done.
 ```
-now you have 2 files in folder "binding" which content we will use in 3.2
+now you have 2 files in folder "binding" which content we will use to build c# lib
 
 ### Update ApiDefinition.cs and StructsAndEnums.cs
 

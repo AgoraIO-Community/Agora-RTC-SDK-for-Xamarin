@@ -10,4 +10,4 @@ using Android.App;
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: AssemblyCopyright("")]
-[assembly: AssemblyVersion("3.4.1")]
+[assembly: AssemblyVersion("3.4.2")]
