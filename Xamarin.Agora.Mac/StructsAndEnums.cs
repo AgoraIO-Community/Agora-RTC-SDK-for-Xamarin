@@ -312,6 +312,8 @@ namespace Xamarin.Agora.Mac
         Sm4128ecb = 4,
         Aes128gcm = 5,
         Aes256gcm = 6,
+        Aes128gcm2 = 7,
+        Aes256gcm2 = 8,
         End
     }
 
@@ -346,13 +348,15 @@ namespace Xamarin.Agora.Mac
         ReachLimit = 7,
         NotAuthorized = 8,
         StreamNotFound = 9,
-        FormatNotSupported = 10
+        FormatNotSupported = 10,
+        UnpublishOK = 100
     }
 
     [Native]
     public enum RtmpStreamingEvent : ulong
     {
-        AgoraRtmpStreamingEventFailedLoadImage = 1
+        FailedLoadImage = 1,
+        UrlAlreadyInUse = 2
     }
 
     [Native]
@@ -564,6 +568,15 @@ namespace Xamarin.Agora.Mac
         Success = 0,
         StreamOverLimitation = 1,
         UserCountOverLimitation = 2,
+        DeviceNotSupported = 3
+    }
+
+    [Native]
+    public enum VirtualBackgroundSourceStateReason : ulong
+    {
+        Success = 0,
+        ImageNotExist = 1,
+        ColorFormatNotSupported = 2,
         DeviceNotSupported = 3
     }
 
@@ -931,6 +944,13 @@ namespace Xamarin.Agora.Mac
     }
 
     [Native]
+    public enum VirtualBackgroundSourceType : ulong
+    {
+        Color = 1,
+        Img = 2
+    }
+
+    [Native]
     public enum LastmileProbeResultState : ulong
     {
         Complete = 1,
@@ -994,20 +1014,54 @@ namespace Xamarin.Agora.Mac
     }
 
     [Native]
+    public enum VideoRotation : long
+    {
+        None = 0,
+        AgoraVideoRotation90 = 1,
+        AgoraVideoRotation180 = 2,
+        AgoraVideoRotation270 = 3
+    }
+
+    [Native]
+    public enum VideoFrameType : ulong
+    {
+        Yuv420 = 0,
+        Yuv422 = 1,
+        Rgba = 2
+    }
+
+    [Native]
+    public enum VideoEncodeType : ulong
+    {
+        BlankFrame = 0,
+        KeyFrame = 3,
+        DetaFrame = 4,
+        BFrame = 5
+    }
+
+    [Native]
+    public enum VideoFramePosition : ulong
+    {
+        ostCapture = 1uL << 0,
+        reRenderer = 1uL << 1,
+        reEncoder = 1uL << 2
+    }
+
+    [Native]
+    public enum AudioFramePosition : ulong
+    {
+        Playback = 1uL << 0,
+        Record = 1uL << 1,
+        Mixed = 1uL << 2,
+        BeforeMixing = 1uL << 3
+    }
+
+    [Native]
     public enum VideoPixelFormat : ulong
     {
         I420 = 1,
         Bgra = 2,
         Nv12 = 8
-    }
-
-    [Native]
-    public enum VideoRotation : long
-    {
-        None = 0,
-        VideoRotation90 = 1,
-        VideoRotation180 = 2,
-        VideoRotation270 = 3
     }
 
     [Native]
