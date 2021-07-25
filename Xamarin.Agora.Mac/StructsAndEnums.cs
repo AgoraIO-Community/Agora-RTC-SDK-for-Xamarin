@@ -979,6 +979,7 @@ namespace Xamarin.Agora.Mac
         CaptureInBackGround = 6,
         CaptureMultipleForegroundApps = 7,
         CaptureNoDeviceFound = 8,
+        CaptureDeviceDisconnected = 9,
         ScreenCaptureWindowMinimized = 11,
         ScreenCaptureWindowClosed = 12
     }

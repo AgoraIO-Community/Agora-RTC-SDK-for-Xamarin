@@ -48,26 +48,25 @@
   <ItemGroup>
     <NativeReference Include="libs\AgoraRtcKit.framework">
       <Kind>Framework</Kind>
+      <ForceLoad>True</ForceLoad>
+      <IsCxx>True</IsCxx>
+      <Frameworks>CoreMotion SystemConfiguration CoreTelephony CoreMedia AudioToolbox AVFoundation Accelerate CoreML</Frameworks>
+      <LinkerFlags>-lresolv -lc++</LinkerFlags>
     </NativeReference>
     <NativeReference Include="libs\AgoraAIDenoiseExtension.framework">
       <Kind>Framework</Kind>
-      <SmartLink>False</SmartLink>
     </NativeReference>
     <NativeReference Include="libs\Agorafdkaac.framework">
       <Kind>Framework</Kind>
-      <SmartLink>False</SmartLink>
     </NativeReference>
     <NativeReference Include="libs\AgoraSoundTouch.framework">
       <Kind>Framework</Kind>
-      <SmartLink>False</SmartLink>
     </NativeReference>
     <NativeReference Include="libs\AgoraCore.framework">
       <Kind>Framework</Kind>
-      <SmartLink>False</SmartLink>
     </NativeReference>
     <NativeReference Include="libs\AgoraRtcCryptoLoader.framework">
       <Kind>Framework</Kind>
-      <SmartLink>False</SmartLink>
     </NativeReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.ObjCBinding.CSharp.targets" />

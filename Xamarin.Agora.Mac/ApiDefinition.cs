@@ -1543,6 +1543,16 @@ namespace Xamarin.Agora.Mac
         [Export("onPlaybackAudioFrameBeforeMixing:uid:")]
         bool OnPlaybackAudioFrameBeforeMixing(AgoraAudioFrame frame, nuint uid);
 
+        // @required -(BOOL)isMultipleChannelFrameWanted;
+        [Abstract]
+        [Export("isMultipleChannelFrameWanted")]
+        bool IsMultipleChannelFrameWanted { get; }
+
+        // @required -(BOOL)onPlaybackAudioFrameBeforeMixingEx:(AgoraAudioFrame * _Nonnull)frame channelId:(NSString * _Nonnull)channelId uid:(NSUInteger)uid;
+        [Abstract]
+        [Export("onPlaybackAudioFrameBeforeMixingEx:channelId:uid:")]
+        bool OnPlaybackAudioFrameBeforeMixingEx(AgoraAudioFrame frame, string channelId, nuint uid);
+
         // @required -(AgoraAudioFramePosition)getObservedAudioFramePosition;
         [Abstract]
         [Export("getObservedAudioFramePosition")]

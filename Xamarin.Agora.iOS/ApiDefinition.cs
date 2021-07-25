@@ -1378,7 +1378,7 @@ namespace DT.Xamarin.Agora
 
     // @interface AgoraRtcDefaultCamera : NSObject <AgoraVideoSourceProtocol>
     [BaseType(typeof(NSObject))]
-    interface AgoraRtcDefaultCamera : AgoraVideoSourceProtocol
+    interface AgoraRtcDefaultCamera : IAgoraVideoSourceProtocol
     {
         // @property (assign, nonatomic) AgoraRtcDefaultCameraPosition position;
         [Export("position", ArgumentSemantic.Assign)]
@@ -1484,6 +1484,16 @@ namespace DT.Xamarin.Agora
         [Abstract]
         [Export("onPlaybackAudioFrameBeforeMixing:uid:")]
         bool OnPlaybackAudioFrameBeforeMixing(AgoraAudioFrame frame, nuint uid);
+
+        // @required -(BOOL)isMultipleChannelFrameWanted;
+        [Abstract]
+        [Export("isMultipleChannelFrameWanted")]
+        bool IsMultipleChannelFrameWanted { get; }
+
+        // @required -(BOOL)onPlaybackAudioFrameBeforeMixingEx:(AgoraAudioFrame * _Nonnull)frame channelId:(NSString * _Nonnull)channelId uid:(NSUInteger)uid;
+        [Abstract]
+        [Export("onPlaybackAudioFrameBeforeMixingEx:channelId:uid:")]
+        bool OnPlaybackAudioFrameBeforeMixingEx(AgoraAudioFrame frame, string channelId, nuint uid);
 
         // @required -(AgoraAudioFramePosition)getObservedAudioFramePosition;
         [Abstract]
@@ -1708,6 +1718,11 @@ namespace DT.Xamarin.Agora
         [EventArgs("SuperResolutionEnabledOfUid")]
         void SuperResolutionEnabledOfUid(AgoraRtcEngineKit engine, nuint uid, bool enabled, SuperResolutionStateReason reason);
 
+        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine virtualBackgroundSourceEnabled:(BOOL)enabled reason:(AgoraVirtualBackgroundSourceStateReason)reason;
+        [Export("rtcEngine:virtualBackgroundSourceEnabled:reason:")]
+        [EventArgs("VirtualBackgroundSourceEnabled")]
+        void VirtualBackgroundSourceEnabled(AgoraRtcEngineKit engine, bool enabled, VirtualBackgroundSourceStateReason reason);
+
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine localVideoStateChange:(AgoraLocalVideoStreamState)state error:(AgoraLocalVideoStreamError)error;
         [Export("rtcEngine:localVideoStateChange:error:")]
         [EventArgs("LocalVideoStateChange")]
@@ -1908,6 +1923,26 @@ namespace DT.Xamarin.Agora
         [EventArgs("DidReceiveChannelMediaRelayEvent")]
         void DidReceiveChannelMediaRelayEvent(AgoraRtcEngineKit engine, ChannelMediaRelayEvent e);
 
+        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didVideoEnabled:(BOOL)enabled byUid:(NSUInteger)uid;
+        [Export("rtcEngine:didVideoEnabled:byUid:")]
+        [EventArgs("DidVideoEnabled")]
+        void DidVideoEnabled(AgoraRtcEngineKit engine, bool enabled, nuint uid);
+
+        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didLocalVideoEnabled:(BOOL)enabled byUid:(NSUInteger)uid;
+        [Export("rtcEngine:didLocalVideoEnabled:byUid:")]
+        [EventArgs("DidLocalVideoEnabled")]
+        void DidLocalVideoEnabled(AgoraRtcEngineKit engine, bool enabled, nuint uid);
+
+        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine firstRemoteVideoDecodedOfUid:(NSUInteger)uid size:(CGSize)size elapsed:(NSInteger)elapsed;
+        [Export("rtcEngine:firstRemoteVideoDecodedOfUid:size:elapsed:")]
+        [EventArgs("FirstRemoteVideoDecodedOfUid")]
+        void FirstRemoteVideoDecodedOfUid(AgoraRtcEngineKit engine, nuint uid, CGSize size, nint elapsed);
+
+        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didAudioMuted:(BOOL)muted byUid:(NSUInteger)uid;
+        [Export("rtcEngine:didAudioMuted:byUid:")]
+        [EventArgs("DidAudioMuted")]
+        void DidAudioMuted(AgoraRtcEngineKit engine, bool muted, nuint uid);
+
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine firstLocalAudioFrame:(NSInteger)elapsed;
         [Export("rtcEngine:firstLocalAudioFrame:")]
         [EventArgs("FirstLocalAudioFrame")]
@@ -1922,11 +1957,6 @@ namespace DT.Xamarin.Agora
         [Export("rtcEngine:firstRemoteAudioFrameDecodedOfUid:elapsed:")]
         [EventArgs("FirstRemoteAudioFrameDecodedOfUid")]
         void FirstRemoteAudioFrameDecodedOfUid(AgoraRtcEngineKit engine, nuint uid, nint elapsed);
-
-        // @optional -(void)rtcEngine:(AgoraRtcEngineKit *)engine didAudioMuted:(BOOL)muted byUid:(NSUInteger)uid;
-        [Export("rtcEngine:didAudioMuted:byUid:")]
-        [EventArgs("DidAudioMuted")]
-        void DidAudioMuted(AgoraRtcEngineKit engine, bool muted, nuint uid);
 
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine streamPublishedWithUrl:(NSString * _Nonnull)url errorCode:(ErrorCode)errorCode;
         [Export("rtcEngine:streamPublishedWithUrl:errorCode:")]
@@ -1947,21 +1977,6 @@ namespace DT.Xamarin.Agora
         [Export("rtcEngine:videoTransportStatsOfUid:delay:lost:rxKBitRate:")]
         [EventArgs("VideoTransportStatsOfUid")]
         void VideoTransportStatsOfUid(AgoraRtcEngineKit engine, nuint uid, nuint delay, nuint lost, nuint rxKBitRate);
-
-        // @optional -(void)rtcEngine:(AgoraRtcEngineKit *)engine didVideoEnabled:(BOOL)enabled byUid:(NSUInteger)uid;
-        [Export("rtcEngine:didVideoEnabled:byUid:")]
-        [EventArgs("DidVideoEnabled")]
-        void DidVideoEnabled(AgoraRtcEngineKit engine, bool enabled, nuint uid);
-
-        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didLocalVideoEnabled:(BOOL)enabled byUid:(NSUInteger)uid;
-        [Export("rtcEngine:didLocalVideoEnabled:byUid:")]
-        [EventArgs("DidLocalVideoEnabled")]
-        void DidLocalVideoEnabled(AgoraRtcEngineKit engine, bool enabled, nuint uid);
-
-        // @optional -(void)rtcEngine:(AgoraRtcEngineKit *)engine firstRemoteVideoDecodedOfUid:(NSUInteger)uid size:(CGSize)size elapsed:(NSInteger)elapsed;
-        [Export("rtcEngine:firstRemoteVideoDecodedOfUid:size:elapsed:")]
-        [EventArgs("FirstRemoteVideoDecodedOfUid")]
-        void FirstRemoteVideoDecodedOfUid(AgoraRtcEngineKit engine, nuint uid, CGSize size, nint elapsed);
 
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didMicrophoneEnabled:(BOOL)enabled;
         [Export("rtcEngine:didMicrophoneEnabled:")]
@@ -2201,6 +2216,10 @@ namespace DT.Xamarin.Agora
         // -(int)setBeautyEffectOptions:(BOOL)enable options:(AgoraBeautyOptions * _Nullable)options;
         [Export("setBeautyEffectOptions:options:")]
         int SetBeautyEffectOptions(bool enable, [NullAllowed] AgoraBeautyOptions options);
+
+        // -(int)enableVirtualBackground:(BOOL)enable backData:(AgoraVirtualBackgroundSource * _Nullable)backData;
+        [Export("enableVirtualBackground:backData:")]
+        int EnableVirtualBackground(bool enable, [NullAllowed] AgoraVirtualBackgroundSource backData);
 
         // -(int)enableRemoteSuperResolution:(NSUInteger)uid enabled:(BOOL)enabled;
         [Export("enableRemoteSuperResolution:enabled:")]
@@ -2700,6 +2719,10 @@ namespace DT.Xamarin.Agora
         [Export("playEffect:filePath:loopCount:pitch:pan:gain:publish:")]
         int PlayEffect(int soundId, [NullAllowed] string filePath, int loopCount, double pitch, double pan, double gain, bool publish);
 
+        // -(int)startAudioRecording:(NSString * _Nonnull)filePath sampleRate:(NSInteger)sampleRate quality:(AgoraAudioRecordingQuality)quality __attribute__((deprecated("use startAudioRecordingWithConfig:config instead.")));
+        [Export("startAudioRecording:sampleRate:quality:")]
+        int StartAudioRecording(string filePath, nint sampleRate, AudioRecordingQuality quality);
+
         // -(int)getAudioMixingDuration __attribute__((deprecated("use getAudioMixingDuration:(NSString* _Nullable)filePath instead")));
         [Export("getAudioMixingDuration")]
         int AudioMixingDuration { get; }
@@ -2777,8 +2800,8 @@ namespace DT.Xamarin.Agora
         int AddVideoWatermark(AgoraImage watermark);
 
         // -(int)startAudioRecording:(NSString * _Nonnull)filePath sampleRate:(NSInteger)sampleRate quality:(AgoraAudioRecordingQuality)quality __attribute__((deprecated("use startAudioRecordingWithConfig:config instead.")));
-        [Export("startAudioRecording:sampleRate:quality:")]
-        int StartAudioRecording(string filePath, nint sampleRate, AudioRecordingQuality quality);
+        [Export("startAudioRecording:quality:")]
+        int StartAudioRecording(string filePath, AudioRecordingQuality quality);
 
         // -(int)startEchoTest:(void (^ _Nullable)(NSString * _Nonnull, NSUInteger, NSInteger))successBlock __attribute__((deprecated("use startEchoTestWithInterval instead.")));
         [Export("startEchoTest:")]
@@ -2788,11 +2811,11 @@ namespace DT.Xamarin.Agora
         [Export("setVideoQualityParameters:")]
         int SetVideoQualityParameters(bool preferFrameRateOverImageQuality);
 
-        // +(instancetype)sharedEngineWithAppId:(NSString *)AppId error:(void (^)(AgoraRtcErrorCode))errorBlock __attribute__((deprecated("")));
+        // +(instancetype _Nonnull)sharedEngineWithAppId:(NSString * _Nonnull)AppId error:(void (^ _Nullable)(AgoraErrorCode))errorBlock __attribute__((deprecated("use sharedEngineWithAppId:delegate: instead.")));
         [Static]
-        [Export ("sharedEngineWithAppId:error:")]
-        [Obsolete("use sharedEngineWithAppId:delegate: instead.")]
+        [Export("sharedEngineWithAppId:error:")]
         AgoraRtcEngineKit SharedEngineWithAppId(string AppId, [NullAllowed] Action<ErrorCode> errorBlock);
+
 
         // -(int)pauseAudio;
         [Export("pauseAudio")]
@@ -3092,7 +3115,7 @@ namespace DT.Xamarin.Agora
 
         // -(int)stopChannelMediaRelay;
         [Export("stopChannelMediaRelay")]
-        int StopChannelMediaRelay { get; }
+        int StopChannelMediaRelay();
 
         // -(int)enableRemoteSuperResolution:(NSUInteger)uid enabled:(BOOL)enabled;
         [Export("enableRemoteSuperResolution:enabled:")]
