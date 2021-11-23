@@ -832,6 +832,13 @@ namespace Xamarin.Agora.Mac
     }
 
     [Native]
+    public enum AudioFileInfoError : ulong
+    {
+        Ok = 0,
+        Failure = 1
+    }
+
+    [Native]
     public enum MediaDeviceType : long
     {
         AudioUnknown = -1,
@@ -895,7 +902,11 @@ namespace Xamarin.Agora.Mac
         UpdateDestinationChannelRefused = 8,
         UpdateDestinationChannelNotChange = 9,
         UpdateDestinationChannelIsNil = 10,
-        VideoProfileUpdate = 11
+        VideoProfileUpdate = 11,
+        PauseSendPacketToDestChannelSuccess = 12,
+        PauseSendPacketToDestChannelFailed = 13,
+        ResumeSendPacketToDestChannelSuccess = 14,
+        ResumeSendPacketToDestChannelFailed = 15
     }
 
     [Native]
@@ -924,7 +935,8 @@ namespace Xamarin.Agora.Mac
         Wifi = 2,
         Mobile2G = 3,
         Mobile3G = 4,
-        Mobile4G = 5
+        Mobile4G = 5,
+        Mobile5G = 6
     }
 
     [Native]
@@ -947,7 +959,16 @@ namespace Xamarin.Agora.Mac
     public enum VirtualBackgroundSourceType : ulong
     {
         Color = 1,
-        Img = 2
+        Img = 2,
+        Blur = 3
+    }
+
+    [Native]
+    public enum BlurDegree : ulong
+    {
+        Low = 1,
+        Medium = 2,
+        High = 3
     }
 
     [Native]
@@ -1015,6 +1036,15 @@ namespace Xamarin.Agora.Mac
     }
 
     [Native]
+    public enum AudioMixingDualMonoMode : ulong
+    {
+        Auto,
+        L,
+        R,
+        Mix
+    }
+
+    [Native]
     public enum VideoRotation : long
     {
         None = 0,
@@ -1055,6 +1085,14 @@ namespace Xamarin.Agora.Mac
         Record = 1uL << 1,
         Mixed = 1uL << 2,
         BeforeMixing = 1uL << 3
+    }
+
+    [Native]
+    public enum AudioExternalSourcePos : ulong
+    {
+        PlayoutSource = 0,
+        RecordSourcePreProcess = 1,
+        RecordSourcePostProcess = 2
     }
 
     [Native]
