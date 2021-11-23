@@ -87,7 +87,6 @@
     </NativeReference>
     <NativeReference Include="libs\AgoraJNDExtension.framework">
       <Kind>Framework</Kind>
-      <SmartLink>False</SmartLink>
     </NativeReference>
     <NativeReference Include="libs\AgoraVideoSegmentationExtension.framework">
       <Kind>Framework</Kind>
