@@ -3,7 +3,7 @@
   <metadata>
     <id>Xamarin.Agora.Full.Mac</id>
     <title>Xamarin bindings to the native Mac Agora Video SDK.</title>
-    <version>3.5.1-beta1</version>
+    <version>3.5.1</version>
     <authors>dreamteammobile</authors>
     <owners>dreamteammobile</owners>
     <license type="expression">MIT</license>
