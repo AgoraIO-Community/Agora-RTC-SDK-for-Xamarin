@@ -70,9 +70,6 @@
     <NativeReference Include="libs\AgoraRtcCryptoLoader.framework">
       <Kind>Framework</Kind>
     </NativeReference>
-    <NativeReference Include="libs\AgoraRtcKit.framework">
-      <Kind>Framework</Kind>
-    </NativeReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.ObjCBinding.CSharp.targets" />
 </Project>

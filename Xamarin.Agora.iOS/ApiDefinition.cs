@@ -466,6 +466,19 @@ namespace DT.Xamarin.Agora
         string ChannelId { get; set; }
     }
 
+    // @interface AgoraRtcAudioFileInfo : NSObject
+    [BaseType(typeof(NSObject))]
+    interface AgoraRtcAudioFileInfo
+    {
+        // @property (copy, nonatomic) NSString * _Nonnull filePath;
+        [Export("filePath")]
+        string FilePath { get; set; }
+
+        // @property (assign, nonatomic) NSUInteger durationMs;
+        [Export("durationMs")]
+        nuint DurationMs { get; set; }
+    }
+
     // @interface AgoraRtcRhythmPlayerConfig : NSObject
     [BaseType(typeof(NSObject))]
     interface AgoraRtcRhythmPlayerConfig
@@ -1025,6 +1038,10 @@ namespace DT.Xamarin.Agora
         // @property (copy, nonatomic) NSString * _Nullable source;
         [NullAllowed, Export("source")]
         string Source { get; set; }
+
+        // @property (assign, nonatomic) AgoraBlurDegree blur_degree;
+        [Export("blur_degree", ArgumentSemantic.Assign)]
+        AgoraBlurDegree BlurDegree { get; set; }
     }
 
     // @interface AgoraUserInfo : NSObject
@@ -1187,6 +1204,10 @@ namespace DT.Xamarin.Agora
         // @property (nonatomic, strong) NSData * _Nullable buffer;
         [NullAllowed, Export("buffer", ArgumentSemantic.Strong)]
         NSData Buffer { get; set; }
+
+        // @property (assign, nonatomic) NSUInteger length;
+        [Export("length")]
+        nuint Length { get; set; }
 
         // @property (assign, nonatomic) AgoraVideoEncodeType frameType;
         [Export("frameType", ArgumentSemantic.Assign)]
@@ -1763,10 +1784,30 @@ namespace DT.Xamarin.Agora
         [EventArgs("DidVideoSubscribeStateChange")]
         void DidVideoSubscribeStateChange(AgoraRtcEngineKit engine, string channel, nuint uid, StreamSubscribeState oldState, StreamSubscribeState newState, nint elapseSinceLastState);
 
+        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didAudioMuted:(BOOL)muted byUid:(NSUInteger)uid;
+        [Export("rtcEngine:didAudioMuted:byUid:")]
+        [EventArgs("DidAudioMuted")]
+        void DidAudioMuted(AgoraRtcEngineKit engine, bool muted, nuint uid);
+
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didVideoMuted:(BOOL)muted byUid:(NSUInteger)uid;
         [Export ("rtcEngine:didVideoMuted:byUid:")]
         [EventArgs("DidVideoMuted")]
         void DidVideoMuted (AgoraRtcEngineKit engine, bool muted, nuint uid);
+
+        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didVideoEnabled:(BOOL)enabled byUid:(NSUInteger)uid;
+        [Export("rtcEngine:didVideoEnabled:byUid:")]
+        [EventArgs("DidVideoEnabled")]
+        void DidVideoEnabled(AgoraRtcEngineKit engine, bool enabled, nuint uid);
+
+        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didLocalVideoEnabled:(BOOL)enabled byUid:(NSUInteger)uid;
+        [Export("rtcEngine:didLocalVideoEnabled:byUid:")]
+        [EventArgs("DidLocalVideoEnabled")]
+        void DidLocalVideoEnabled(AgoraRtcEngineKit engine, bool enabled, nuint uid);
+
+        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine firstRemoteVideoDecodedOfUid:(NSUInteger)uid size:(CGSize)size elapsed:(NSInteger)elapsed;
+        [Export("rtcEngine:firstRemoteVideoDecodedOfUid:size:elapsed:")]
+        [EventArgs("FirstRemoteVideoDecodedOfUid")]
+        void FirstRemoteVideoDecodedOfUid(AgoraRtcEngineKit engine, nuint uid, CGSize size, nint elapsed);
 
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didLocalPublishFallbackToAudioOnly:(BOOL)isFallbackOrRecover;
         [Export("rtcEngine:didLocalPublishFallbackToAudioOnly:")]
@@ -1888,15 +1929,20 @@ namespace DT.Xamarin.Agora
         [EventArgs("StreamInjectedStatusOfUrl")]
         void StreamInjectedStatusOfUrl(AgoraRtcEngineKit engine, string url, nuint uid, InjectStreamStatus status);
 
-        // @optional -(void)rtcEngine:(AgoraRtcEngineKit *)engine receiveStreamMessageFromUid:(NSUInteger)uid streamId:(NSInteger)streamId data:(NSData *)data;
+        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine receiveStreamMessageFromUid:(NSUInteger)uid streamId:(NSInteger)streamId data:(NSData * _Nonnull)data;
         [Export("rtcEngine:receiveStreamMessageFromUid:streamId:data:")]
         [EventArgs("ReceiveStreamMessageFromUid")]
         void ReceiveStreamMessageFromUid(AgoraRtcEngineKit engine, nuint uid, nint streamId, NSData data);
 
-        // @optional -(void)rtcEngine:(AgoraRtcEngineKit *)engine didOccurStreamMessageErrorFromUid:(NSUInteger)uid streamId:(NSInteger)streamId error:(NSInteger)error missed:(NSInteger)missed cached:(NSInteger)cached;
+        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didOccurStreamMessageErrorFromUid:(NSUInteger)uid streamId:(NSInteger)streamId error:(NSInteger)error missed:(NSInteger)missed cached:(NSInteger)cached;
         [Export("rtcEngine:didOccurStreamMessageErrorFromUid:streamId:error:missed:cached:")]
         [EventArgs("DidOccurStreamMessageErrorFromUid")]
         void DidOccurStreamMessageErrorFromUid(AgoraRtcEngineKit engine, nuint uid, nint streamId, nint error, nint missed, nint cached);
+
+        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didRequestAudioFileInfo:(AgoraRtcAudioFileInfo * _Nonnull)info error:(AgoraAudioFileInfoError)error;
+        [Export("rtcEngine:didRequestAudioFileInfo:error:")]
+        [EventArgs("DidRequestAudioFileInfo")]
+        void DidRequestAudioFileInfo(AgoraRtcEngineKit engine, AgoraRtcAudioFileInfo info, AudioFileInfoError error);
 
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine uploadLogResultRequestId:(NSString * _Nonnull)requestId success:(BOOL)success reason:(AgoraUploadErrorReason)reason;
         [Export ("rtcEngine:uploadLogResultRequestId:success:reason:")]
@@ -1922,26 +1968,6 @@ namespace DT.Xamarin.Agora
         [Export("rtcEngine:didReceiveChannelMediaRelayEvent:")]
         [EventArgs("DidReceiveChannelMediaRelayEvent")]
         void DidReceiveChannelMediaRelayEvent(AgoraRtcEngineKit engine, ChannelMediaRelayEvent e);
-
-        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didVideoEnabled:(BOOL)enabled byUid:(NSUInteger)uid;
-        [Export("rtcEngine:didVideoEnabled:byUid:")]
-        [EventArgs("DidVideoEnabled")]
-        void DidVideoEnabled(AgoraRtcEngineKit engine, bool enabled, nuint uid);
-
-        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didLocalVideoEnabled:(BOOL)enabled byUid:(NSUInteger)uid;
-        [Export("rtcEngine:didLocalVideoEnabled:byUid:")]
-        [EventArgs("DidLocalVideoEnabled")]
-        void DidLocalVideoEnabled(AgoraRtcEngineKit engine, bool enabled, nuint uid);
-
-        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine firstRemoteVideoDecodedOfUid:(NSUInteger)uid size:(CGSize)size elapsed:(NSInteger)elapsed;
-        [Export("rtcEngine:firstRemoteVideoDecodedOfUid:size:elapsed:")]
-        [EventArgs("FirstRemoteVideoDecodedOfUid")]
-        void FirstRemoteVideoDecodedOfUid(AgoraRtcEngineKit engine, nuint uid, CGSize size, nint elapsed);
-
-        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didAudioMuted:(BOOL)muted byUid:(NSUInteger)uid;
-        [Export("rtcEngine:didAudioMuted:byUid:")]
-        [EventArgs("DidAudioMuted")]
-        void DidAudioMuted(AgoraRtcEngineKit engine, bool muted, nuint uid);
 
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine firstLocalAudioFrame:(NSInteger)elapsed;
         [Export("rtcEngine:firstLocalAudioFrame:")]
@@ -2104,6 +2130,14 @@ namespace DT.Xamarin.Agora
         // -(int)updateChannelMediaRelay:(AgoraChannelMediaRelayConfiguration * _Nonnull)config;
         [Export("updateChannelMediaRelay:")]
         int UpdateChannelMediaRelay(AgoraChannelMediaRelayConfiguration config);
+
+        // -(int)pauseAllChannelMediaRelay;
+        [Export("pauseAllChannelMediaRelay")]
+        int PauseAllChannelMediaRelay();
+
+        // -(int)resumeAllChannelMediaRelay;
+        [Export("resumeAllChannelMediaRelay")]
+        int ResumeAllChannelMediaRelay();
 
         // -(int)stopChannelMediaRelay;
         [Export("stopChannelMediaRelay")]
@@ -2293,6 +2327,10 @@ namespace DT.Xamarin.Agora
         [Export("startAudioMixing:loopback:replace:cycle:startPos:")]
         int StartAudioMixing(string filePath, bool loopback, bool replace, nint cycle, nint startPos);
 
+        // -(int)setAudioMixingPlaybackSpeed:(int)speed;
+        [Export("setAudioMixingPlaybackSpeed:")]
+        int SetAudioMixingPlaybackSpeed(int speed);
+
         // -(int)stopAudioMixing;
         [Export("stopAudioMixing")]
         int StopAudioMixing();
@@ -2304,6 +2342,18 @@ namespace DT.Xamarin.Agora
         // -(int)resumeAudioMixing;
         [Export("resumeAudioMixing")]
         int ResumeAudioMixing();
+
+        // -(int)selectAudioTrack:(NSInteger)index;
+        [Export("selectAudioTrack:")]
+        int SelectAudioTrack(nint index);
+
+        // -(int)getAudioTrackCount;
+        [Export("getAudioTrackCount")]
+        int AudioTrackCount { get; }
+
+        // -(int)setAudioMixingDualMonoMode:(AgoraAudioMixingDualMonoMode)mode;
+        [Export("setAudioMixingDualMonoMode:")]
+        int SetAudioMixingDualMonoMode(AgoraAudioMixingDualMonoMode mode);
 
         // -(int)adjustAudioMixingVolume:(NSInteger)volume;
         [Export("adjustAudioMixingVolume:")]
@@ -2509,13 +2559,17 @@ namespace DT.Xamarin.Agora
         [Export("disableExternalAudioSource")]
         void DisableExternalAudioSource();
 
-        // -(BOOL)pushExternalAudioFrameRawData:(void * _Nonnull)data samples:(NSUInteger)samples timestamp:(NSTimeInterval)timestamp;
-        [Export("pushExternalAudioFrameRawData:samples:timestamp:")]
-        unsafe bool PushExternalAudioFrameRawData(IntPtr data, nuint samples, double timestamp);
+        // -(void)setExternalAudioSourceVolume:(AgoraAudioExternalSourcePos)sourcePos volume:(NSUInteger)volume;
+        [Export("setExternalAudioSourceVolume:volume:")]
+        void SetExternalAudioSourceVolume(AudioExternalSourcePos sourcePos, nuint volume);
 
-        // -(BOOL)pushExternalAudioFrameSampleBuffer:(CMSampleBufferRef _Nonnull)sampleBuffer;
-        [Export("pushExternalAudioFrameSampleBuffer:")]
-        unsafe bool PushExternalAudioFrameSampleBuffer(IntPtr sampleBuffer);
+        // -(int)pushExternalAudioFrameRawData:(AgoraAudioExternalSourcePos)sourcePos frame:(AgoraAudioFrame * _Nonnull)frame;
+        [Export("pushExternalAudioFrameRawData:frame:")]
+        int PushExternalAudioFrameRawData(AudioExternalSourcePos sourcePos, AgoraAudioFrame frame);
+
+        // -(int)pushExternalAudioFrameSampleBuffer:(AgoraAudioExternalSourcePos)sourcePos sampleBuffer:(CMSampleBufferRef _Nonnull)sampleBuffer;
+        [Export("pushExternalAudioFrameSampleBuffer:sampleBuffer:")]
+        int PushExternalAudioFrameSampleBuffer(AudioExternalSourcePos sourcePos, CMSampleBuffer sampleBuffer);
 
         // -(void)setExternalVideoSource:(BOOL)enable useTexture:(BOOL)useTexture pushMode:(BOOL)pushMode;
         [Export("setExternalVideoSource:useTexture:pushMode:")]
@@ -2661,6 +2715,10 @@ namespace DT.Xamarin.Agora
         [Export("setMediaMetadataDelegate:withType:")]
         bool SetMediaMetadataDelegate([NullAllowed] IAgoraMediaMetadataDelegate metadataDelegate, MetadataType type);
 
+        // -(int)getAudioFileInfo:(NSString * _Nullable)filePath;
+        [Export("getAudioFileInfo:")]
+        int GetAudioFileInfo([NullAllowed] string filePath);
+
         // -(NSString * _Nullable)getCallId;
         [NullAllowed, Export("getCallId")]
         string CallId { get; }
@@ -2715,6 +2773,18 @@ namespace DT.Xamarin.Agora
         [return: NullAllowed]
         string GetParameter(string parameter, [NullAllowed] string args);
 
+        // -(BOOL)pushExternalAudioFrameRawData:(void * _Nonnull)data samples:(NSUInteger)samples timestamp:(NSTimeInterval)timestamp __attribute__((deprecated("use pushExternalAudioFrameRawData:sourcePos:frame instead.")));
+        [Export("pushExternalAudioFrameRawData:samples:timestamp:")]
+        unsafe bool PushExternalAudioFrameRawData(IntPtr data, nuint samples, double timestamp);
+
+        // -(BOOL)pushExternalAudioFrameSampleBuffer:(CMSampleBufferRef _Nonnull)sampleBuffer __attribute__((deprecated("use pushExternalAudioFrameSampleBuffer:sourcePos:sampleBuffer instead.")));
+        [Export("pushExternalAudioFrameSampleBuffer:")]
+        bool PushExternalAudioFrameSampleBuffer(IntPtr sampleBuffer);
+
+        // -(int)getAudioMixingDuration __attribute__((deprecated("use getAudioMixingDuration:(NSString* _Nullable)filePath instead")));
+        [Export("getAudioMixingDuration")]
+        int AudioMixingDuration { get; }
+
         // -(int)playEffect:(int)soundId filePath:(NSString * _Nullable)filePath loopCount:(int)loopCount pitch:(double)pitch pan:(double)pan gain:(double)gain publish:(BOOL)publish __attribute__((deprecated("use playEffect:filePath:loopCount:pitch:pan:gain:publish:startPos instead.")));
         [Export("playEffect:filePath:loopCount:pitch:pan:gain:publish:")]
         int PlayEffect(int soundId, [NullAllowed] string filePath, int loopCount, double pitch, double pan, double gain, bool publish);
@@ -2722,10 +2792,6 @@ namespace DT.Xamarin.Agora
         // -(int)startAudioRecording:(NSString * _Nonnull)filePath sampleRate:(NSInteger)sampleRate quality:(AgoraAudioRecordingQuality)quality __attribute__((deprecated("use startAudioRecordingWithConfig:config instead.")));
         [Export("startAudioRecording:sampleRate:quality:")]
         int StartAudioRecording(string filePath, nint sampleRate, AudioRecordingQuality quality);
-
-        // -(int)getAudioMixingDuration __attribute__((deprecated("use getAudioMixingDuration:(NSString* _Nullable)filePath instead")));
-        [Export("getAudioMixingDuration")]
-        int AudioMixingDuration { get; }
 
         // -(int)startAudioMixing:(NSString * _Nonnull)filePath loopback:(BOOL)loopback replace:(BOOL)replace cycle:(NSInteger)cycle __attribute__((deprecated("use startAudioMixing(.., startPos) instead")));
         [Export("startAudioMixing:loopback:replace:cycle:")]
@@ -2855,83 +2921,79 @@ namespace DT.Xamarin.Agora
         [Export("audioVolumeIndicationBlock:")]
         void AudioVolumeIndicationBlock([NullAllowed] Action<NSArray, nint> audioVolumeIndicationBlock);
 
-        // -(void)firstLocalVideoFrameBlock:(void (^)(NSInteger, NSInteger, NSInteger))firstLocalVideoFrameBlock __attribute__((deprecated("")));
+        // -(void)firstLocalVideoFrameBlock:(void (^ _Nullable)(NSInteger, NSInteger, NSInteger))firstLocalVideoFrameBlock __attribute__((deprecated("use delegate instead.")));
         [Export("firstLocalVideoFrameBlock:")]
         void FirstLocalVideoFrameBlock([NullAllowed] Action<nint, nint, nint> firstLocalVideoFrameBlock);
 
-        // -(void)firstRemoteVideoDecodedBlock:(void (^)(NSUInteger, NSInteger, NSInteger, NSInteger))firstRemoteVideoDecodedBlock __attribute__((deprecated("")));
+        // -(void)firstRemoteVideoDecodedBlock:(void (^ _Nullable)(NSUInteger, NSInteger, NSInteger, NSInteger))firstRemoteVideoDecodedBlock __attribute__((deprecated("use delegate instead.")));
         [Export("firstRemoteVideoDecodedBlock:")]
         void FirstRemoteVideoDecodedBlock([NullAllowed] Action<nuint, nint, nint, nint> firstRemoteVideoDecodedBlock);
 
-        // -(void)firstRemoteVideoFrameBlock:(void (^)(NSUInteger, NSInteger, NSInteger, NSInteger))firstRemoteVideoFrameBlock __attribute__((deprecated("")));
+        // -(void)firstRemoteVideoFrameBlock:(void (^ _Nullable)(NSUInteger, NSInteger, NSInteger, NSInteger))firstRemoteVideoFrameBlock __attribute__((deprecated("use delegate instead.")));
         [Export("firstRemoteVideoFrameBlock:")]
         void FirstRemoteVideoFrameBlock([NullAllowed] Action<nuint, nint, nint, nint> firstRemoteVideoFrameBlock);
 
-        // -(void)userJoinedBlock:(void (^)(NSUInteger, NSInteger))userJoinedBlock __attribute__((deprecated("")));
+        // -(void)userJoinedBlock:(void (^ _Nullable)(NSUInteger, NSInteger))userJoinedBlock __attribute__((deprecated("use delegate instead.")));
         [Export("userJoinedBlock:")]
         void UserJoinedBlock([NullAllowed] Action<nuint, nint> userJoinedBlock);
 
-        // -(void)userOfflineBlock:(void (^)(NSUInteger))userOfflineBlock __attribute__((deprecated("")));
+        // -(void)userOfflineBlock:(void (^ _Nullable)(NSUInteger))userOfflineBlock __attribute__((deprecated("use delegate instead.")));
         [Export("userOfflineBlock:")]
         void UserOfflineBlock([NullAllowed] Action<nuint> userOfflineBlock);
 
-        // -(void)userMuteAudioBlock:(void (^)(NSUInteger, BOOL))userMuteAudioBlock __attribute__((deprecated("")));
+        // -(void)userMuteAudioBlock:(void (^ _Nullable)(NSUInteger, BOOL))userMuteAudioBlock __attribute__((deprecated("use delegate instead.")));
         [Export("userMuteAudioBlock:")]
         void UserMuteAudioBlock([NullAllowed] Action<nuint, bool> userMuteAudioBlock);
 
-        // -(void)userMuteVideoBlock:(void (^)(NSUInteger, BOOL))userMuteVideoBlock __attribute__((deprecated("")));
+        // -(void)userMuteVideoBlock:(void (^ _Nullable)(NSUInteger, BOOL))userMuteVideoBlock __attribute__((deprecated("use delegate instead.")));
         [Export("userMuteVideoBlock:")]
         void UserMuteVideoBlock([NullAllowed] Action<nuint, bool> userMuteVideoBlock);
 
-        // -(void)localVideoStatBlock:(void (^)(NSInteger, NSInteger))localVideoStatBlock __attribute__((deprecated("")));
+        // -(void)localVideoStatBlock:(void (^ _Nullable)(NSInteger, NSInteger))localVideoStatBlock __attribute__((deprecated("use delegate instead.")));
         [Export("localVideoStatBlock:")]
         void LocalVideoStatBlock([NullAllowed] Action<nint, nint> localVideoStatBlock);
 
-        // -(void)remoteVideoStatBlock:(void (^)(NSUInteger, NSInteger, NSInteger, NSInteger))remoteVideoStatBlock __attribute__((deprecated("")));
+        // -(void)remoteVideoStatBlock:(void (^ _Nullable)(NSUInteger, NSInteger, NSInteger, NSInteger, NSInteger))remoteVideoStatBlock __attribute__((deprecated("use delegate instead.")));
         [Export("remoteVideoStatBlock:")]
-        void RemoteVideoStatBlock([NullAllowed] Action<nuint, nint, nint, nint> remoteVideoStatBlock);
+        void RemoteVideoStatBlock([NullAllowed] Action<nuint, nint, nint, nint, nint> remoteVideoStatBlock);
 
-        // -(void)remoteAudioStatBlock:(void (^ _Nullable)(NSUInteger, NSInteger, NSInteger, NSInteger, NSInteger))remoteAudioStatBlock __attribute__((deprecated("use delegate instead.")));
-        [Export("remoteAudioStatBlock:")]
-        void RemoteAudioStatBlock([NullAllowed] Action<nuint, nint, nint, nint, nint> remoteAudioStatBlock);
+        // -(void)remoteAudioStatBlock:(void (^ _Nullable)(NSUInteger, NSInteger, NSInteger, NSInteger, NSInteger, NSInteger, NSInteger, NSInteger, NSInteger, NSInteger, NSInteger, NSInteger, NSInteger, NSInteger, NSInteger))remoteAudioStatBlock __attribute__((deprecated("use delegate instead.")));
+        //[Export("remoteAudioStatBlock:")]
+        //void RemoteAudioStatBlock([NullAllowed] Action<nuint, nint, nint, nint, nint, nint, nint, nint, nint, nint, nint, nint, nint, nint, nint> remoteAudioStatBlock);
 
-        //// -(void)remoteAudioStatBlock:(void (^ _Nullable)(NSUInteger, NSInteger, NSInteger, NSInteger, NSInteger, NSInteger, NSInteger, NSInteger, NSInteger, NSInteger, NSInteger, NSInteger, NSInteger, NSInteger, NSInteger))remoteAudioStatBlock __attribute__((deprecated("use delegate instead.")));
-        //[Export ("remoteAudioStatBlock:")]
-        //void RemoteAudioStatBlock ([NullAllowed] Action<nuint, nint, nint, nint, nint, nint, nint, nint, nint, nint, nint, nint, nint, nint, nint> remoteAudioStatBlock);
-
-        // -(void)cameraReadyBlock:(void (^)())cameraReadyBlock __attribute__((deprecated("")));
+        // -(void)cameraReadyBlock:(void (^)())cameraReadyBlock __attribute__((deprecated("use delegate instead.")));
         [Export("cameraReadyBlock:")]
         void CameraReadyBlock([NullAllowed] Action cameraReadyBlock);
 
-        // -(void)connectionLostBlock:(void (^)())connectionLostBlock __attribute__((deprecated("")));
+        // -(void)connectionLostBlock:(void (^)())connectionLostBlock __attribute__((deprecated("use delegate instead.")));
         [Export("connectionLostBlock:")]
         void ConnectionLostBlock([NullAllowed] Action connectionLostBlock);
 
-        // -(void)rejoinChannelSuccessBlock:(void (^)(NSString *, NSUInteger, NSInteger))rejoinChannelSuccessBlock __attribute__((deprecated("")));
+        // -(void)rejoinChannelSuccessBlock:(void (^)(NSString *, NSUInteger, NSInteger))rejoinChannelSuccessBlock __attribute__((deprecated("use delegate instead.")));
         [Export("rejoinChannelSuccessBlock:")]
         void RejoinChannelSuccessBlock([NullAllowed] Action<NSString, nuint, nint> rejoinChannelSuccessBlock);
 
-        // -(void)rtcStatsBlock:(void (^)(AgoraChannelStats *))rtcStatsBlock __attribute__((deprecated("")));
+        // -(void)rtcStatsBlock:(void (^)(AgoraChannelStats *))rtcStatsBlock __attribute__((deprecated("use delegate instead.")));
         [Export("rtcStatsBlock:")]
         void RtcStatsBlock([NullAllowed] Action<AgoraChannelStats> rtcStatsBlock);
 
-        // -(void)leaveChannelBlock:(void (^ _Nullable)(AgoraChannelStats * _Nonnull))leaveChannelBlock __attribute__((deprecated("")));
+        // -(void)leaveChannelBlock:(void (^ _Nullable)(AgoraChannelStats * _Nonnull))leaveChannelBlock __attribute__((deprecated("use delegate instead.")));
         [Export("leaveChannelBlock:")]
         void LeaveChannelBlock([NullAllowed] Action<AgoraChannelStats> leaveChannelBlock);
 
-        // -(void)audioQualityBlock:(void (^)(NSUInteger, AgoraRtcQuality, NSUInteger, NSUInteger))audioQualityBlock __attribute__((deprecated("")));
+        // -(void)audioQualityBlock:(void (^ _Nullable)(NSUInteger, AgoraNetworkQuality, NSUInteger, NSUInteger))audioQualityBlock __attribute__((deprecated("use delegate instead.")));
         [Export("audioQualityBlock:")]
         void AudioQualityBlock([NullAllowed] Action<nuint, NetworkQuality, nuint, nuint> audioQualityBlock);
 
-        // -(void)networkQualityBlock:(void (^)(NSUInteger, AgoraRtcQuality, AgoraRtcQuality))QualityBlock __attribute__((deprecated("")));
+        // -(void)networkQualityBlock:(void (^ _Nullable)(NSUInteger, AgoraNetworkQuality, AgoraNetworkQuality))networkQualityBlock __attribute__((deprecated("use delegate instead.")));
         [Export("networkQualityBlock:")]
-        void NetworkQualityBlock([NullAllowed] Action<nuint, NetworkQuality, NetworkQuality> QualityBlock);
+        void NetworkQualityBlock([NullAllowed] Action<nuint, NetworkQuality, NetworkQuality> networkQualityBlock);
 
-        // -(void)lastmileQualityBlock:(void (^)(AgoraRtcQuality))lastmileQualityBlock __attribute__((deprecated("")));
+        // -(void)lastmileQualityBlock:(void (^ _Nullable)(AgoraNetworkQuality))lastmileQualityBlock __attribute__((deprecated("use delegate instead.")));
         [Export("lastmileQualityBlock:")]
         void LastmileQualityBlock([NullAllowed] Action<NetworkQuality> lastmileQualityBlock);
 
-        // -(void)mediaEngineEventBlock:(void (^)(NSInteger))mediaEngineEventBlock __attribute__((deprecated("")));
+        // -(void)mediaEngineEventBlock:(void (^ _Nullable)(NSInteger))mediaEngineEventBlock __attribute__((deprecated("use delegate instead.")));
         [Export("mediaEngineEventBlock:")]
         void MediaEngineEventBlock([NullAllowed] Action<nint> mediaEngineEventBlock);
 
@@ -3112,6 +3174,14 @@ namespace DT.Xamarin.Agora
         // -(int)updateChannelMediaRelay:(AgoraChannelMediaRelayConfiguration * _Nonnull)config;
         [Export("updateChannelMediaRelay:")]
         int UpdateChannelMediaRelay(AgoraChannelMediaRelayConfiguration config);
+
+        // -(int)pauseAllChannelMediaRelay;
+        [Export("pauseAllChannelMediaRelay")]
+        int PauseAllChannelMediaRelay();
+
+        // -(int)resumeAllChannelMediaRelay;
+        [Export("resumeAllChannelMediaRelay")]
+        int ResumeAllChannelMediaRelay();
 
         // -(int)stopChannelMediaRelay;
         [Export("stopChannelMediaRelay")]

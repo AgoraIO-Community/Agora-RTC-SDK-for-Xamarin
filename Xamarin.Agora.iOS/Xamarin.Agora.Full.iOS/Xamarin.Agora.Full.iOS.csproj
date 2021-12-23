@@ -84,6 +84,9 @@
     <NativeReference Include="libs\AgoraVideoSegmentationExtension.framework">
       <Kind>Framework</Kind>
     </NativeReference>
+    <NativeReference Include="libs\AgoraSuperResolutionExtension.framework">
+      <Kind>Framework</Kind>
+    </NativeReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.ObjCBinding.CSharp.targets" />
 </Project>

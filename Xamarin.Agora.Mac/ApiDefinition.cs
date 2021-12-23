@@ -477,6 +477,19 @@ namespace Xamarin.Agora.Mac
         string ChannelId { get; set; }
     }
 
+    // @interface AgoraRtcAudioFileInfo : NSObject
+    [BaseType(typeof(NSObject))]
+    interface AgoraRtcAudioFileInfo
+    {
+        // @property (copy, nonatomic) NSString * _Nonnull filePath;
+        [Export("filePath")]
+        string FilePath { get; set; }
+
+        // @property (assign, nonatomic) NSUInteger durationMs;
+        [Export("durationMs")]
+        nuint DurationMs { get; set; }
+    }
+
 
     // @interface AgoraRtcRhythmPlayerConfig : NSObject
     [BaseType(typeof(NSObject))]
@@ -1054,6 +1067,10 @@ namespace Xamarin.Agora.Mac
         // @property (copy, nonatomic) NSString * _Nullable source;
         [NullAllowed, Export("source")]
         string Source { get; set; }
+
+        // @property (assign, nonatomic) AgoraBlurDegree blur_degree;
+        [Export("blur_degree", ArgumentSemantic.Assign)]
+        BlurDegree BlurDegree { get; set; }
     }
 
     // @interface AgoraUserInfo : NSObject
@@ -1216,6 +1233,10 @@ namespace Xamarin.Agora.Mac
         // @property (nonatomic, strong) NSData * _Nullable buffer;
         [NullAllowed, Export("buffer", ArgumentSemantic.Strong)]
         NSData Buffer { get; set; }
+
+        // @property (assign, nonatomic) NSUInteger length;
+        [Export("length")]
+        nuint Length { get; set; }
 
         // @property (assign, nonatomic) AgoraVideoEncodeType frameType;
         [Export("frameType", ArgumentSemantic.Assign)]
@@ -1814,10 +1835,30 @@ namespace Xamarin.Agora.Mac
         [EventArgs("DidVideoSubscribeStateChange")]
         void DidVideoSubscribeStateChange(AgoraRtcEngineKit engine, string channel, nuint uid, StreamSubscribeState oldState, StreamSubscribeState newState, nint elapseSinceLastState);
 
+        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didAudioMuted:(BOOL)muted byUid:(NSUInteger)uid;
+        [Export("rtcEngine:didAudioMuted:byUid:")]
+        [EventArgs("DidAudioMuted")]
+        void DidAudioMuted(AgoraRtcEngineKit engine, bool muted, nuint uid);
+
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didVideoMuted:(BOOL)muted byUid:(NSUInteger)uid;
         [Export("rtcEngine:didVideoMuted:byUid:")]
         [EventArgs("DidVideoMuted")]
         void DidVideoMuted(AgoraRtcEngineKit engine, bool muted, nuint uid);
+
+        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didVideoEnabled:(BOOL)enabled byUid:(NSUInteger)uid;
+        [Export("rtcEngine:didVideoEnabled:byUid:")]
+        [EventArgs("DidVideoEnabled")]
+        void DidVideoEnabled(AgoraRtcEngineKit engine, bool enabled, nuint uid);
+
+        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didLocalVideoEnabled:(BOOL)enabled byUid:(NSUInteger)uid;
+        [Export("rtcEngine:didLocalVideoEnabled:byUid:")]
+        [EventArgs("DidLocalVideoEnabled")]
+        void DidLocalVideoEnabled(AgoraRtcEngineKit engine, bool enabled, nuint uid);
+
+        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine firstRemoteVideoDecodedOfUid:(NSUInteger)uid size:(CGSize)size elapsed:(NSInteger)elapsed;
+        [Export("rtcEngine:firstRemoteVideoDecodedOfUid:size:elapsed:")]
+        [EventArgs("FirstRemoteVideoDecodedOfUid")]
+        void FirstRemoteVideoDecodedOfUid(AgoraRtcEngineKit engine, nuint uid, CGSize size, nint elapsed);
 
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didLocalPublishFallbackToAudioOnly:(BOOL)isFallbackOrRecover;
         [Export("rtcEngine:didLocalPublishFallbackToAudioOnly:")]
@@ -1944,6 +1985,11 @@ namespace Xamarin.Agora.Mac
         [EventArgs("DidOccurStreamMessageErrorFromUid")]
         void DidOccurStreamMessageErrorFromUid(AgoraRtcEngineKit engine, nuint uid, nint streamId, nint error, nint missed, nint cached);
 
+        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didRequestAudioFileInfo:(AgoraRtcAudioFileInfo * _Nonnull)info error:(AgoraAudioFileInfoError)error;
+        [Export("rtcEngine:didRequestAudioFileInfo:error:")]
+        [EventArgs("DidRequestAudioFileInfo")]
+        void DidRequestAudioFileInfo(AgoraRtcEngineKit engine, AgoraRtcAudioFileInfo info, AudioFileInfoError error);
+
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine uploadLogResultRequestId:(NSString * _Nonnull)requestId success:(BOOL)success reason:(AgoraUploadErrorReason)reason;
         [Export("rtcEngine:uploadLogResultRequestId:success:reason:")]
         [EventArgs("UploadLogResultRequestId")]
@@ -1984,11 +2030,6 @@ namespace Xamarin.Agora.Mac
         [EventArgs("FirstRemoteAudioFrameDecodedOfUid")]
         void FirstRemoteAudioFrameDecodedOfUid(AgoraRtcEngineKit engine, nuint uid, nint elapsed);
 
-        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didAudioMuted:(BOOL)muted byUid:(NSUInteger)uid;
-        [Export("rtcEngine:didAudioMuted:byUid:")]
-        [EventArgs("DidAudioMuted")]
-        void DidAudioMuted(AgoraRtcEngineKit engine, bool muted, nuint uid);
-
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine streamPublishedWithUrl:(NSString * _Nonnull)url errorCode:(AgoraErrorCode)errorCode;
         [Export("rtcEngine:streamPublishedWithUrl:errorCode:")]
         [EventArgs("StreamPublishedWithUrl")]
@@ -2008,21 +2049,6 @@ namespace Xamarin.Agora.Mac
         [Export("rtcEngine:videoTransportStatsOfUid:delay:lost:rxKBitRate:")]
         [EventArgs("VideoTransportStatsOfUid")]
         void VideoTransportStatsOfUid(AgoraRtcEngineKit engine, nuint uid, nuint delay, nuint lost, nuint rxKBitRate);
-
-        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didVideoEnabled:(BOOL)enabled byUid:(NSUInteger)uid;
-        [Export("rtcEngine:didVideoEnabled:byUid:")]
-        [EventArgs("DidVideoEnabled")]
-        void DidVideoEnabled(AgoraRtcEngineKit engine, bool enabled, nuint uid);
-
-        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didLocalVideoEnabled:(BOOL)enabled byUid:(NSUInteger)uid;
-        [Export("rtcEngine:didLocalVideoEnabled:byUid:")]
-        [EventArgs("DidLocalVideoEnabled")]
-        void DidLocalVideoEnabled(AgoraRtcEngineKit engine, bool enabled, nuint uid);
-
-        // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine firstRemoteVideoDecodedOfUid:(NSUInteger)uid size:(CGSize)size elapsed:(NSInteger)elapsed;
-        [Export("rtcEngine:firstRemoteVideoDecodedOfUid:size:elapsed:")]
-        [EventArgs("FirstRemoteVideoDecodedOfUid")]
-        void FirstRemoteVideoDecodedOfUid(AgoraRtcEngineKit engine, nuint uid, CGSize size, nint elapsed);
 
         // @optional -(void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didMicrophoneEnabled:(BOOL)enabled;
         [Export("rtcEngine:didMicrophoneEnabled:")]
@@ -2146,6 +2172,14 @@ namespace Xamarin.Agora.Mac
         [Export("updateChannelMediaRelay:")]
         int UpdateChannelMediaRelay(AgoraChannelMediaRelayConfiguration config);
 
+        // -(int)pauseAllChannelMediaRelay;
+        [Export("pauseAllChannelMediaRelay")]
+        int PauseAllChannelMediaRelay();
+
+        // -(int)resumeAllChannelMediaRelay;
+        [Export("resumeAllChannelMediaRelay")]
+        int ResumeAllChannelMediaRelay();
+
         // -(int)stopChannelMediaRelay;
         [Export("stopChannelMediaRelay")]
         int StopChannelMediaRelay();
@@ -2172,13 +2206,13 @@ namespace Xamarin.Agora.Mac
         [Export("adjustRecordingSignalVolume:")]
         int AdjustRecordingSignalVolume(nint volume);
 
-        // -(int)adjustPlaybackSignalVolume:(NSInteger)volume;
-        [Export("adjustPlaybackSignalVolume:")]
-        int AdjustPlaybackSignalVolume(nint volume);
-
         // -(int)adjustLoopbackRecordingSignalVolume:(NSInteger)volume;
         [Export("adjustLoopbackRecordingSignalVolume:")]
         int AdjustLoopbackRecordingSignalVolume(nint volume);
+
+        // -(int)adjustPlaybackSignalVolume:(NSInteger)volume;
+        [Export("adjustPlaybackSignalVolume:")]
+        int AdjustPlaybackSignalVolume(nint volume);
 
         // -(int)enableAudioVolumeIndication:(NSInteger)interval smooth:(NSInteger)smooth report_vad:(BOOL)report_vad;
         [Export("enableAudioVolumeIndication:smooth:report_vad:")]
@@ -2316,6 +2350,10 @@ namespace Xamarin.Agora.Mac
         [Export("startAudioMixing:loopback:replace:cycle:startPos:")]
         int StartAudioMixing(string filePath, bool loopback, bool replace, nint cycle, nint startPos);
 
+        // -(int)setAudioMixingPlaybackSpeed:(int)speed;
+        [Export("setAudioMixingPlaybackSpeed:")]
+        int SetAudioMixingPlaybackSpeed(int speed);
+
         // -(int)stopAudioMixing;
         [Export("stopAudioMixing")]
         //[Verify(MethodToProperty)]
@@ -2330,6 +2368,18 @@ namespace Xamarin.Agora.Mac
         [Export("resumeAudioMixing")]
         //[Verify(MethodToProperty)]
         int ResumeAudioMixing();
+
+        // -(int)selectAudioTrack:(NSInteger)index;
+        [Export("selectAudioTrack:")]
+        int SelectAudioTrack(nint index);
+
+        // -(int)getAudioTrackCount;
+        [Export("getAudioTrackCount")]
+        int AudioTrackCount { get; }
+
+        // -(int)setAudioMixingDualMonoMode:(AgoraAudioMixingDualMonoMode)mode;
+        [Export("setAudioMixingDualMonoMode:")]
+        int SetAudioMixingDualMonoMode(AudioMixingDualMonoMode mode);
 
         // -(int)adjustAudioMixingVolume:(NSInteger)volume;
         [Export("adjustAudioMixingVolume:")]
@@ -2546,13 +2596,17 @@ namespace Xamarin.Agora.Mac
         [Export("disableExternalAudioSource")]
         void DisableExternalAudioSource();
 
-        // -(BOOL)pushExternalAudioFrameRawData:(void * _Nonnull)data samples:(NSUInteger)samples timestamp:(NSTimeInterval)timestamp;
-        [Export("pushExternalAudioFrameRawData:samples:timestamp:")]
-        unsafe bool PushExternalAudioFrameRawData(IntPtr data, nuint samples, double timestamp);
+        // -(void)setExternalAudioSourceVolume:(AgoraAudioExternalSourcePos)sourcePos volume:(NSUInteger)volume;
+        [Export("setExternalAudioSourceVolume:volume:")]
+        void SetExternalAudioSourceVolume(AudioExternalSourcePos sourcePos, nuint volume);
 
-        // -(BOOL)pushExternalAudioFrameSampleBuffer:(CMSampleBufferRef _Nonnull)sampleBuffer;
-        [Export("pushExternalAudioFrameSampleBuffer:")]
-        unsafe bool PushExternalAudioFrameSampleBuffer(IntPtr sampleBuffer);
+        // -(int)pushExternalAudioFrameRawData:(AgoraAudioExternalSourcePos)sourcePos frame:(AgoraAudioFrame * _Nonnull)frame;
+        [Export("pushExternalAudioFrameRawData:frame:")]
+        int PushExternalAudioFrameRawData(AudioExternalSourcePos sourcePos, AgoraAudioFrame frame);
+
+        // -(int)pushExternalAudioFrameSampleBuffer:(AgoraAudioExternalSourcePos)sourcePos sampleBuffer:(CMSampleBufferRef _Nonnull)sampleBuffer;
+        [Export("pushExternalAudioFrameSampleBuffer:sampleBuffer:")]
+        int PushExternalAudioFrameSampleBuffer(AudioExternalSourcePos sourcePos, IntPtr sampleBuffer);
 
         // -(void)setExternalVideoSource:(BOOL)enable useTexture:(BOOL)useTexture pushMode:(BOOL)pushMode;
         [Export("setExternalVideoSource:useTexture:pushMode:")]
@@ -2736,6 +2790,10 @@ namespace Xamarin.Agora.Mac
         [Export("setMediaMetadataDelegate:withType:")]
         bool SetMediaMetadataDelegate([NullAllowed] AgoraMediaMetadataDelegate metadataDelegate, MetadataType type);
 
+        // -(int)getAudioFileInfo:(NSString * _Nullable)filePath;
+        [Export("getAudioFileInfo:")]
+        int GetAudioFileInfo([NullAllowed] string filePath);
+
         // -(NSString * _Nullable)getCallId;
         [NullAllowed, Export("getCallId")]
         //[Verify(MethodToProperty)]
@@ -2794,6 +2852,18 @@ namespace Xamarin.Agora.Mac
         [return: NullAllowed]
         string GetParameter(string parameter, [NullAllowed] string args);
 
+        // -(BOOL)pushExternalAudioFrameRawData:(void * _Nonnull)data samples:(NSUInteger)samples timestamp:(NSTimeInterval)timestamp __attribute__((deprecated("use pushExternalAudioFrameRawData:sourcePos:frame instead.")));
+        [Export("pushExternalAudioFrameRawData:samples:timestamp:")]
+        unsafe bool PushExternalAudioFrameRawData(IntPtr data, nuint samples, double timestamp);
+
+        // -(BOOL)pushExternalAudioFrameSampleBuffer:(CMSampleBufferRef _Nonnull)sampleBuffer __attribute__((deprecated("use pushExternalAudioFrameSampleBuffer:sourcePos:sampleBuffer instead.")));
+        [Export("pushExternalAudioFrameSampleBuffer:")]
+        unsafe bool PushExternalAudioFrameSampleBuffer(IntPtr sampleBuffer);
+
+        // -(int)getAudioMixingDuration __attribute__((deprecated("use getAudioFileInfo:filePath instead.")));
+        [Export("getAudioMixingDuration")]
+        int AudioMixingDuration { get; }
+
         // -(int)playEffect:(int)soundId filePath:(NSString * _Nullable)filePath loopCount:(int)loopCount pitch:(double)pitch pan:(double)pan gain:(double)gain publish:(BOOL)publish __attribute__((deprecated("use playEffect:filePath:loopCount:pitch:pan:gain:publish:startPos instead.")));
         [Export("playEffect:filePath:loopCount:pitch:pan:gain:publish:")]
         int PlayEffect(int soundId, [NullAllowed] string filePath, int loopCount, double pitch, double pan, double gain, bool publish);
@@ -2801,10 +2871,6 @@ namespace Xamarin.Agora.Mac
         // -(int)startAudioRecording:(NSString * _Nonnull)filePath sampleRate:(NSInteger)sampleRate quality:(AgoraAudioRecordingQuality)quality __attribute__((deprecated("use startAudioRecordingWithConfig:config instead.")));
         [Export("startAudioRecording:sampleRate:quality:")]
         int StartAudioRecording(string filePath, nint sampleRate, AudioRecordingQuality quality);
-
-        // -(int)getAudioMixingDuration __attribute__((deprecated("use getAudioMixingDuration:(NSString* _Nullable)filePath instead")));
-        [Export("getAudioMixingDuration")]
-        int AudioMixingDuration { get; }
 
         // -(int)startAudioMixing:(NSString * _Nonnull)filePath loopback:(BOOL)loopback replace:(BOOL)replace cycle:(NSInteger)cycle __attribute__((deprecated("use startAudioMixing(.., startPos) instead")));
         [Export("startAudioMixing:loopback:replace:cycle:")]
@@ -3193,6 +3259,14 @@ namespace Xamarin.Agora.Mac
         // -(int)updateChannelMediaRelay:(AgoraChannelMediaRelayConfiguration * _Nonnull)config;
         [Export("updateChannelMediaRelay:")]
         int UpdateChannelMediaRelay(AgoraChannelMediaRelayConfiguration config);
+
+        // -(int)pauseAllChannelMediaRelay;
+        [Export("pauseAllChannelMediaRelay")]
+        int PauseAllChannelMediaRelay();
+
+        // -(int)resumeAllChannelMediaRelay;
+        [Export("resumeAllChannelMediaRelay")]
+        int ResumeAllChannelMediaRelay();
 
         // -(int)stopChannelMediaRelay;
         [Export("stopChannelMediaRelay")]
