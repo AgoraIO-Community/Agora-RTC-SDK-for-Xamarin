@@ -49,7 +49,7 @@
   <ItemGroup>
     <NativeReference Include="libs\AgoraAIDenoiseExtension.framework">
       <Kind>Framework</Kind>
-      <SmartLink>False</SmartLink>
+      <IsCxx>True</IsCxx>
     </NativeReference>
     <NativeReference Include="libs\AgoraRtcKit.framework">
       <Kind>Framework</Kind>
@@ -59,15 +59,23 @@
     </NativeReference>
     <NativeReference Include="libs\AgoraCore.framework">
       <Kind>Framework</Kind>
-      <SmartLink>False</SmartLink>
+      <IsCxx>True</IsCxx>
     </NativeReference>
     <NativeReference Include="libs\Agorafdkaac.framework">
       <Kind>Framework</Kind>
-      <SmartLink>False</SmartLink>
+      <IsCxx>True</IsCxx>
     </NativeReference>
     <NativeReference Include="libs\AgoraSoundTouch.framework">
       <Kind>Framework</Kind>
-      <SmartLink>False</SmartLink>
+      <IsCxx>True</IsCxx>
+    </NativeReference>
+    <NativeReference Include="libs\AgoraFullAudioFormatExtension.framework">
+      <Kind>Framework</Kind>
+      <IsCxx>True</IsCxx>
+    </NativeReference>
+    <NativeReference Include="libs\AgoraSpatialAudioExtension.framework">
+      <Kind>Framework</Kind>
+      <IsCxx>True</IsCxx>
     </NativeReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.ObjcBinding.CSharp.targets" />

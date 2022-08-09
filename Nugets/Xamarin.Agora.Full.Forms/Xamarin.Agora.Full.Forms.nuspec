@@ -3,7 +3,7 @@
   <metadata>
     <id>Xamarin.Agora.Full.Forms</id>
     <title>Agora Xamarin SDK for Xamarin.Forms. Supports iOS, Android and MacOS</title>
-    <version>3.0.1-beta1</version>
+    <version>3.7.1-beta1</version>
     <authors>dreamteammobile</authors>
     <owners>dreamteammobile</owners>
     <license type="expression">MIT</license>
@@ -12,7 +12,7 @@
     <description>Agora Xamarin SDK for Xamarin.Forms. Supports iOS, Android and MacOS</description>
     <summary>Xamarin Agora Forms SDK lets you use Agora.in-powered video sessions in apps</summary>
     <tags>Agora Agora.io SDK Xamarin iOS Android MacOS Xamarin.iOS Xamarin.Android Xamarin.Mac Xamarin.Forms Binding DreamTeam DreamTeamMobile</tags>
-    <icon>images/agora-xamarin-sdk-icon.png</icon>
+    <icon>images/icon.png</icon>
     <releaseNotes>
     </releaseNotes>
     <dependencies>
@@ -20,15 +20,15 @@
         <dependency id="Xamarin.Forms" version="3.4.0" />
       </group>
       <group targetFramework="Xamarin.iOS10">
-        <dependency id="Xamarin.Agora.Full.iOS" version="2.9.1-beta1" />
+        <dependency id="Xamarin.Agora.Full.iOS" version="3.7.1-beta1" />
         <dependency id="Xamarin.Forms" version="3.4.0" />
       </group>
       <group targetFramework="MonoAndroid10">
-        <dependency id="Xamarin.Agora.Full.Android" version="2.9.1-beta1" />
+        <dependency id="Xamarin.Agora.Full.Android" version="3.7.1-beta1" />
         <dependency id="Xamarin.Forms" version="3.4.0" />
       </group>
       <group targetFramework="Xamarin.Mac20">
-        <dependency id="Xamarin.Agora.Full.Mac" version="2.9.1-beta1" />
+        <dependency id="Xamarin.Agora.Full.Mac" version="3.7.1-beta1" />
         <dependency id="Xamarin.Forms" version="3.4.0" />
       </group>
     </dependencies>
@@ -42,6 +42,6 @@
     <file src="lib/MonoAndroid10/Xamarin.Agora.Full.Forms*.dll" target="lib/MonoAndroid10" />
     <!--Xamarin.Mac-->
     <file src="lib/Xamarin.Mac20/Xamarin.Agora.Full.Forms*.dll" target="lib/Xamarin.Mac20" />
-    <file src="../agora-xamarin-sdk-icon.png" target="images/" />
+    <file src="../icon.png" target="images/" />
   </files>
 </package>

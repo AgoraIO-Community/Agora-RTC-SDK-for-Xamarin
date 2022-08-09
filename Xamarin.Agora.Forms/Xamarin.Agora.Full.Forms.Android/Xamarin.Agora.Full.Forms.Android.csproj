@@ -174,7 +174,7 @@
       <HintPath>..\packages\Xamarin.Forms.4.2.0.709249\lib\MonoAndroid90\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Agora.Full.Android">
-      <HintPath>..\packages\Xamarin.Agora.Full.Android.2.9.4\lib\MonoAndroid\Xamarin.Agora.Full.Android.dll</HintPath>
+      <HintPath>..\packages\Xamarin.Agora.Full.Android.3.7.1-beta1\lib\MonoAndroid\Xamarin.Agora.Full.Android.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -22,6 +22,7 @@
     <remove-node path="/api/package[@name='com.coloros.ocs.mediaunit']/class" />
     <remove-node path="/api/package[@name='com.coloros.ocs.base.task']/class" />
     <remove-node path="/api/package[@name='io.agora.rtc.internal']/class" />
+    <remove-node path="/api/package[@name='io.agora.rtc.ss.gltool']/class[@name='EglBase14']" />
     <remove-node path="/api/package[@name='io.agora.rtc.gl']/class[@name='EglBase']/method[@name='getEglBaseContext' and count(parameter)=0]" />
     <remove-node path="/api/package[@name='io.agora.rtc.mediaio']/interface[@name='SurfaceTextureHelper.OnTextureFrameAvailableListener']" />
     <attr path="/api/package[@name='io.agora.rtc.gl']/class[@name='EglBase14']/method[@name='getEglBaseContext' and count(parameter)=0]" name="return">DT.Xamarin.Agora.GL.EglBase.IContext</attr>

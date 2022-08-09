@@ -56,7 +56,7 @@
       <HintPath>..\packages\Xamarin.Forms.4.2.0.709249\lib\Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Agora.Full.iOS">
-      <HintPath>..\packages\Xamarin.Agora.Full.iOS.2.9.3.1\lib\Xamarin.iOS10\Xamarin.Agora.Full.iOS.dll</HintPath>
+      <HintPath>..\packages\Xamarin.Agora.Full.iOS.3.7.1-beta1\lib\Xamarin.iOS10\Xamarin.Agora.Full.iOS.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

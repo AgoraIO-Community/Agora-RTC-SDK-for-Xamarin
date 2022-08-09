@@ -68,6 +68,14 @@
     <NativeReference Include="libs\AgoraRtcCryptoLoader.framework">
       <Kind>Framework</Kind>
     </NativeReference>
+    <NativeReference Include="libs\AgoraFullAudioFormatExtension.framework">
+      <Kind>Framework</Kind>
+      <SmartLink>False</SmartLink>
+    </NativeReference>
+    <NativeReference Include="libs\AgoraSpatialAudioExtension.framework">
+      <Kind>Framework</Kind>
+      <SmartLink>False</SmartLink>
+    </NativeReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.ObjCBinding.CSharp.targets" />
 </Project>

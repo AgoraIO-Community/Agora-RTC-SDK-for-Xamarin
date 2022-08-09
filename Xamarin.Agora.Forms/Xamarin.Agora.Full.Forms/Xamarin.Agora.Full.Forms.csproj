@@ -7,7 +7,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>..\..\Nugets\Xamarin.Agora.Full.Forms\lib</OutputPath>
-    <DefineConstants>TRACE;PORTABLE;DEBUG;NETSTANDARD;NETSTANDARD2_0</DefineConstants>
+    <DefineConstants>TRACE;PORTABLE;DEBUG;NETSTANDARD;NETSTANDARD2_0;</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>portable</DebugType>

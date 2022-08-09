@@ -59,35 +59,47 @@
     <Folder Include="Jars\" />
     <None Include="Javadoc\zip\.gitkeep" />
     <None Include="Javadoc\Javadoc.zip" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedNativeLibrary Include="Jars\arm64-v8a\libagora-fdkaac.so" />
-    <EmbeddedNativeLibrary Include="Jars\arm64-v8a\libagora-mpg123.so" />
-    <EmbeddedNativeLibrary Include="Jars\arm64-v8a\libagora-core.so" />
-    <EmbeddedNativeLibrary Include="Jars\arm64-v8a\libagora-rtc-sdk.so" />
-    <EmbeddedNativeLibrary Include="Jars\arm64-v8a\libagora_ai_denoise_extension.so" />
-    <EmbeddedNativeLibrary Include="Jars\arm64-v8a\libagora-soundtouch.so" />
-    <EmbeddedNativeLibrary Include="Jars\armeabi-v7a\libagora-fdkaac.so" />
-    <EmbeddedNativeLibrary Include="Jars\armeabi-v7a\libagora-mpg123.so" />
-    <EmbeddedNativeLibrary Include="Jars\armeabi-v7a\libagora-core.so" />
-    <EmbeddedNativeLibrary Include="Jars\armeabi-v7a\libagora-rtc-sdk.so" />
-    <EmbeddedNativeLibrary Include="Jars\armeabi-v7a\libagora_ai_denoise_extension.so" />
-    <EmbeddedNativeLibrary Include="Jars\armeabi-v7a\libagora-soundtouch.so" />
-    <EmbeddedNativeLibrary Include="Jars\x86\libagora-fdkaac.so" />
-    <EmbeddedNativeLibrary Include="Jars\x86\libagora-mpg123.so" />
-    <EmbeddedNativeLibrary Include="Jars\x86\libagora-core.so" />
-    <EmbeddedNativeLibrary Include="Jars\x86\libagora-rtc-sdk.so" />
-    <EmbeddedNativeLibrary Include="Jars\x86\libagora_ai_denoise_extension.so" />
-    <EmbeddedNativeLibrary Include="Jars\x86\libagora-soundtouch.so" />
-    <EmbeddedNativeLibrary Include="Jars\x86_64\libagora-fdkaac.so" />
-    <EmbeddedNativeLibrary Include="Jars\x86_64\libagora-mpg123.so" />
-    <EmbeddedNativeLibrary Include="Jars\x86_64\libagora-core.so" />
-    <EmbeddedNativeLibrary Include="Jars\x86_64\libagora-rtc-sdk.so" />
-    <EmbeddedNativeLibrary Include="Jars\x86_64\libagora_ai_denoise_extension.so" />
-    <EmbeddedNativeLibrary Include="Jars\x86_64\libagora-soundtouch.so" />
+    <Folder Include="Jars\arm64-v8a\" />
+    <Folder Include="Jars\armeabi-v7a\" />
+    <Folder Include="Jars\x86\" />
+    <Folder Include="Jars\x86_64\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedJar Include="Jars\agora-rtc-sdk.jar" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedNativeLibrary Include="Jars\arm64-v8a\libagora_ai_denoise_extension.so" />
+    <EmbeddedNativeLibrary Include="Jars\arm64-v8a\libagora_fdkaac.so" />
+    <EmbeddedNativeLibrary Include="Jars\arm64-v8a\libagora_full_audio_format_extension.so" />
+    <EmbeddedNativeLibrary Include="Jars\arm64-v8a\libagora_mpg123.so" />
+    <EmbeddedNativeLibrary Include="Jars\arm64-v8a\libagora_spatial_audio_extension.so" />
+    <EmbeddedNativeLibrary Include="Jars\arm64-v8a\libagora-core.so" />
+    <EmbeddedNativeLibrary Include="Jars\arm64-v8a\libagora-rtc-sdk.so" />
+    <EmbeddedNativeLibrary Include="Jars\arm64-v8a\libagora-soundtouch.so" />
+    <EmbeddedNativeLibrary Include="Jars\armeabi-v7a\libagora_ai_denoise_extension.so" />
+    <EmbeddedNativeLibrary Include="Jars\armeabi-v7a\libagora_fdkaac.so" />
+    <EmbeddedNativeLibrary Include="Jars\armeabi-v7a\libagora_full_audio_format_extension.so" />
+    <EmbeddedNativeLibrary Include="Jars\armeabi-v7a\libagora_mpg123.so" />
+    <EmbeddedNativeLibrary Include="Jars\armeabi-v7a\libagora_spatial_audio_extension.so" />
+    <EmbeddedNativeLibrary Include="Jars\armeabi-v7a\libagora-core.so" />
+    <EmbeddedNativeLibrary Include="Jars\armeabi-v7a\libagora-rtc-sdk.so" />
+    <EmbeddedNativeLibrary Include="Jars\armeabi-v7a\libagora-soundtouch.so" />
+    <EmbeddedNativeLibrary Include="Jars\x86\libagora_ai_denoise_extension.so" />
+    <EmbeddedNativeLibrary Include="Jars\x86\libagora_fdkaac.so" />
+    <EmbeddedNativeLibrary Include="Jars\x86\libagora_full_audio_format_extension.so" />
+    <EmbeddedNativeLibrary Include="Jars\x86\libagora_mpg123.so" />
+    <EmbeddedNativeLibrary Include="Jars\x86\libagora_spatial_audio_extension.so" />
+    <EmbeddedNativeLibrary Include="Jars\x86\libagora-core.so" />
+    <EmbeddedNativeLibrary Include="Jars\x86\libagora-rtc-sdk.so" />
+    <EmbeddedNativeLibrary Include="Jars\x86\libagora-soundtouch.so" />
+    <EmbeddedNativeLibrary Include="Jars\x86_64\libagora_ai_denoise_extension.so" />
+    <EmbeddedNativeLibrary Include="Jars\x86_64\libagora_fdkaac.so" />
+    <EmbeddedNativeLibrary Include="Jars\x86_64\libagora_full_audio_format_extension.so" />
+    <EmbeddedNativeLibrary Include="Jars\x86_64\libagora_mpg123.so" />
+    <EmbeddedNativeLibrary Include="Jars\x86_64\libagora_spatial_audio_extension.so" />
+    <EmbeddedNativeLibrary Include="Jars\x86_64\libagora-core.so" />
+    <EmbeddedNativeLibrary Include="Jars\x86_64\libagora-rtc-sdk.so" />
+    <EmbeddedNativeLibrary Include="Jars\x86_64\libagora-soundtouch.so" />
   </ItemGroup>
   <Target Name="UnzipArchive" BeforeTargets="PrepareForBuild">
     <Message Text="Unzipping the docs$(MSBuildProjectDirectory)\Javadoc\zip\" />

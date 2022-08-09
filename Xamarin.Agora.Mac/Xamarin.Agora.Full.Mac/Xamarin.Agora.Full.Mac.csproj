@@ -50,47 +50,77 @@
     <NativeReference Include="libs\av1.framework">
       <Kind>Framework</Kind>
       <SmartLink>False</SmartLink>
+      <IsCxx>True</IsCxx>
     </NativeReference>
     <NativeReference Include="libs\AgoraAIDenoiseExtension.framework">
       <Kind>Framework</Kind>
       <SmartLink>False</SmartLink>
+      <IsCxx>True</IsCxx>
     </NativeReference>
     <NativeReference Include="libs\AgoraRtcKit.framework">
       <Kind>Framework</Kind>
       <IsCxx>True</IsCxx>
       <LinkerFlags>-lc++ -lresolv</LinkerFlags>
-      <Frameworks>CoreWLAN VideoToolbox AudioToolbox AVFoundation Accelerate SystemConfiguration CoreAudio IOKit CoreML</Frameworks>
+      <Frameworks>CoreWLAN VideoToolbox AudioToolbox AVFoundation Accelerate SystemConfiguration CoreAudio IOKit CoreML AppKit</Frameworks>
     </NativeReference>
     <NativeReference Include="libs\AgoraCore.framework">
       <Kind>Framework</Kind>
       <SmartLink>False</SmartLink>
+      <IsCxx>True</IsCxx>
     </NativeReference>
     <NativeReference Include="libs\Agorafdkaac.framework">
       <Kind>Framework</Kind>
       <SmartLink>False</SmartLink>
+      <IsCxx>True</IsCxx>
     </NativeReference>
     <NativeReference Include="libs\Agoraffmpeg.framework">
       <Kind>Framework</Kind>
       <SmartLink>False</SmartLink>
+      <IsCxx>True</IsCxx>
     </NativeReference>
     <NativeReference Include="libs\AgoraSoundTouch.framework">
       <Kind>Framework</Kind>
       <SmartLink>False</SmartLink>
-    </NativeReference>
-    <NativeReference Include="libs\AgoraDav1dExtension.framework">
-      <Kind>Framework</Kind>
       <SmartLink>False</SmartLink>
+      <IsCxx>True</IsCxx>
     </NativeReference>
     <NativeReference Include="libs\AgoraFDExtension.framework">
       <Kind>Framework</Kind>
       <SmartLink>False</SmartLink>
+      <IsCxx>True</IsCxx>
     </NativeReference>
     <NativeReference Include="libs\AgoraJNDExtension.framework">
       <Kind>Framework</Kind>
+      <IsCxx>True</IsCxx>
     </NativeReference>
     <NativeReference Include="libs\AgoraVideoSegmentationExtension.framework">
       <Kind>Framework</Kind>
       <SmartLink>False</SmartLink>
+      <IsCxx>True</IsCxx>
+    </NativeReference>
+    <NativeReference Include="libs\AgoraCIExtension.framework">
+      <Kind>Framework</Kind>
+      <IsCxx>True</IsCxx>
+    </NativeReference>
+    <NativeReference Include="libs\AgoraDav1dExtension.framework">
+      <Kind>Framework</Kind>
+      <IsCxx>True</IsCxx>
+    </NativeReference>
+    <NativeReference Include="libs\AgoraFullAudioFormatExtension.framework">
+      <Kind>Framework</Kind>
+      <IsCxx>True</IsCxx>
+    </NativeReference>
+    <NativeReference Include="libs\AgoraSpatialAudioExtension.framework">
+      <Kind>Framework</Kind>
+      <IsCxx>True</IsCxx>
+    </NativeReference>
+    <NativeReference Include="libs\AgoraSuperResolutionExtension.framework">
+      <Kind>Framework</Kind>
+      <IsCxx>True</IsCxx>
+    </NativeReference>
+    <NativeReference Include="libs\AgoraVideoProcessExtension.framework">
+      <Kind>Framework</Kind>
+      <IsCxx>True</IsCxx>
     </NativeReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.ObjcBinding.CSharp.targets" />

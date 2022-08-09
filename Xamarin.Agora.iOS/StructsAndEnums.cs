@@ -339,7 +339,8 @@ namespace DT.Xamarin.Agora
         Connecting = 1,
         Running = 2,
         Recovering = 3,
-        Failure = 4
+        Failure = 4,
+        Disconnecting = 5
     }
 
     [Native]
@@ -356,6 +357,10 @@ namespace DT.Xamarin.Agora
         NotAuthorized = 8,
         StreamNotFound = 9,
         FormatNotSupported = 10,
+        PublishErrorNotBroadcaster = 11,
+        PublishErrorTranscodingNoMixStream = 13,
+        PublishErrorNetDown = 14,
+        PublishErrorInvalidAppId = 15,
         UnpublishOK = 100
     }
 
@@ -363,7 +368,9 @@ namespace DT.Xamarin.Agora
     public enum RtmpStreamingEvent : ulong
     {
         FailedLoadImage = 1,
-        UrlAlreadyInUse = 2
+        UrlAlreadyInUse = 2,
+        AdvancedFeatureNotSupport = 3,
+        RequestTooOften = 4
     }
 
     [Native]
@@ -398,7 +405,8 @@ namespace DT.Xamarin.Agora
     {
         Low = 0,
         Medium = 1,
-        High = 2
+        High = 2,
+        UltraHigh = 3
     }
 
     [Native]
@@ -448,11 +456,36 @@ namespace DT.Xamarin.Agora
     }
 
     [Native]
+    public enum WlAccReason : ulong
+    {
+        WeakSignal = 0,
+        ChannelCongestion = 1
+    }
+
+    [Native]
+    public enum WlAccAction : ulong
+    {
+        CloseToWIFI = 0,
+        ConnectSSID = 1,
+        Check5G = 2,
+        ModifySSID = 3
+    }
+
+    [Native]
     public enum UploadErrorReason : long
     {
         Success = 0,
         NetError = 1,
         ServerError = 2
+    }
+
+    [Native]
+    public enum ClientRoleChangeFailedReason : long
+    {
+        TooManyBroadcasters = 1,
+        NotAuthorized = 2,
+        RequestTimeOut = 3,
+        ConnectionFailed = 4
     }
 
     [Native]
@@ -484,6 +517,13 @@ namespace DT.Xamarin.Agora
         Fit = 2,
         Adaptive = 3,
         Fill = 4
+    }
+
+    [Native]
+    public enum AgoraVideoSRMode : ulong
+    {
+        Manual = 0,
+        Auto = 1
     }
 
     [Native]
@@ -566,7 +606,8 @@ namespace DT.Xamarin.Agora
         RemoteUnmuted = 6,
         RemoteOffline = 7,
         AudioFallback = 8,
-        AudioFallbackRecovery = 9
+        AudioFallbackRecovery = 9,
+        RemoteSDKInBackGround = 10
     }
 
     [Native]
@@ -575,7 +616,8 @@ namespace DT.Xamarin.Agora
         Success = 0,
         StreamOverLimitation = 1,
         UserCountOverLimitation = 2,
-        DeviceNotSupported = 3
+        DeviceNotSupported = 3,
+        InsufficientPerformance = 4
     }
 
     [Native]
@@ -584,7 +626,8 @@ namespace DT.Xamarin.Agora
         Success = 0,
         ImageNotExist = 1,
         ColorFormatNotSupported = 2,
-        DeviceNotSupported = 3
+        DeviceNotSupported = 3,
+        InsufficientPerformance = 4
     }
 
     [Native]
@@ -792,7 +835,8 @@ namespace DT.Xamarin.Agora
     public enum AudioCodecProfileType : long
     {
         Lcaac = 0,
-        Heaac = 1
+        Heaac = 1,
+        HEAACv2 = 2
     }
 
     [Native]
@@ -835,7 +879,8 @@ namespace DT.Xamarin.Agora
         DeviceNoPermission = 2,
         DeviceBusy = 3,
         RecordFailure = 4,
-        EncodeFailure = 5
+        EncodeFailure = 5,
+        Interrupted = 8
     }
 
     [Native]
@@ -883,7 +928,8 @@ namespace DT.Xamarin.Agora
         RenewToken = 12,
         ClientIpAddressChanged = 13,
         KeepAliveTimeout = 14,
-        ProxyServerInterrupted = 15
+        SameUidLogin = 19,
+        TooManyBroadcasters = 20
     }
 
     [Native]
@@ -963,6 +1009,35 @@ namespace DT.Xamarin.Agora
     }
 
     [Native]
+    public enum VideoDenoiserMode : ulong
+    {
+        Auto = 0,
+        Manual = 1
+    }
+
+    [Native]
+    public enum VideoDenoiserLevel : ulong
+    {
+        HighQuality = 0,
+        Fast = 1,
+        Strength = 2
+    }
+
+    [Native]
+    public enum LowlightEnhanceMode : ulong
+    {
+        Auto = 0,
+        Manual = 1
+    }
+
+    [Native]
+    public enum LowlightEnhanceLevel : ulong
+    {
+        Quality = 0,
+        Fast = 1
+    }
+
+    [Native]
     public enum VirtualBackgroundSourceType : ulong
     {
         Color = 1,
@@ -1008,8 +1083,12 @@ namespace DT.Xamarin.Agora
         CaptureMultipleForegroundApps = 7,
         CaptureNoDeviceFound = 8,
         CaptureDeviceDisconnected = 9,
+        CaptureDeviceInvalidId = 10,
         ScreenCaptureWindowMinimized = 11,
-        ScreenCaptureWindowClosed = 12
+        ScreenCaptureWindowClosed = 12,
+        ExtensionCaptureStarted = 13,
+        ExtensionCaptureStoped = 14,
+        ExtensionCaptureDisconnected = 15
     }
 
     [Native]
@@ -1043,12 +1122,38 @@ namespace DT.Xamarin.Agora
     }
 
     [Native]
+    public enum AgoraLocalProxyMode : ulong
+    {
+        ConnectivityFirst = 0,
+        LocalOnly = 1
+    }
+
+    [Native]
+    public enum AgoraProxyType : ulong
+    {
+        NoneProxyType = 0,
+        UdpProxyType = 1,
+        TcpProxyType = 2,
+        LocalProxyType = 3,
+        TcpProxyAutoFallbackType = 4
+    }
+
+    [Native]
     public enum AgoraAudioMixingDualMonoMode : ulong
     {
         Auto,
         L,
         R,
         Mix
+    }
+
+    [Native]
+    public enum AgoraScreenCaptureSourceType : long
+    {
+        Unknown = -1,
+        Window = 0,
+        Screen = 1,
+        Custom = 2
     }
 
     [Native]
@@ -1100,6 +1205,62 @@ namespace DT.Xamarin.Agora
         PlayoutSource = 0,
         RecordSourcePreProcess = 1,
         RecordSourcePostProcess = 2
+    }
+
+    [Native]
+    public enum AgoraContentInspectType : long
+    {
+        Invalid = 0,
+        Moderation = 1,
+        Supervise = 2
+    }
+
+    [Native]
+    public enum AgoraContentInspectResult : ulong
+    {
+        Neutral = 1,
+        Sexy = 2,
+        Porn = 3
+    }
+
+    [Native]
+    public enum AgoraMediaRecorderState : long
+    {
+        Error = -1,
+        Started = 2,
+        Stopped = 3
+    }
+
+    [Native]
+    public enum AgoraMediaRecorderErrorCode : long
+    {
+        NoError = 0,
+        WriteFailed = 1,
+        NoStream = 2,
+        OverMaxDuration = 3,
+        ConfigChange = 4,
+        CustomStreamDetected = 5
+    }
+
+    [Native]
+    public enum AgoraMediaRecorderStreamType : long
+    {
+        Audio = 1,
+        Video = 2,
+        Both = 3
+    }
+
+    [Native]
+    public enum AgoraAudioDeviceTestVolumeType : long
+    {
+        RecordingVolume = 0,
+        PlaybackVolume = 1
+    }
+
+    [Native]
+    public enum AgoraMediaRecorderContainerFormat : long
+    {
+        AgoraMediaRecorderContainerFormatMP4 = 1
     }
 
     [Native]

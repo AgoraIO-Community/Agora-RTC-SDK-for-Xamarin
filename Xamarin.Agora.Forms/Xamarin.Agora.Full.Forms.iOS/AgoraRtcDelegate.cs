@@ -59,7 +59,7 @@ namespace Xamarin.Agora.Full.Forms
         /// <param name="quality">Quality.</param>
         /// <param name="delay">Delay.</param>
         /// <param name="lost">Lost.</param>
-        public override void AudioQualityOfUid(AgoraRtcEngineKit engine, nuint uid, Quality quality, nuint delay, nuint lost)
+        public override void AudioQualityOfUid(AgoraRtcEngineKit engine, nuint uid, NetworkQuality quality, nuint delay, nuint lost)
         {
             Console.WriteLine($"AudioQualityOfUid: {uid}, {quality.ToString()}, {delay}, {lost}");
         }
@@ -177,7 +177,7 @@ namespace Xamarin.Agora.Full.Forms
         /// </summary>
         /// <param name="engine">Engine.</param>
         /// <param name="quality">Quality.</param>
-        public override void LastmileQuality(AgoraRtcEngineKit engine, Quality quality)
+        public override void LastmileQuality(AgoraRtcEngineKit engine, NetworkQuality quality)
         {
             //Console.WriteLine($"LastmileQuality: {quality.ToString()}");
         }
